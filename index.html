@@ -1,29 +1,26 @@
+
 <!DOCTYPE html>
 <html>
 <head>
   <title>PowerSchool LSR7</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- SPINNING GLOBE FAVICON (this is the only new/changed part) -->
-  <link rel="icon" href="/favicon.gif" type="image/gif">
-  <!-- Fallback emoji globe if GIF ever fails to load -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>Globe</text></svg>">
-
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-   
+    
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #f5f5f5;
       color: #333;
       padding: 40px 20px;
     }
-   
+    
     .container {
       max-width: 1200px;
       margin: 0 auto;
     }
-   
+    
+    /* Category Headers (Clickable) */
     .category-header {
       background: #4472c4;
       color: white;
@@ -37,13 +34,13 @@
       transition: all 0.3s ease;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
-   
+    
     .category-header:hover {
       background: #3a5fa9;
       transform: translateY(-2px);
       box-shadow: 0 4px 8px rgba(0,0,0,0.15);
     }
-   
+    
     .category-title {
       font-size: 1.5em;
       font-weight: 600;
@@ -51,32 +48,35 @@
       align-items: center;
       gap: 15px;
     }
-   
+    
     .arrow {
       font-size: 1.2em;
       transition: transform 0.3s;
     }
-   
+    
     .arrow.open {
       transform: rotate(180deg);
     }
-   
+    
+    /* Submenu Content (Hidden by default) */
     .category-content {
       display: none;
       padding: 20px 0;
       margin-bottom: 20px;
     }
-   
+    
     .category-content.show {
       display: block;
     }
-   
+    
+    /* Grid for smaller boxes */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
       gap: 20px;
     }
-   
+    
+    /* Individual link boxes */
     .link-box {
       background: white;
       border-radius: 8px;
@@ -90,13 +90,13 @@
       box-shadow: 0 2px 4px rgba(0,0,0,0.08);
       border: 1px solid #e0e0e0;
     }
-   
+    
     .link-box:hover {
       transform: translateY(-4px);
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
       border-color: #4472c4;
     }
-   
+    
     .link-icon {
       width: 60px;
       height: 60px;
@@ -107,7 +107,7 @@
       justify-content: center;
       font-size: 28px;
     }
-   
+    
     .link-name {
       color: #333;
       font-size: 14px;
@@ -117,302 +117,309 @@
   </style>
 </head>
 <body>
+
   <div class="container">
-   
+    
     <!-- Proxies Category -->
     <div class="category">
       <div class="category-header" onclick="toggleCategory('proxies')">
         <div class="category-title">
-          <span>Globe</span>
+          <span>🌐</span>
           <span>Proxies</span>
         </div>
-        <span class="arrow" id="arrow-proxies">Down Arrow</span>
+        <span class="arrow" id="arrow-proxies">▼</span>
       </div>
       <div class="category-content" id="content-proxies">
         <div class="grid">
+          <!-- Newer/Less Known Proxies -->
           <a href="https://shuttleproxy.com" target="_blank" class="link-box">
-            <div class="link-icon">Rocket</div>
+            <div class="link-icon">🚀</div>
             <div class="link-name">Shuttle</div>
           </a>
           <a href="https://hy.hypertabs.net" target="_blank" class="link-box">
-            <div class="link-icon">Lightning</div>
+            <div class="link-icon">⚡</div>
             <div class="link-name">Hypertabs</div>
           </a>
           <a href="https://incog.dev" target="_blank" class="link-box">
-            <div class="link-icon">Sunglasses</div>
+            <div class="link-icon">🕶️</div>
             <div class="link-name">Incognito</div>
           </a>
           <a href="https://ludiproxy.com" target="_blank" class="link-box">
-            <div class="link-icon">Target</div>
+            <div class="link-icon">🎯</div>
             <div class="link-name">Ludicrous</div>
           </a>
           <a href="https://shadowtabz.com" target="_blank" class="link-box">
-            <div class="link-icon">Person</div>
+            <div class="link-icon">👤</div>
             <div class="link-name">Shadowtabz</div>
           </a>
           <a href="https://kazwire.com" target="_blank" class="link-box">
-            <div class="link-icon">Plug</div>
+            <div class="link-icon">🔌</div>
             <div class="link-name">Kazwire</div>
           </a>
           <a href="https://degeneracy.netlify.app" target="_blank" class="link-box">
-            <div class="link-icon">Spiral</div>
+            <div class="link-icon">🌀</div>
             <div class="link-name">Degeneracy</div>
           </a>
           <a href="https://noctura.app" target="_blank" class="link-box">
-            <div class="link-icon">Moon</div>
+            <div class="link-icon">🌙</div>
             <div class="link-name">Noctura</div>
           </a>
           <a href="https://elixirproxy.com" target="_blank" class="link-box">
-            <div class="link-icon">Flask</div>
+            <div class="link-icon">⚗️</div>
             <div class="link-name">Elixir</div>
           </a>
           <a href="https://tsunamiproxy.com" target="_blank" class="link-box">
-            <div class="link-icon">Wave</div>
+            <div class="link-icon">🌊</div>
             <div class="link-name">Tsunami</div>
           </a>
+          
+          <!-- Original Proxies (might be blocked) -->
           <a href="https://www.blockaway.net" target="_blank" class="link-box">
-            <div class="link-icon">Globe</div>
+            <div class="link-icon">🌐</div>
             <div class="link-name">BlockAway</div>
           </a>
           <a href="https://www.croxyproxy.com" target="_blank" class="link-box">
-            <div class="link-icon">Unlock</div>
+            <div class="link-icon">🔓</div>
             <div class="link-name">CroxyProxy</div>
           </a>
           <a href="https://www.proxysite.com" target="_blank" class="link-box">
-            <div class="link-icon">Earth</div>
+            <div class="link-icon">🌍</div>
             <div class="link-name">ProxySite</div>
           </a>
           <a href="https://hide.me/en/proxy" target="_blank" class="link-box">
-            <div class="link-icon">Lock</div>
+            <div class="link-icon">🔒</div>
             <div class="link-name">Hide.me</div>
           </a>
           <a href="https://www.hidemyass.com/en-us/proxy" target="_blank" class="link-box">
-            <div class="link-icon">Mask</div>
+            <div class="link-icon">🎭</div>
             <div class="link-name">HideMyAss</div>
           </a>
           <a href="https://plainproxies.com" target="_blank" class="link-box">
-            <div class="link-icon">Lightning</div>
+            <div class="link-icon">⚡</div>
             <div class="link-name">PlainProxies</div>
           </a>
         </div>
       </div>
     </div>
-   
-    <!-- All your other categories (Social Media, Streaming, Games, etc.) stay 100% unchanged -->
+    
     <!-- Social Media Category -->
     <div class="category">
       <div class="category-header" onclick="toggleCategory('social')">
         <div class="category-title">
-          <span>Phone</span>
+          <span>📱</span>
           <span>Social Media</span>
         </div>
-        <span class="arrow" id="arrow-social">Down Arrow</span>
+        <span class="arrow" id="arrow-social">▼</span>
       </div>
       <div class="category-content" id="content-social">
         <div class="grid">
           <a href="https://youtube.com" target="_blank" class="link-box">
-            <div class="link-icon">TV</div>
+            <div class="link-icon">📺</div>
             <div class="link-name">YouTube</div>
           </a>
           <a href="https://instagram.com" target="_blank" class="link-box">
-            <div class="link-icon">Camera</div>
+            <div class="link-icon">📷</div>
             <div class="link-name">Instagram</div>
           </a>
           <a href="https://twitter.com" target="_blank" class="link-box">
-            <div class="link-icon">Bird</div>
+            <div class="link-icon">🐦</div>
             <div class="link-name">Twitter/X</div>
           </a>
           <a href="https://tiktok.com" target="_blank" class="link-box">
-            <div class="link-icon">Music</div>
+            <div class="link-icon">🎵</div>
             <div class="link-name">TikTok</div>
           </a>
           <a href="https://reddit.com" target="_blank" class="link-box">
-            <div class="link-icon">Robot</div>
+            <div class="link-icon">🤖</div>
             <div class="link-name">Reddit</div>
           </a>
         </div>
       </div>
     </div>
-   
-    <!-- Streaming, Games, Tools, Music, Finance categories remain exactly the same -->
-    <!-- (I'm keeping them here so you have the full file) -->
-
+    
+    <!-- Streaming Category -->
     <div class="category">
       <div class="category-header" onclick="toggleCategory('streaming')">
         <div class="category-title">
-          <span>Movie</span>
+          <span>🎬</span>
           <span>Streaming</span>
         </div>
-        <span class="arrow" id="arrow-streaming">Down Arrow</span>
+        <span class="arrow" id="arrow-streaming">▼</span>
       </div>
       <div class="category-content" id="content-streaming">
         <div class="grid">
           <a href="https://netflix.com" target="_blank" class="link-box">
-            <div class="link-icon">Movie</div>
+            <div class="link-icon">🎬</div>
             <div class="link-name">Netflix</div>
           </a>
           <a href="https://disneyplus.com" target="_blank" class="link-box">
-            <div class="link-icon">Castle</div>
+            <div class="link-icon">🏰</div>
             <div class="link-name">Disney+</div>
           </a>
           <a href="https://hulu.com" target="_blank" class="link-box">
-            <div class="link-icon">TV</div>
+            <div class="link-icon">📺</div>
             <div class="link-name">Hulu</div>
           </a>
           <a href="https://twitch.tv" target="_blank" class="link-box">
-            <div class="link-icon">Gamepad</div>
+            <div class="link-icon">🎮</div>
             <div class="link-name">Twitch</div>
           </a>
           <a href="https://primevideo.com" target="_blank" class="link-box">
-            <div class="link-icon">Package</div>
+            <div class="link-icon">📦</div>
             <div class="link-name">Prime Video</div>
           </a>
         </div>
       </div>
     </div>
-
+    
+    <!-- Games Category -->
     <div class="category">
       <div class="category-header" onclick="toggleCategory('games')">
         <div class="category-title">
-          <span>Gamepad</span>
+          <span>🎮</span>
           <span>Games</span>
         </div>
-        <span class="arrow" id="arrow-games">Down Arrow</span>
+        <span class="arrow" id="arrow-games">▼</span>
       </div>
       <div class="category-content" id="content-games">
         <div class="grid">
           <a href="https://roblox.com" target="_blank" class="link-box">
-            <div class="link-icon">Gamepad</div>
+            <div class="link-icon">🎮</div>
             <div class="link-name">Roblox</div>
           </a>
           <a href="https://krunker.io" target="_blank" class="link-box">
-            <div class="link-icon">Gun</div>
+            <div class="link-icon">🔫</div>
             <div class="link-name">Krunker</div>
           </a>
           <a href="https://skribbl.io" target="_blank" class="link-box">
-            <div class="link-icon">Pencil</div>
+            <div class="link-icon">✏️</div>
             <div class="link-name">Skribbl</div>
           </a>
           <a href="https://agar.io" target="_blank" class="link-box">
-            <div class="link-icon">Circle</div>
+            <div class="link-icon">⚪</div>
             <div class="link-name">Agar.io</div>
           </a>
           <a href="https://slither.io" target="_blank" class="link-box">
-            <div class="link-icon">Snake</div>
+            <div class="link-icon">🐍</div>
             <div class="link-name">Slither.io</div>
           </a>
         </div>
       </div>
     </div>
-
+    
+    <!-- Tools Category -->
     <div class="category">
       <div class="category-header" onclick="toggleCategory('tools')">
         <div class="category-title">
-          <span>Wrench</span>
+          <span>🔧</span>
           <span>Tools</span>
         </div>
-        <span class="arrow" id="arrow-tools">Down Arrow</span>
+        <span class="arrow" id="arrow-tools">▼</span>
       </div>
       <div class="category-content" id="content-tools">
         <div class="grid">
           <a href="https://discord.com" target="_blank" class="link-box">
-            <div class="link-icon">Chat</div>
+            <div class="link-icon">💬</div>
             <div class="link-name">Discord</div>
           </a>
           <a href="https://gmail.com" target="_blank" class="link-box">
-            <div class="link-icon">Email</div>
+            <div class="link-icon">📧</div>
             <div class="link-name">Gmail</div>
           </a>
           <a href="https://drive.google.com" target="_blank" class="link-box">
-            <div class="link-icon">Floppy Disk</div>
+            <div class="link-icon">💾</div>
             <div class="link-name">Google Drive</div>
           </a>
           <a href="https://docs.google.com" target="_blank" class="link-box">
-            <div class="link-icon">Document</div>
+            <div class="link-icon">📝</div>
             <div class="link-name">Google Docs</div>
           </a>
           <a href="https://github.com" target="_blank" class="link-box">
-            <div class="link-icon">Computer</div>
+            <div class="link-icon">💻</div>
             <div class="link-name">GitHub</div>
           </a>
         </div>
       </div>
     </div>
-
+    
+    <!-- Music Category -->
     <div class="category">
       <div class="category-header" onclick="toggleCategory('music')">
         <div class="category-title">
-          <span>Music Note</span>
+          <span>🎵</span>
           <span>Music</span>
         </div>
-        <span class="arrow" id="arrow-music">Down Arrow</span>
+        <span class="arrow" id="arrow-music">▼</span>
       </div>
       <div class="category-content" id="content-music">
         <div class="grid">
           <a href="https://spotify.com" target="_blank" class="link-box">
-            <div class="link-icon">Music Note</div>
+            <div class="link-icon">🎵</div>
             <div class="link-name">Spotify</div>
           </a>
           <a href="https://soundcloud.com" target="_blank" class="link-box">
-            <div class="link-icon">Cloud</div>
+            <div class="link-icon">☁️</div>
             <div class="link-name">SoundCloud</div>
           </a>
           <a href="https://music.youtube.com" target="_blank" class="link-box">
-            <div class="link-icon">Music</div>
+            <div class="link-icon">🎶</div>
             <div class="link-name">YouTube Music</div>
           </a>
           <a href="https://music.apple.com" target="_blank" class="link-box">
-            <div class="link-icon">Apple</div>
+            <div class="link-icon">🍎</div>
             <div class="link-name">Apple Music</div>
           </a>
         </div>
       </div>
     </div>
-
+    
+    <!-- Finance Category -->
     <div class="category">
       <div class="category-header" onclick="toggleCategory('finance')">
         <div class="category-title">
-          <span>Money</span>
+          <span>💰</span>
           <span>Finance</span>
         </div>
-        <span class="arrow" id="arrow-finance">Down Arrow</span>
+        <span class="arrow" id="arrow-finance">▼</span>
       </div>
       <div class="category-content" id="content-finance">
         <div class="grid">
           <a href="https://www.marketwatch.com/market-data" target="_blank" class="link-box">
-            <div class="link-icon">Chart Up</div>
+            <div class="link-icon">📈</div>
             <div class="link-name">MarketWatch</div>
           </a>
           <a href="https://rush.gold/" target="_blank" class="link-box">
-            <div class="link-icon">Gold</div>
+            <div class="link-icon">🥇</div>
             <div class="link-name">Rush Gold</div>
           </a>
           <a href="https://www.investing.com" target="_blank" class="link-box">
-            <div class="link-icon">Money</div>
+            <div class="link-icon">💰</div>
             <div class="link-name">Investing.com</div>
           </a>
           <a href="https://finance.yahoo.com" target="_blank" class="link-box">
-            <div class="link-icon">Chart</div>
+            <div class="link-icon">💹</div>
             <div class="link-name">Yahoo Finance</div>
           </a>
           <a href="https://www.tradingview.com" target="_blank" class="link-box">
-            <div class="link-icon">Graph</div>
+            <div class="link-icon">📊</div>
             <div class="link-name">TradingView</div>
           </a>
         </div>
       </div>
     </div>
-   
+    
   </div>
 
   <script>
     function toggleCategory(id) {
       const content = document.getElementById('content-' + id);
       const arrow = document.getElementById('arrow-' + id);
-     
+      
       content.classList.toggle('show');
       arrow.classList.toggle('open');
     }
   </script>
+
 </body>
 </html>
+
