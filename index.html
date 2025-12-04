@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -16,10 +16,6 @@
       align-items: center;
       justify-content: center;
       height: 100vh;
-    }
-    .hub-content {
-      display: none; /* hidden at first */
-      padding: 20px;
     }
     h2 {
       color: #2c3e50;
@@ -41,11 +37,6 @@
     button:hover {
       background: #2980b9;
     }
-    iframe {
-      width: 100%;
-      height: 600px;
-      border: none;
-    }
   </style>
 </head>
 <body>
@@ -57,32 +48,19 @@
     <button id="loginBtn">Login</button>
   </div>
 
-  <!-- Hidden hub content -->
-  <div class="hub-content" id="hub">
-    <h2>Welcome to the Hidden Hub</h2>
-    <p>This is your real content area. Drop your games, proxy, or whatever here.</p>
-    <!-- Example: embed your actual site -->
-    <iframe src="www.powerschool-lrs7.com"></iframe>
-  </div>
-
   <script>
     let clickCount = 0;
     const loginBtn = document.getElementById('loginBtn');
-    const cloak = document.getElementById('cloak');
-    const hub = document.getElementById('hub');
 
     loginBtn.addEventListener('click', () => {
       clickCount++;
       if (clickCount < 3) {
         alert("Invalid credentials. Please try again.");
       } else {
-        cloak.style.display = "none"; // hide cloak
-        hub.style.display = "block"; // show hub
+        // Redirect directly to your domain
+        window.location.href = "https://www.powerschool-lrs7.com";
       }
     });
   </script>
 </body>
 </html>
-
-
-
