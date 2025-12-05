@@ -336,6 +336,12 @@
       overflow: hidden;
     }
     
+    .hub-content.forkknife {
+      background: linear-gradient(135deg, #4a4a4a 0%, #2c2c2c 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    
     .hub-content.golden::before {
       content: '';
       position: fixed;
@@ -370,6 +376,23 @@
       z-index: 1;
     }
     
+    .hub-content.forkknife::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(circle, rgba(128,128,128,0.6) 1px, transparent 1px),
+        radial-gradient(circle, rgba(100,100,100,0.5) 1px, transparent 1px);
+      background-size: 50px 50px, 80px 80px;
+      background-position: 0 0, 40px 40px;
+      animation: sparkle 3s linear infinite;
+      pointer-events: none;
+      z-index: 1;
+    }
+    
     @keyframes sparkle {
       0% { opacity: 0.5; transform: scale(1); }
       50% { opacity: 1; transform: scale(1.1); }
@@ -382,6 +405,11 @@
     }
     
     .hub-content.lucky .container {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .hub-content.forkknife .container {
       position: relative;
       z-index: 2;
     }
@@ -430,6 +458,19 @@
     
     .hub-content.lucky .link-icon {
       background: #00d26a;
+    }
+    
+    /* Grey buttons for forkknife mode */
+    .hub-content.forkknife .category-header {
+      background: #6c6c6c;
+    }
+    
+    .hub-content.forkknife .category-header:hover {
+      background: #555555;
+    }
+    
+    .hub-content.forkknife .link-icon {
+      background: #6c6c6c;
     }
     
     @keyframes rainbowGlow {
@@ -936,6 +977,7 @@
     
     let goldenMode = false;
     let luckyMode = false;
+    let forkknifeMode = false;
     
     // Konami Code detection (as typed words)
     const konamiCode = 'upupdowndownleftrightleftrightabab';
@@ -969,11 +1011,19 @@
       if (input === 'm1ltvrs') {
         goldenMode = true;
         luckyMode = false;
+        forkknifeMode = false;
         forgotModal.classList.remove('show');
         unlockHub();
       } else if (input === 'lucky') {
         luckyMode = true;
         goldenMode = false;
+        forkknifeMode = false;
+        forgotModal.classList.remove('show');
+        unlockHub();
+      } else if (input === 'forkknife') {
+        forkknifeMode = true;
+        goldenMode = false;
+        luckyMode = false;
         forgotModal.classList.remove('show');
         unlockHub();
       } else {
@@ -1087,6 +1137,12 @@
         hub.classList.add('lucky');
         createSparkles('lucky');
       }
+      
+      // Apply forkknife mode if unlocked via forkknife password
+      if (forkknifeMode) {
+        hub.classList.add('forkknife');
+        createSparkles('forkknife');
+      }
       // No session storage - always reset on refresh
     }
     
@@ -1098,6 +1154,8 @@
         sparkleEmojis = ['✨', '⭐', '🌟', '💫', '⚡', '💛', '🔆'];
       } else if (mode === 'lucky') {
         sparkleEmojis = ['🍀', '🎰', '🎲', '💚', '🌈', '🎊', '🔮', '🎱'];
+      } else if (mode === 'forkknife') {
+        sparkleEmojis = ['🍴', '🔪', '🥄', '🍽️', '🔱', '⚔️'];
       }
       
       setInterval(() => {
@@ -1195,14 +1253,16 @@
       
       // Check wall collision
       if (head.x < 0 || head.x >= tileCount || head.y < 0 || head.y >= tileCount) {
-        resetSnake();
+        stopSnakeGame();
+        snakeWindow.classList.remove('show');
         return;
       }
       
       // Check self collision
       for (let segment of snake) {
         if (head.x === segment.x && head.y === segment.y) {
-          resetSnake();
+          stopSnakeGame();
+          snakeWindow.classList.remove('show');
           return;
         }
       }
