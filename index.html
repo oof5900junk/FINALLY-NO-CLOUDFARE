@@ -909,7 +909,6 @@
       if (goldenMode) {
         hub.classList.add('golden');
         createSparkles();
-        enableAboutBlank();
       }
       // No session storage - always reset on refresh
     }
@@ -933,27 +932,6 @@
           sparkle.remove();
         }, 4000);
       }, 300);
-    }
-    
-    // Make all links open in about:blank for golden mode
-    function enableAboutBlank() {
-      const allLinks = document.querySelectorAll('.link-box');
-      allLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-          e.preventDefault();
-          const url = link.getAttribute('href');
-          const win = window.open('about:blank', '_blank');
-          const iframe = win.document.createElement('iframe');
-          iframe.style.width = '100%';
-          iframe.style.height = '100%';
-          iframe.style.border = 'none';
-          iframe.style.margin = '0';
-          iframe.style.padding = '0';
-          iframe.src = url;
-          win.document.body.style.margin = '0';
-          win.document.body.appendChild(iframe);
-        });
-      });
     }
     
     // Allow Enter key to submit
