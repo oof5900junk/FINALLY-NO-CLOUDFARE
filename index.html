@@ -616,11 +616,8 @@
     const usernameInput = document.getElementById('username');
     const passwordInput = document.getElementById('password');
     
-    // Check if already unlocked in this session
-    if (sessionStorage.getItem('unlocked') === 'true') {
-      cloak.style.display = 'none';
-      hub.style.display = 'block';
-    }
+    // Always start with login screen on page load/refresh
+    // (Removed session persistence)
     
     // Method 1: Failed login attempts (3 times)
     loginBtn.addEventListener('click', () => {
@@ -683,7 +680,7 @@
     function unlockHub() {
       cloak.style.display = 'none';
       hub.style.display = 'block';
-      sessionStorage.setItem('unlocked', 'true');
+      // No session storage - always reset on refresh
     }
     
     // Allow Enter key to submit
