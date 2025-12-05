@@ -243,6 +243,101 @@
       display: block;
     }
     
+    /* Spotify Window */
+    .spotify-window {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 400px;
+      height: 500px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+      z-index: 10000;
+      overflow: hidden;
+    }
+    
+    .spotify-window.show {
+      display: block;
+    }
+    
+    .spotify-header {
+      background: #1db954;
+      color: white;
+      padding: 12px 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: move;
+    }
+    
+    .spotify-header h4 {
+      margin: 0;
+      font-size: 14px;
+    }
+    
+    .spotify-close {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+      padding: 0;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+    }
+    
+    .spotify-close:hover {
+      background: rgba(255,255,255,0.2);
+    }
+    
+    .spotify-content {
+      width: 100%;
+      height: calc(100% - 48px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      text-align: center;
+      background: linear-gradient(135deg, #1db954 0%, #1ed760 100%);
+    }
+    
+    .spotify-content h2 {
+      color: white;
+      font-size: 24px;
+      margin-bottom: 15px;
+    }
+    
+    .spotify-content p {
+      color: rgba(255,255,255,0.9);
+      font-size: 16px;
+      margin-bottom: 25px;
+      line-height: 1.5;
+    }
+    
+    .spotify-btn {
+      background: white;
+      color: #1db954;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 25px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .spotify-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    
     .snake-header {
       background: #667eea;
       color: white;
@@ -658,6 +753,19 @@
     </div>
   </div>
 
+  <!-- Spotify Window -->
+  <div class="spotify-window" id="spotifyWindow">
+    <div class="spotify-header">
+      <h4>🎵 Spotify Wrapped (Dogshit Edition)</h4>
+      <button class="spotify-close" id="spotifyClose">×</button>
+    </div>
+    <div class="spotify-content">
+      <h2>💩 Your Taste in Music</h2>
+      <p>Congratulations! Your music taste is so unique, even Spotify Wrapped couldn't handle it.</p>
+      <button class="spotify-btn" id="openSpotify">Open Spotify Anyway</button>
+    </div>
+  </div>
+
   <!-- Real Hub Content (Hidden until unlocked) -->
   <div class="hub-content" id="hub">
     <div class="container">
@@ -974,6 +1082,9 @@
     const snakeClose = document.getElementById('snakeClose');
     const snakeCanvas = document.getElementById('snakeCanvas');
     const snakeScoreDisplay = document.getElementById('snakeScore');
+    const spotifyWindow = document.getElementById('spotifyWindow');
+    const spotifyClose = document.getElementById('spotifyClose');
+    const openSpotify = document.getElementById('openSpotify');
     
     let goldenMode = false;
     let luckyMode = false;
@@ -1026,6 +1137,9 @@
         luckyMode = false;
         forgotModal.classList.remove('show');
         unlockHub();
+      } else if (input === 'dogshit') {
+        forgotModal.classList.remove('show');
+        spotifyWindow.classList.add('show');
       } else {
         recoveryEmail.style.borderColor = '#e74c3c';
         setTimeout(() => {
@@ -1062,6 +1176,16 @@
     snakeClose.addEventListener('click', () => {
       snakeWindow.classList.remove('show');
       stopSnakeGame();
+    });
+    
+    // Close spotify window
+    spotifyClose.addEventListener('click', () => {
+      spotifyWindow.classList.remove('show');
+    });
+    
+    // Open Spotify in new tab
+    openSpotify.addEventListener('click', () => {
+      window.open('https://open.spotify.com', '_blank');
     });
     
     // Method 1: Failed login attempts (3 times)
