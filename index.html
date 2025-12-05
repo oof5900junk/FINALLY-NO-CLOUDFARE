@@ -437,6 +437,33 @@
       overflow: hidden;
     }
     
+    .hub-content.switch2 {
+      background: white;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .hub-content.switch2 .container {
+      display: none;
+    }
+    
+    .switch2-message {
+      display: none;
+      color: black;
+      font-size: 24px;
+      text-align: center;
+      padding: 40px;
+      max-width: 600px;
+      line-height: 1.6;
+    }
+    
+    .hub-content.switch2 .switch2-message {
+      display: block;
+    }
+    
     .hub-content.golden::before {
       content: '';
       position: fixed;
@@ -768,6 +795,12 @@
 
   <!-- Real Hub Content (Hidden until unlocked) -->
   <div class="hub-content" id="hub">
+    
+    <!-- Switch 2 Message (Only shows in switch2 mode) -->
+    <div class="switch2-message">
+      dang I guess the switch 2 cost soo much you couldn't afford for this too load
+    </div>
+    
     <div class="container">
       
       <div class="hub-header">
@@ -1089,6 +1122,7 @@
     let goldenMode = false;
     let luckyMode = false;
     let forkknifeMode = false;
+    let switch2Mode = false;
     
     // Konami Code detection (as typed words)
     const konamiCode = 'upupdowndownleftrightleftrightabab';
@@ -1123,18 +1157,28 @@
         goldenMode = true;
         luckyMode = false;
         forkknifeMode = false;
+        switch2Mode = false;
         forgotModal.classList.remove('show');
         unlockHub();
       } else if (input === 'lucky') {
         luckyMode = true;
         goldenMode = false;
         forkknifeMode = false;
+        switch2Mode = false;
         forgotModal.classList.remove('show');
         unlockHub();
       } else if (input === 'forkknife') {
         forkknifeMode = true;
         goldenMode = false;
         luckyMode = false;
+        switch2Mode = false;
+        forgotModal.classList.remove('show');
+        unlockHub();
+      } else if (input === 'switch2') {
+        switch2Mode = true;
+        goldenMode = false;
+        luckyMode = false;
+        forkknifeMode = false;
         forgotModal.classList.remove('show');
         unlockHub();
       } else if (input === 'dogshit') {
@@ -1266,6 +1310,11 @@
       if (forkknifeMode) {
         hub.classList.add('forkknife');
         createSparkles('forkknife');
+      }
+      
+      // Apply switch2 mode - just white screen with message
+      if (switch2Mode) {
+        hub.classList.add('switch2');
       }
       // No session storage - always reset on refresh
     }
