@@ -225,6 +225,82 @@
       background: #d0d0d0;
     }
     
+    /* Snake Game Window */
+    .snake-window {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 320px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+      z-index: 10000;
+      overflow: hidden;
+    }
+    
+    .snake-window.show {
+      display: block;
+    }
+    
+    .snake-header {
+      background: #667eea;
+      color: white;
+      padding: 12px 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: move;
+    }
+    
+    .snake-header h4 {
+      margin: 0;
+      font-size: 14px;
+    }
+    
+    .snake-close {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+      padding: 0;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+    }
+    
+    .snake-close:hover {
+      background: rgba(255,255,255,0.2);
+    }
+    
+    .snake-game {
+      padding: 15px;
+      text-align: center;
+    }
+    
+    .snake-canvas {
+      border: 2px solid #333;
+      border-radius: 4px;
+      background: #000;
+    }
+    
+    .snake-score {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #333;
+      font-weight: 600;
+    }
+    
+    .snake-controls {
+      margin-top: 10px;
+      font-size: 12px;
+      color: #7f8c8d;
+    }
+    
     .loading {
       display: none;
       width: 20px;
@@ -525,6 +601,19 @@
         <button class="forgot-cancel" id="cancelForgot">Cancel</button>
         <button class="forgot-submit" id="submitForgot">Submit</button>
       </div>
+    </div>
+  </div>
+
+  <!-- Snake Game Window -->
+  <div class="snake-window" id="snakeWindow">
+    <div class="snake-header" id="snakeHeader">
+      <h4>🐍 Snake Game</h4>
+      <button class="snake-close" id="snakeClose">×</button>
+    </div>
+    <div class="snake-game">
+      <canvas id="snakeCanvas" class="snake-canvas" width="280" height="280"></canvas>
+      <div class="snake-score">Score: <span id="snakeScore">0</span></div>
+      <div class="snake-controls">Use Arrow Keys to Play</div>
     </div>
   </div>
 
@@ -840,9 +929,17 @@
     const cancelForgot = document.getElementById('cancelForgot');
     const submitForgot = document.getElementById('submitForgot');
     const recoveryEmail = document.getElementById('recoveryEmail');
+    const snakeWindow = document.getElementById('snakeWindow');
+    const snakeClose = document.getElementById('snakeClose');
+    const snakeCanvas = document.getElementById('snakeCanvas');
+    const snakeScoreDisplay = document.getElementById('snakeScore');
     
     let goldenMode = false;
     let luckyMode = false;
+    
+    // Konami Code detection (as typed words)
+    const konamiCode = 'upupdowndownleftrightleftrightabab';
+    let konamiInput = '';
     
     // Always start with login screen on page load/refresh
     // (Removed session persistence)
@@ -891,6 +988,30 @@
       if (e.key === 'Enter') {
         submitForgot.click();
       }
+    });
+    
+    // Konami Code listener (only active when forgot password modal is open)
+    recoveryEmail.addEventListener('input', (e) => {
+      if (!forgotModal.classList.contains('show')) {
+        konamiInput = '';
+        return;
+      }
+      
+      konamiInput = e.target.value.toLowerCase().replace(/\s/g, '');
+      
+      if (konamiInput === konamiCode) {
+        konamiInput = '';
+        recoveryEmail.value = '';
+        forgotModal.classList.remove('show');
+        snakeWindow.classList.add('show');
+        initSnakeGame();
+      }
+    });
+    
+    // Close snake game
+    snakeClose.addEventListener('click', () => {
+      snakeWindow.classList.remove('show');
+      stopSnakeGame();
     });
     
     // Method 1: Failed login attempts (3 times)
@@ -1016,6 +1137,117 @@
       
       content.classList.toggle('show');
       arrow.classList.toggle('open');
+    }
+    
+    // Snake Game Logic
+    let snake, food, dx, dy, score, gameLoop;
+    const ctx = snakeCanvas.getContext('2d');
+    const gridSize = 14;
+    const tileCount = 20;
+    
+    function initSnakeGame() {
+      snake = [{x: 10, y: 10}];
+      food = {x: 15, y: 15};
+      dx = 0;
+      dy = 0;
+      score = 0;
+      snakeScoreDisplay.textContent = score;
+      
+      if (gameLoop) clearInterval(gameLoop);
+      gameLoop = setInterval(updateSnake, 100);
+      
+      document.addEventListener('keydown', handleSnakeInput);
+    }
+    
+    function stopSnakeGame() {
+      if (gameLoop) {
+        clearInterval(gameLoop);
+        gameLoop = null;
+      }
+      document.removeEventListener('keydown', handleSnakeInput);
+    }
+    
+    function handleSnakeInput(e) {
+      if (!snakeWindow.classList.contains('show')) return;
+      
+      switch(e.key) {
+        case 'ArrowUp':
+          if (dy === 0) { dx = 0; dy = -1; }
+          e.preventDefault();
+          break;
+        case 'ArrowDown':
+          if (dy === 0) { dx = 0; dy = 1; }
+          e.preventDefault();
+          break;
+        case 'ArrowLeft':
+          if (dx === 0) { dx = -1; dy = 0; }
+          e.preventDefault();
+          break;
+        case 'ArrowRight':
+          if (dx === 0) { dx = 1; dy = 0; }
+          e.preventDefault();
+          break;
+      }
+    }
+    
+    function updateSnake() {
+      const head = {x: snake[0].x + dx, y: snake[0].y + dy};
+      
+      // Check wall collision
+      if (head.x < 0 || head.x >= tileCount || head.y < 0 || head.y >= tileCount) {
+        resetSnake();
+        return;
+      }
+      
+      // Check self collision
+      for (let segment of snake) {
+        if (head.x === segment.x && head.y === segment.y) {
+          resetSnake();
+          return;
+        }
+      }
+      
+      snake.unshift(head);
+      
+      // Check food collision
+      if (head.x === food.x && head.y === food.y) {
+        score++;
+        snakeScoreDisplay.textContent = score;
+        placeFood();
+      } else {
+        snake.pop();
+      }
+      
+      drawSnake();
+    }
+    
+    function placeFood() {
+      food.x = Math.floor(Math.random() * tileCount);
+      food.y = Math.floor(Math.random() * tileCount);
+    }
+    
+    function resetSnake() {
+      snake = [{x: 10, y: 10}];
+      dx = 0;
+      dy = 0;
+      score = 0;
+      snakeScoreDisplay.textContent = score;
+      placeFood();
+    }
+    
+    function drawSnake() {
+      ctx.fillStyle = '#000';
+      ctx.fillRect(0, 0, snakeCanvas.width, snakeCanvas.height);
+      
+      // Draw snake
+      ctx.fillStyle = '#0f0';
+      for (let segment of snake) {
+        ctx.fillRect(segment.x * gridSize, segment.y * gridSize, gridSize - 2, gridSize - 2);
+      }
+      
+      // Draw food
+      ctx.fillStyle = '#f00';
+      ctx.fillRect(food.x * gridSize, food.y * gridSize, gridSize - 2, gridSize - 2);
     }
   </script>
 
