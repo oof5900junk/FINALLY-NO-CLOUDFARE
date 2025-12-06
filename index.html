@@ -731,6 +731,215 @@
       }
     }
     
+    /* People Playground Mode */
+    .hub-content.people {
+      background: linear-gradient(135deg, #8B0000 0%, #DC143C 50%, #8B0000 100%);
+      background-size: 400% 400%;
+      animation: peopleGradient 4s ease infinite;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    @keyframes peopleGradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    .hub-content.people .container {
+      display: none;
+    }
+    
+    .people-game {
+      display: none;
+      width: 100%;
+      height: 100vh;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      text-align: center;
+      position: relative;
+      z-index: 10;
+    }
+    
+    .hub-content.people .people-game {
+      display: flex;
+    }
+    
+    .people-game h2 {
+      color: white;
+      font-size: 56px;
+      margin-bottom: 20px;
+      text-shadow: 0 0 20px rgba(0,0,0,0.8);
+      font-weight: 900;
+      letter-spacing: 4px;
+    }
+    
+    .people-game p {
+      color: #ffcccc;
+      font-size: 18px;
+      margin-bottom: 30px;
+      line-height: 1.5;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+    
+    .people-btn {
+      background: black;
+      color: #DC143C;
+      padding: 20px 40px;
+      border: 3px solid #DC143C;
+      border-radius: 8px;
+      font-size: 20px;
+      font-weight: 900;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 0 30px rgba(220, 20, 60, 0.5);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    
+    .people-btn:hover {
+      background: #DC143C;
+      color: black;
+      transform: scale(1.05);
+      box-shadow: 0 0 50px rgba(220, 20, 60, 0.8);
+    }
+    
+    /* Falling stick figures */
+    .stickfigure {
+      position: fixed;
+      font-size: 50px;
+      pointer-events: none;
+      z-index: 5;
+      animation: fallStick 10s linear infinite;
+      opacity: 0.7;
+    }
+    
+    @keyframes fallStick {
+      0% {
+        transform: translateY(-100px) rotate(0deg) scale(1);
+        opacity: 0.7;
+      }
+      50% {
+        transform: translateY(50vh) rotate(180deg) scale(1.2);
+        opacity: 0.9;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg) scale(0.8);
+        opacity: 0.5;
+      }
+    }
+    
+    /* Friday Night Funkin Mode */
+    .hub-content.fnf {
+      background: linear-gradient(135deg, #FF00FF 0%, #00FFFF 25%, #FF00FF 50%, #00FFFF 75%, #FF00FF 100%);
+      background-size: 400% 400%;
+      animation: fnfGradient 3s ease infinite;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    @keyframes fnfGradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    .hub-content.fnf .container {
+      display: none;
+    }
+    
+    .fnf-game {
+      display: none;
+      width: 100%;
+      height: 100vh;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      text-align: center;
+      position: relative;
+      z-index: 10;
+    }
+    
+    .hub-content.fnf .fnf-game {
+      display: flex;
+    }
+    
+    .fnf-game h2 {
+      color: white;
+      font-size: 64px;
+      margin-bottom: 20px;
+      text-shadow: 0 0 20px #FF00FF, 0 0 40px #00FFFF;
+      font-weight: 900;
+      animation: pulse 1s ease-in-out infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    
+    .fnf-game p {
+      color: white;
+      font-size: 20px;
+      margin-bottom: 30px;
+      line-height: 1.5;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+      font-weight: 600;
+    }
+    
+    .fnf-btn {
+      background: white;
+      color: #FF00FF;
+      padding: 25px 50px;
+      border: 5px solid #00FFFF;
+      border-radius: 15px;
+      font-size: 32px;
+      font-weight: 900;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 0 30px rgba(255, 0, 255, 0.6);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
+    
+    .fnf-btn:hover {
+      background: #FF00FF;
+      color: white;
+      border-color: #FF00FF;
+      transform: scale(1.1);
+      box-shadow: 0 0 50px rgba(0, 255, 255, 0.8);
+    }
+    
+    /* Falling music notes */
+    .musicnote {
+      position: fixed;
+      font-size: 45px;
+      pointer-events: none;
+      z-index: 5;
+      animation: fallNote 7s linear infinite;
+      opacity: 0.8;
+    }
+    
+    @keyframes fallNote {
+      0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0.5;
+      }
+    }
+    
     .hub-content.golden::before {
       content: '';
       position: fixed;
@@ -1097,6 +1306,20 @@
       <button class="melon-btn" id="openMelon">🍉 DESTROY ALL MELONS 🍉</button>
     </div>
     
+    <!-- People Playground (Only shows in people mode) -->
+    <div class="people-game">
+      <h2>☠️ I HATE HUMANS ☠️</h2>
+      <p>Welcome to the dark side. Time to unleash your chaos.<br>No mercy. No survivors. Pure destruction.</p>
+      <button class="people-btn" id="openPeople">💀 ENTER THE PLAYGROUND 💀</button>
+    </div>
+    
+    <!-- Friday Night Funkin (Only shows in fnf mode) -->
+    <div class="fnf-game">
+      <h2>🎤 FRIDAY NIGHT FUNKIN' 🎵</h2>
+      <p>You've unlocked the rhythm! Get ready to drop some sick beats.<br>Time to show them what you got!</p>
+      <button class="fnf-btn" id="openFNF2">🔊 BEEP 🔊</button>
+    </div>
+    
     <div class="container">
       
       <div class="hub-header">
@@ -1417,6 +1640,8 @@
     const openFNAF = document.getElementById('openFNAF');
     const openRepo = document.getElementById('openRepo');
     const openMelon = document.getElementById('openMelon');
+    const openPeople = document.getElementById('openPeople');
+    const openFNF2 = document.getElementById('openFNF2');
     const matrixCanvas = document.getElementById('matrixCanvas');
     
     let goldenMode = false;
@@ -1426,6 +1651,8 @@
     let fnafMode = false;
     let devMode = false;
     let melonMode = false;
+    let peopleMode = false;
+    let fnfMode = false;
     
     // Konami Code detection (as typed words)
     const konamiCode = 'upupdowndownleftrightleftrightabab';
@@ -1519,6 +1746,31 @@
         forkknifeMode = false;
         switch2Mode = false;
         fnafMode = false;
+        peopleMode = false;
+        forgotModal.classList.remove('show');
+        unlockHub();
+      } else if (input === 'ihatehumans') {
+        peopleMode = true;
+        melonMode = false;
+        devMode = false;
+        goldenMode = false;
+        luckyMode = false;
+        forkknifeMode = false;
+        switch2Mode = false;
+        fnafMode = false;
+        fnfMode = false;
+        forgotModal.classList.remove('show');
+        unlockHub();
+      } else if (input === 'leftrightupdownleftupdownrightdowndownupdowndownrightdownuprightupright') {
+        fnfMode = true;
+        peopleMode = false;
+        melonMode = false;
+        devMode = false;
+        goldenMode = false;
+        luckyMode = false;
+        forkknifeMode = false;
+        switch2Mode = false;
+        fnafMode = false;
         forgotModal.classList.remove('show');
         unlockHub();
       } else if (input === 'dogshit') {
@@ -1587,6 +1839,16 @@
       window.open('https://melonplayground.io/', '_blank');
     });
     
+    // Open People Playground
+    openPeople.addEventListener('click', () => {
+      window.open('https://www.gameflare.com/online-game/people-playground/', '_blank');
+    });
+    
+    // Open Friday Night Funkin
+    openFNF2.addEventListener('click', () => {
+      window.open('https://kbhgames.com/game/friday-night-funkin', '_blank');
+    });
+    
     // Create falling watermelons
     function createWatermelons() {
       setInterval(() => {
@@ -1603,6 +1865,44 @@
           melon.remove();
         }, 10000);
       }, 400);
+    }
+    
+    // Create falling stick figures
+    function createStickFigures() {
+      const figures = ['🧍', '🏃', '🤸', '🧎', '🕴️'];
+      setInterval(() => {
+        const stick = document.createElement('div');
+        stick.className = 'stickfigure';
+        stick.textContent = figures[Math.floor(Math.random() * figures.length)];
+        stick.style.left = Math.random() * 100 + 'vw';
+        stick.style.animationDuration = (Math.random() * 4 + 6) + 's';
+        stick.style.animationDelay = Math.random() * 2 + 's';
+        
+        document.body.appendChild(stick);
+        
+        setTimeout(() => {
+          stick.remove();
+        }, 12000);
+      }, 500);
+    }
+    
+    // Create falling music notes
+    function createMusicNotes() {
+      const notes = ['🎵', '🎶', '🎤', '🎸', '🎹', '🥁'];
+      setInterval(() => {
+        const note = document.createElement('div');
+        note.className = 'musicnote';
+        note.textContent = notes[Math.floor(Math.random() * notes.length)];
+        note.style.left = Math.random() * 100 + 'vw';
+        note.style.animationDuration = (Math.random() * 3 + 4) + 's';
+        note.style.animationDelay = Math.random() * 2 + 's';
+        
+        document.body.appendChild(note);
+        
+        setTimeout(() => {
+          note.remove();
+        }, 9000);
+      }, 350);
     }
     
     // Matrix Rain Effect for Dev Mode
@@ -1741,6 +2041,18 @@
       if (melonMode) {
         hub.classList.add('melon');
         createWatermelons();
+      }
+      
+      // Apply People Playground Mode - stick figures falling
+      if (peopleMode) {
+        hub.classList.add('people');
+        createStickFigures();
+      }
+      
+      // Apply Friday Night Funkin Mode - music notes falling
+      if (fnfMode) {
+        hub.classList.add('fnf');
+        createMusicNotes();
       }
       // No session storage - always reset on refresh
     }
