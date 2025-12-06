@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -940,699 +941,6 @@
       }
     }
     
-    /* Minecraft Mode */
-    .hub-content.minecraft {
-      background: linear-gradient(135deg, #8B4513 0%, #228B22 50%, #87CEEB 100%);
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .hub-content.minecraft .container { display: none; }
-    
-    .minecraft-game {
-      display: none;
-      width: 100%;
-      height: 100vh;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 30px;
-      text-align: center;
-      position: relative;
-      z-index: 10;
-    }
-    
-    .hub-content.minecraft .minecraft-game { 
-      display: flex !important;
-    }
-    
-    .minecraft-game h2 {
-      color: white;
-      font-size: 56px;
-      margin-bottom: 20px;
-      text-shadow: 4px 4px 0px #000;
-      font-family: 'Courier New', monospace;
-      font-weight: 900;
-    }
-    
-    .minecraft-game p {
-      color: white;
-      font-size: 18px;
-      margin-bottom: 30px;
-      text-shadow: 2px 2px 0px #000;
-      font-family: 'Courier New', monospace;
-    }
-    
-    .minecraft-btn {
-      background: #8B4513;
-      color: white;
-      padding: 20px 40px;
-      border: 4px solid #654321;
-      font-size: 20px;
-      font-weight: 900;
-      cursor: pointer;
-      font-family: 'Courier New', monospace;
-      box-shadow: 4px 4px 0px #000;
-      text-transform: uppercase;
-    }
-    
-    .minecraft-btn:hover {
-      background: #654321;
-      transform: translate(2px, 2px);
-      box-shadow: 2px 2px 0px #000;
-    }
-    
-    .block {
-      position: fixed;
-      width: 40px;
-      height: 40px;
-      pointer-events: none;
-      z-index: 5;
-      animation: fallBlock 6s linear infinite;
-    }
-    
-    @keyframes fallBlock {
-      0% { transform: translateY(-100px); opacity: 1; }
-      100% { transform: translateY(100vh); opacity: 0.8; }
-    }
-    
-    /* Geometry Dash Mode */
-    .hub-content.geodash {
-      background: black;
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .hub-content.geodash .container { display: none; }
-    
-    .geodash-game {
-      display: none;
-      width: 100%;
-      height: 100vh;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      z-index: 10;
-    }
-    
-    .hub-content.geodash .geodash-game { display: flex !important; }
-    
-    .geodash-game h2 {
-      color: #00ff00;
-      font-size: 60px;
-      margin-bottom: 20px;
-      text-shadow: 0 0 30px #00ff00;
-      animation: neonPulse 0.5s ease-in-out infinite;
-    }
-    
-    @keyframes neonPulse {
-      0%, 100% { text-shadow: 0 0 20px #00ff00, 0 0 40px #00ff00; }
-      50% { text-shadow: 0 0 40px #00ff00, 0 0 80px #00ff00; }
-    }
-    
-    .geodash-btn {
-      background: linear-gradient(135deg, #ff00ff 0%, #00ffff 100%);
-      color: white;
-      padding: 20px 40px;
-      border: none;
-      font-size: 22px;
-      font-weight: 900;
-      cursor: pointer;
-      box-shadow: 0 0 30px #ff00ff;
-      text-transform: uppercase;
-    }
-    
-    .geodash-btn:hover {
-      box-shadow: 0 0 50px #00ffff;
-      transform: scale(1.05);
-    }
-    
-    .triangle {
-      position: fixed;
-      width: 0;
-      height: 0;
-      border-left: 25px solid transparent;
-      border-right: 25px solid transparent;
-      border-bottom: 50px solid;
-      pointer-events: none;
-      z-index: 5;
-      animation: spinTriangle 3s linear infinite;
-    }
-    
-    @keyframes spinTriangle {
-      0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
-      100% { transform: translateY(100vh) rotate(360deg); opacity: 0.7; }
-    }
-    
-    /* Among Us Mode */
-    .hub-content.amongus {
-      background: linear-gradient(135deg, #000000 0%, #1a1a2e 50%, #000000 100%);
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .hub-content.amongus .container { display: none; }
-    
-    .amongus-game {
-      display: none;
-      width: 100%;
-      height: 100vh;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      z-index: 10;
-    }
-    
-    .hub-content.amongus .amongus-game { display: flex !important; }
-    
-    .amongus-game h2 {
-      color: #ff0000;
-      font-size: 58px;
-      margin-bottom: 20px;
-      text-shadow: 0 0 20px #ff0000;
-    }
-    
-    .amongus-btn {
-      background: #ff0000;
-      color: white;
-      padding: 20px 40px;
-      border: 4px solid #aa0000;
-      border-radius: 25px;
-      font-size: 22px;
-      font-weight: 900;
-      cursor: pointer;
-      text-transform: uppercase;
-    }
-    
-    .amongus-btn:hover {
-      background: #aa0000;
-      transform: rotate(-2deg) scale(1.05);
-    }
-    
-    .crewmate {
-      position: fixed;
-      font-size: 50px;
-      pointer-events: none;
-      z-index: 5;
-      animation: floatCrew 8s ease-in-out infinite;
-    }
-    
-    @keyframes floatCrew {
-      0%, 100% { transform: translateY(-100px) translateX(0); }
-      50% { transform: translateY(100vh) translateX(100px); }
-    }
-    
-    /* Subway Surfers Mode */
-    .hub-content.subway {
-      background: linear-gradient(135deg, #ff6b35 0%, #f7931e 50%, #fdc830 100%);
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .hub-content.subway .container { display: none; }
-    
-    .subway-game {
-      display: none;
-      width: 100%;
-      height: 100vh;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      z-index: 10;
-    }
-    
-    .hub-content.subway .subway-game { display: flex !important; }
-    
-    .subway-game h2 {
-      color: white;
-      font-size: 62px;
-      margin-bottom: 20px;
-      text-shadow: 4px 4px 0px #000;
-      font-weight: 900;
-      transform: rotate(-5deg);
-    }
-    
-    .subway-btn {
-      background: #ff6b35;
-      color: white;
-      padding: 20px 40px;
-      border: 4px solid #000;
-      border-radius: 10px;
-      font-size: 22px;
-      font-weight: 900;
-      cursor: pointer;
-      box-shadow: 6px 6px 0px #000;
-      text-transform: uppercase;
-    }
-    
-    .subway-btn:hover {
-      transform: translate(3px, 3px);
-      box-shadow: 3px 3px 0px #000;
-    }
-    
-    /* Tetris Mode */
-    .hub-content.tetris {
-      background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .hub-content.tetris .container { display: none; }
-    
-    .tetris-game {
-      display: none;
-      width: 100%;
-      height: 100vh;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      z-index: 10;
-    }
-    
-    .hub-content.tetris .tetris-game { display: flex !important; }
-    
-    .tetris-game h2 {
-      color: #00ff00;
-      font-size: 56px;
-      margin-bottom: 20px;
-      font-family: 'Courier New', monospace;
-    }
-    
-    .tetris-btn {
-      background: #3498db;
-      color: white;
-      padding: 20px 40px;
-      border: none;
-      font-size: 20px;
-      font-weight: 900;
-      cursor: pointer;
-      text-transform: uppercase;
-    }
-    
-    .tetris-btn:hover {
-      background: #2980b9;
-    }
-    
-    .tetris-block {
-      position: fixed;
-      width: 30px;
-      height: 30px;
-      pointer-events: none;
-      z-index: 5;
-      animation: fallTetris 5s linear infinite;
-    }
-    
-    @keyframes fallTetris {
-      0% { transform: translateY(-100px) rotate(0deg); }
-      100% { transform: translateY(100vh) rotate(90deg); }
-    }
-    
-    /* Rickroll Mode */
-    .hub-content.rickroll {
-      background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .hub-content.rickroll .container { display: none; }
-    
-    .rickroll-game {
-      display: none;
-      width: 100%;
-      height: 100vh;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      z-index: 10;
-    }
-    
-    .hub-content.rickroll .rickroll-game { display: flex !important; }
-    
-    .rickroll-game h2 {
-      color: white;
-      font-size: 64px;
-      margin-bottom: 20px;
-      animation: bounce 1s ease-in-out infinite;
-    }
-    
-    .rickroll-btn {
-      background: white;
-      color: #ff0000;
-      padding: 25px 50px;
-      border: none;
-      border-radius: 50px;
-      font-size: 24px;
-      font-weight: 900;
-      cursor: pointer;
-      text-transform: uppercase;
-    }
-    
-    .rickroll-btn:hover {
-      transform: scale(1.1) rotate(5deg);
-    }
-    
-    /* Shrek Mode */
-    .hub-content.shrek {
-      background: linear-gradient(135deg, #7cb342 0%, #558b2f 100%);
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .hub-content.shrek .container { display: none; }
-    
-    .shrek-game {
-      display: none;
-      width: 100%;
-      height: 100vh;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      z-index: 10;
-    }
-    
-    .hub-content.shrek .shrek-game { display: flex !important; }
-    
-    .shrek-game h2 {
-      color: #8d6e63;
-      font-size: 68px;
-      margin-bottom: 20px;
-      text-shadow: 4px 4px 0px #4e342e;
-    }
-    
-    .shrek-btn {
-      background: #8d6e63;
-      color: white;
-      padding: 20px 40px;
-      border: 4px solid #4e342e;
-      border-radius: 15px;
-      font-size: 22px;
-      font-weight: 900;
-      cursor: pointer;
-      text-transform: uppercase;
-    }
-    
-    .shrek-btn:hover {
-      background: #6d4c41;
-    }
-    
-    /* Doge Mode */
-    .hub-content.doge {
-      background: linear-gradient(135deg, #ffeb3b 0%, #ffc107 100%);
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .hub-content.doge .container { display: none; }
-    
-    .doge-game {
-      display: none;
-      width: 100%;
-      height: 100vh;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      z-index: 10;
-    }
-    
-    .hub-content.doge .doge-game { display: flex !important; }
-    
-    .doge-game h2 {
-      font-family: 'Comic Sans MS', cursive;
-      color: #ff6b9d;
-      font-size: 72px;
-      margin-bottom: 20px;
-      transform: rotate(-5deg);
-    }
-    
-    .doge-game p {
-      font-family: 'Comic Sans MS', cursive;
-      color: #9c27b0;
-      font-size: 28px;
-      margin-bottom: 30px;
-    }
-    
-    .doge-btn {
-      font-family: 'Comic Sans MS', cursive;
-      background: #ff6b9d;
-      color: white;
-      padding: 20px 40px;
-      border: none;
-      border-radius: 50px;
-      font-size: 22px;
-      font-weight: 900;
-      cursor: pointer;
-    }
-    
-    .doge-btn:hover {
-      transform: rotate(5deg) scale(1.1);
-    }
-    
-    .doge-text {
-      position: fixed;
-      font-family: 'Comic Sans MS', cursive;
-      font-size: 32px;
-      font-weight: bold;
-      pointer-events: none;
-      z-index: 5;
-      animation: fadeOut 4s ease-out forwards;
-    }
-    
-    @keyframes fadeOut {
-      0% { opacity: 1; transform: scale(1); }
-      100% { opacity: 0; transform: scale(1.5); }
-    }
-    
-    /* Skull Spam Mode */
-    .hub-content.skull {
-      background: black;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .hub-content.skull .container { display: none; }
-    
-    .skull-spam {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 100;
-      overflow: hidden;
-    }
-    
-    .hub-content.skull .skull-spam { display: block !important; }
-    
-    .skull-emoji {
-      position: absolute;
-      font-size: 60px;
-      animation: skullFall 3s linear infinite;
-    }
-    
-    @keyframes skullFall {
-      0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
-      100% { transform: translateY(100vh) rotate(360deg); opacity: 0.5; }
-    }
-    
-    /* Lofi Mode */
-    .hub-content.lofi {
-      background: linear-gradient(135deg, #834d9b 0%, #d04ed6 100%);
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .hub-content.lofi .container { display: none; }
-    
-    .lofi-game {
-      display: none;
-      width: 100%;
-      height: 100vh;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      z-index: 10;
-    }
-    
-    .hub-content.lofi .lofi-game { display: flex !important; }
-    
-    .lofi-game h2 {
-      color: white;
-      font-size: 56px;
-      margin-bottom: 20px;
-    }
-    
-    .lofi-btn {
-      background: white;
-      color: #834d9b;
-      padding: 20px 40px;
-      border: none;
-      border-radius: 25px;
-      font-size: 20px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-    
-    .lofi-btn:hover {
-      background: #f0f0f0;
-      transform: scale(1.05);
-    }
-    
-    /* Rain Mode */
-    .hub-content.rain {
-      background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .hub-content.rain .container { display: none; }
-    
-    .rain-game {
-      display: none;
-      width: 100%;
-      height: 100vh;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      z-index: 10;
-    }
-    
-    .hub-content.rain .rain-game { display: flex !important; }
-    
-    .rain-game h2 {
-      color: #3498db;
-      font-size: 52px;
-      margin-bottom: 20px;
-    }
-    
-    .rain-btn {
-      background: #3498db;
-      color: white;
-      padding: 20px 40px;
-      border: none;
-      border-radius: 10px;
-      font-size: 20px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-    
-    .raindrop {
-      position: fixed;
-      width: 2px;
-      height: 20px;
-      background: #3498db;
-      pointer-events: none;
-      z-index: 5;
-      animation: rainFall 1s linear infinite;
-    }
-    
-    @keyframes rainFall {
-      0% { transform: translateY(-100px); opacity: 1; }
-      100% { transform: translateY(100vh); opacity: 0.3; }
-    }
-    
-    /* Sunset Mode */
-    .hub-content.sunset {
-      background: linear-gradient(135deg, #ff6b6b 0%, #ffa500 50%, #ffeb3b 100%);
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .hub-content.sunset .container { display: none; }
-    
-    .sunset-game {
-      display: none;
-      width: 100%;
-      height: 100vh;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      z-index: 10;
-    }
-    
-    .hub-content.sunset .sunset-game { display: flex !important; }
-    
-    .sunset-game h2 {
-      color: white;
-      font-size: 58px;
-      margin-bottom: 20px;
-      text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
-    }
-    
-    .sunset-btn {
-      background: rgba(255,255,255,0.3);
-      color: white;
-      padding: 20px 40px;
-      border: 2px solid white;
-      border-radius: 25px;
-      font-size: 20px;
-      font-weight: 700;
-      cursor: pointer;
-      backdrop-filter: blur(10px);
-    }
-    
-    .sunset-btn:hover {
-      background: rgba(255,255,255,0.5);
-    }
-    
-    /* Upside Down Mode */
-    .hub-content.upsidedown {
-      transform: rotate(180deg);
-    }
-    
-    /* Spinning Mode */
-    .hub-content.spinning {
-      animation: spinPage 20s linear infinite;
-    }
-    
-    @keyframes spinPage {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    
     .hub-content.golden::before {
       content: '';
       position: fixed;
@@ -2013,86 +1321,6 @@
       <button class="fnf-btn" id="openFNF2">🔊 BEEP 🔊</button>
     </div>
     
-    <!-- Minecraft -->
-    <div class="minecraft-game">
-      <h2>⛏️ MINECRAFT ⛏️</h2>
-      <p>Welcome to the blocky world!<br>Time to mine, craft, and build!</p>
-      <button class="minecraft-btn" id="openMinecraft">ENTER WORLD</button>
-    </div>
-    
-    <!-- Geometry Dash -->
-    <div class="geodash-game">
-      <h2>🔺 GEOMETRY DASH 🔺</h2>
-      <p>Prepare for an impossible challenge!</p>
-      <button class="geodash-btn" id="openGeoDash">JUMP</button>
-    </div>
-    
-    <!-- Among Us -->
-    <div class="amongus-game">
-      <h2>🚀 AMONG US 🚀</h2>
-      <p>There is 1 impostor among us...</p>
-      <button class="amongus-btn" id="openAmongUs">THAT'S SUS</button>
-    </div>
-    
-    <!-- Subway Surfers -->
-    <div class="subway-game">
-      <h2>🚇 SUBWAY SURFERS 🚇</h2>
-      <p>RUN! The inspector is coming!</p>
-      <button class="subway-btn" id="openSubway">START RUNNING</button>
-    </div>
-    
-    <!-- Tetris -->
-    <div class="tetris-game">
-      <h2>🟦 TETRIS 🟦</h2>
-      <p>Stack 'em up!</p>
-      <button class="tetris-btn" id="openTetris">PLAY</button>
-    </div>
-    
-    <!-- Rickroll -->
-    <div class="rickroll-game">
-      <h2>🎵 NEVER GONNA GIVE YOU UP 🎵</h2>
-      <p>You've been...</p>
-      <button class="rickroll-btn" id="openRickroll">CLICK ME</button>
-    </div>
-    
-    <!-- Shrek -->
-    <div class="shrek-game">
-      <h2>🟢 SHREK IS LOVE 🟢</h2>
-      <p>Welcome to my swamp</p>
-      <button class="shrek-btn" id="openShrek">GET OUT OF MY SWAMP</button>
-    </div>
-    
-    <!-- Doge -->
-    <div class="doge-game">
-      <h2>🐕 DOGE 🐕</h2>
-      <p>much wow, very epic, so amaze</p>
-      <button class="doge-btn" id="openDoge">such click</button>
-    </div>
-    
-    <!-- Skull Spam -->
-    <div class="skull-spam"></div>
-    
-    <!-- Lofi -->
-    <div class="lofi-game">
-      <h2>🎧 LOFI HIP HOP 🎧</h2>
-      <p>Chill beats to study/relax to</p>
-      <button class="lofi-btn" id="openLofi">VIBE OUT</button>
-    </div>
-    
-    <!-- Rain -->
-    <div class="rain-game">
-      <h2>🌧️ RAINY DAY 🌧️</h2>
-      <p>Listen to the rain...</p>
-      <button class="rain-btn" id="openRain">RELAX</button>
-    </div>
-    
-    <!-- Sunset -->
-    <div class="sunset-game">
-      <h2>🌅 SUNSET VIBES 🌅</h2>
-      <p>Watch the sun go down</p>
-      <button class="sunset-btn" id="openSunset">CHILL</button>
-    </div>
-    
     <div class="container">
       
       <div class="hub-header">
@@ -2416,17 +1644,6 @@
     const openPeople = document.getElementById('openPeople');
     const openFNF2 = document.getElementById('openFNF2');
     const matrixCanvas = document.getElementById('matrixCanvas');
-    const openMinecraft = document.getElementById('openMinecraft');
-    const openGeoDash = document.getElementById('openGeoDash');
-    const openAmongUs = document.getElementById('openAmongUs');
-    const openSubway = document.getElementById('openSubway');
-    const openTetris = document.getElementById('openTetris');
-    const openRickroll = document.getElementById('openRickroll');
-    const openShrek = document.getElementById('openShrek');
-    const openDoge = document.getElementById('openDoge');
-    const openLofi = document.getElementById('openLofi');
-    const openRain = document.getElementById('openRain');
-    const openSunset = document.getElementById('openSunset');
     
     let goldenMode = false;
     let luckyMode = false;
@@ -2437,20 +1654,6 @@
     let melonMode = false;
     let peopleMode = false;
     let fnfMode = false;
-    let minecraftMode = false;
-    let geodashMode = false;
-    let amongusMode = false;
-    let subwayMode = false;
-    let tetrisMode = false;
-    let rickrollMode = false;
-    let shrekMode = false;
-    let dogeMode = false;
-    let skullMode = false;
-    let lofiMode = false;
-    let rainMode = false;
-    let sunsetMode = false;
-    let upsidedownMode = false;
-    let spinningMode = false;
     
     // Konami Code detection (as typed words)
     const konamiCode = 'upupdowndownleftrightleftrightabab';
@@ -2647,61 +1850,6 @@
       window.open('https://kbhgames.com/game/friday-night-funkin', '_blank');
     });
     
-    // Open Minecraft
-    openMinecraft.addEventListener('click', () => {
-      window.open('https://classic.minecraft.net/', '_blank');
-    });
-    
-    // Open Geometry Dash
-    openGeoDash.addEventListener('click', () => {
-      window.open('https://scratch.mit.edu/projects/105500895/', '_blank');
-    });
-    
-    // Open Among Us
-    openAmongUs.addEventListener('click', () => {
-      window.open('https://www.crazygames.com/game/among-us', '_blank');
-    });
-    
-    // Open Subway Surfers
-    openSubway.addEventListener('click', () => {
-      window.open('https://poki.com/en/g/subway-surfers', '_blank');
-    });
-    
-    // Open Tetris
-    openTetris.addEventListener('click', () => {
-      window.open('https://tetris.com/play-tetris', '_blank');
-    });
-    
-    // Open Rickroll
-    openRickroll.addEventListener('click', () => {
-      window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank');
-    });
-    
-    // Open Shrek
-    openShrek.addEventListener('click', () => {
-      window.open('https://www.youtube.com/watch?v=L_jWHffIx5E', '_blank');
-    });
-    
-    // Open Doge
-    openDoge.addEventListener('click', () => {
-      window.open('https://knowyourmeme.com/memes/doge', '_blank');
-    });
-    
-    // Open Lofi
-    openLofi.addEventListener('click', () => {
-      window.open('https://www.youtube.com/watch?v=jfKfPfyJRdk', '_blank');
-    });
-    
-    // Open Rain
-    openRain.addEventListener('click', () => {
-      window.open('https://rainymood.com/', '_blank');
-    });
-    
-    // Open Sunset
-    openSunset.addEventListener('click', () => {
-      window.open('https://www.youtube.com/watch?v=Jn8xYHUdWRg', '_blank');
-    });
-    
     // Create falling watermelons
     function createWatermelons() {
       setInterval(() => {
@@ -2749,109 +1897,13 @@
         note.style.left = Math.random() * 100 + 'vw';
         note.style.animationDuration = (Math.random() * 3 + 4) + 's';
         note.style.animationDelay = Math.random() * 2 + 's';
+        
         document.body.appendChild(note);
-        setTimeout(() => note.remove(), 9000);
-      }, 350);
-    }
-    
-    // Create Minecraft blocks
-    function createBlocks() {
-      const colors = ['#8B4513', '#228B22', '#808080', '#FFD700'];
-      setInterval(() => {
-        const block = document.createElement('div');
-        block.className = 'block';
-        block.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-        block.style.left = Math.random() * 100 + 'vw';
-        block.style.animationDuration = (Math.random() * 2 + 4) + 's';
-        document.body.appendChild(block);
-        setTimeout(() => block.remove(), 8000);
-      }, 600);
-    }
-    
-    // Create triangles for Geometry Dash
-    function createTriangles() {
-      const colors = ['#00ff00', '#ff00ff', '#00ffff', '#ffff00'];
-      setInterval(() => {
-        const tri = document.createElement('div');
-        tri.className = 'triangle';
-        tri.style.borderBottomColor = colors[Math.floor(Math.random() * colors.length)];
-        tri.style.left = Math.random() * 100 + 'vw';
-        tri.style.animationDuration = (Math.random() * 1 + 2) + 's';
-        document.body.appendChild(tri);
-        setTimeout(() => tri.remove(), 5000);
-      }, 400);
-    }
-    
-    // Create crewmates for Among Us
-    function createCrewmates() {
-      const colors = ['🔴', '🔵', '🟢', '🟡', '🟣', '🟠'];
-      setInterval(() => {
-        const crew = document.createElement('div');
-        crew.className = 'crewmate';
-        crew.textContent = colors[Math.floor(Math.random() * colors.length)];
-        crew.style.left = Math.random() * 100 + 'vw';
-        crew.style.animationDuration = (Math.random() * 3 + 5) + 's';
-        document.body.appendChild(crew);
-        setTimeout(() => crew.remove(), 10000);
-      }, 800);
-    }
-    
-    // Create Tetris blocks
-    function createTetrisBlocks() {
-      const colors = ['#00f0f0', '#f0f000', '#a000f0', '#00f000', '#f00000', '#f0a000', '#0000f0'];
-      setInterval(() => {
-        const block = document.createElement('div');
-        block.className = 'tetris-block';
-        block.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-        block.style.left = Math.random() * 100 + 'vw';
-        block.style.animationDuration = (Math.random() * 2 + 3) + 's';
-        document.body.appendChild(block);
-        setTimeout(() => block.remove(), 7000);
-      }, 500);
-    }
-    
-    // Create Doge text
-    function createDogeText() {
-      const phrases = ['such wow', 'very epic', 'much amaze', 'so doge', 'wow', 'very cool', 'many fun'];
-      const colors = ['#ff6b9d', '#9c27b0', '#2196f3', '#4caf50', '#ff9800'];
-      setInterval(() => {
-        const text = document.createElement('div');
-        text.className = 'doge-text';
-        text.textContent = phrases[Math.floor(Math.random() * phrases.length)];
-        text.style.color = colors[Math.floor(Math.random() * colors.length)];
-        text.style.left = Math.random() * 80 + 10 + '%';
-        text.style.top = Math.random() * 80 + 10 + '%';
-        document.body.appendChild(text);
-        setTimeout(() => text.remove(), 4000);
-      }, 1000);
-    }
-    
-    // Create skull spam
-    function createSkullSpam() {
-      for (let i = 0; i < 100; i++) {
+        
         setTimeout(() => {
-          const skull = document.createElement('div');
-          skull.className = 'skull-emoji';
-          skull.textContent = '💀';
-          skull.style.left = Math.random() * 100 + '%';
-          skull.style.top = Math.random() * -200 + 'px';
-          skull.style.animationDelay = Math.random() * 2 + 's';
-          skull.style.animationDuration = (Math.random() * 2 + 2) + 's';
-          document.querySelector('.skull-spam').appendChild(skull);
-        }, i * 50);
-      }
-    }
-    
-    // Create rain
-    function createRain() {
-      setInterval(() => {
-        const drop = document.createElement('div');
-        drop.className = 'raindrop';
-        drop.style.left = Math.random() * 100 + 'vw';
-        drop.style.animationDuration = (Math.random() * 0.5 + 0.5) + 's';
-        document.body.appendChild(drop);
-        setTimeout(() => drop.remove(), 1500);
-      }, 50);
+          note.remove();
+        }, 9000);
+      }, 350);
     }
     
     // Matrix Rain Effect for Dev Mode
@@ -2952,29 +2004,58 @@
       cloak.style.display = 'none';
       hub.style.display = 'block';
       
-      if (goldenMode) { hub.classList.add('golden'); createSparkles('golden'); }
-      if (luckyMode) { hub.classList.add('lucky'); createSparkles('lucky'); }
-      if (forkknifeMode) { hub.classList.add('forkknife'); createSparkles('forkknife'); }
-      if (switch2Mode) { hub.classList.add('switch2'); }
-      if (fnafMode) { hub.classList.add('fnaf'); }
-      if (devMode) { hub.classList.add('devmode'); initMatrix(); }
-      if (melonMode) { hub.classList.add('melon'); createWatermelons(); }
-      if (peopleMode) { hub.classList.add('people'); createStickFigures(); }
-      if (fnfMode) { hub.classList.add('fnf'); createMusicNotes(); }
-      if (minecraftMode) { hub.classList.add('minecraft'); createBlocks(); }
-      if (geodashMode) { hub.classList.add('geodash'); createTriangles(); }
-      if (amongusMode) { hub.classList.add('amongus'); createCrewmates(); }
-      if (subwayMode) { hub.classList.add('subway'); }
-      if (tetrisMode) { hub.classList.add('tetris'); createTetrisBlocks(); }
-      if (rickrollMode) { hub.classList.add('rickroll'); }
-      if (shrekMode) { hub.classList.add('shrek'); }
-      if (dogeMode) { hub.classList.add('doge'); createDogeText(); }
-      if (skullMode) { hub.classList.add('skull'); createSkullSpam(); }
-      if (lofiMode) { hub.classList.add('lofi'); }
-      if (rainMode) { hub.classList.add('rain'); createRain(); }
-      if (sunsetMode) { hub.classList.add('sunset'); }
-      if (upsidedownMode) { hub.classList.add('upsidedown'); }
-      if (spinningMode) { hub.classList.add('spinning'); }
+      // Apply golden sparkly mode if unlocked via secret password
+      if (goldenMode) {
+        hub.classList.add('golden');
+        createSparkles('golden');
+      }
+      
+      // Apply lucky mode if unlocked via lucky password
+      if (luckyMode) {
+        hub.classList.add('lucky');
+        createSparkles('lucky');
+      }
+      
+      // Apply forkknife mode if unlocked via forkknife password
+      if (forkknifeMode) {
+        hub.classList.add('forkknife');
+        createSparkles('forkknife');
+      }
+      
+      // Apply switch2 mode - just white screen with message
+      if (switch2Mode) {
+        hub.classList.add('switch2');
+      }
+      
+      // Apply FNAF mode - fullscreen game
+      if (fnafMode) {
+        hub.classList.add('fnaf');
+      }
+      
+      // Apply Dev Mode - matrix background
+      if (devMode) {
+        hub.classList.add('devmode');
+        initMatrix();
+      }
+      
+      // Apply Melon Mode - watermelon falling
+      if (melonMode) {
+        hub.classList.add('melon');
+        createWatermelons();
+      }
+      
+      // Apply People Playground Mode - stick figures falling
+      if (peopleMode) {
+        hub.classList.add('people');
+        createStickFigures();
+      }
+      
+      // Apply Friday Night Funkin Mode - music notes falling
+      if (fnfMode) {
+        hub.classList.add('fnf');
+        createMusicNotes();
+      }
+      // No session storage - always reset on refresh
     }
     
     // Create floating sparkles
@@ -3142,4 +2223,5 @@
 
 </body>
 </html>
+
 
