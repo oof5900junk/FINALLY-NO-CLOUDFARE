@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <title>PowerSchool LSR7</title>
@@ -2945,12 +2945,43 @@
     const usersSidebar = document.getElementById('usersSidebar');
     const usersList = document.getElementById('usersList');
     
+    // AI Bots with personalities
+    const bots = [
+      {
+        name: 'blight',
+        personality: 'You are blight, a chill and laid-back person chatting casually online. Use casual slang like "lol", "fr", "ngl", "bruh", "nah", "tbh". Keep responses very short (1-2 sentences max). Talk like you\'re texting a friend. Be relaxed and cool. Never mention you\'re an AI or assistant. You\'re just a regular person hanging out in chat.'
+      },
+      {
+        name: 'm1ltvrs',
+        personality: 'You are m1ltvrs, a dev/tech enthusiast who loves coding and building stuff. Mention tech, coding, or projects sometimes. Be helpful but casual. Keep responses short. Talk like a real developer would in a group chat. Never mention being an AI. You\'re just another person in the chat who happens to know about tech.'
+      },
+      {
+        name: 'Eli',
+        personality: 'You are Eli, a supportive friend who gives good vibes and encouragement. Be positive and friendly. Keep it short and natural. Use occasional emojis. Talk like a real supportive friend would in a group chat. Never mention being an AI or assistant. Just be the wholesome person in the group.'
+      },
+      {
+        name: 'forkknife',
+        personality: 'You are forkknife, the funny one who makes jokes and memes. Be witty, sarcastic, make puns. Keep it short and punchy. Talk like that one friend who always cracks jokes in the group chat. Never mention being an AI. You\'re just the class clown of the group.'
+      },
+      {
+        name: 'evicly',
+        personality: 'You are evicly, the chaotic wildcard with random energy. Say unexpected things, go off on tangents, be unpredictable. Keep responses short but wild. Talk like that friend who has the most random thoughts. Never mention being an AI. You\'re just naturally chaotic.'
+      },
+      {
+        name: 'fnfpro',
+        personality: 'You are fnfpro, a gamer who loves video games. Use gaming slang like "gg", "W", "L", "clutch", "based". Talk about games casually. Keep it short. Be competitive but friendly. Never mention being an AI or bot. You\'re just a gamer hanging out in chat.'
+      }
+    ];
+    
     // Get or create username
     let username = localStorage.getItem('chatUsername');
     if (!username) {
       username = 'User' + Math.floor(Math.random() * 10000);
       localStorage.setItem('chatUsername', username);
     }
+    
+    // Conversation history for context
+    let conversationHistory = [];
     
     // Toggle chat window
     chatButton.addEventListener('click', () => {
@@ -2993,42 +3024,22 @@
       updateOnlineUsers();
     });
     
-    // Update online users
+    // Update online users (now includes AI bots)
     function updateOnlineUsers() {
-      const users = JSON.parse(localStorage.getItem('chatUsers') || '[]');
-      const now = Date.now();
-      
-      // Add current user with timestamp
-      const currentUser = users.find(u => u.name === username);
-      if (currentUser) {
-        currentUser.lastSeen = now;
-      } else {
-        users.push({ name: username, lastSeen: now });
-      }
-      
-      // Filter users active in last 5 minutes
-      const activeUsers = users.filter(u => now - u.lastSeen < 300000);
-      localStorage.setItem('chatUsers', JSON.stringify(activeUsers));
+      const users = [username, ...bots.map(b => b.name)];
       
       // Display users
       usersList.innerHTML = '';
-      activeUsers.forEach(user => {
+      users.forEach(user => {
         const userDiv = document.createElement('div');
         userDiv.className = 'user-item';
         userDiv.innerHTML = `
           <div class="status"></div>
-          <div class="name">${user.name}</div>
+          <div class="name">${user}${user === username ? ' (You)' : ''}</div>
         `;
         usersList.appendChild(userDiv);
       });
     }
-    
-    // Update user activity every 30 seconds
-    setInterval(() => {
-      if (chatWindow.classList.contains('show')) {
-        updateOnlineUsers();
-      }
-    }, 30000);
     
     // Load messages from localStorage
     function loadMessages() {
@@ -3072,12 +3083,64 @@
     }
     
     // Send message
-    function sendMessage() {
+    async function sendMessage() {
       const text = chatInput.value.trim();
       if (!text) return;
       
+      // Display user's message
       displayMessage(username, text, Date.now());
+      conversationHistory.push({role: 'user', content: `${username}: ${text}`});
       chatInput.value = '';
+      
+      // Pick 1-3 random bots to respond
+      const numResponders = Math.floor(Math.random() * 3) + 1;
+      const shuffled = [...bots].sort(() => Math.random() - 0.5);
+      const respondingBots = shuffled.slice(0, numResponders);
+      
+      // Show typing indicator
+      const typingDiv = document.createElement('div');
+      typingDiv.className = 'chat-message';
+      typingDiv.innerHTML = '<div class="text" style="color: #999;">💭 typing...</div>';
+      chatMessages.appendChild(typingDiv);
+      
+      // Get responses from each bot
+      for (let i = 0; i < respondingBots.length; i++) {
+        const bot = respondingBots[i];
+        const delay = Math.random() * 2000 + 1000; // Random delay 1-3s
+        
+        await new Promise(resolve => setTimeout(resolve, delay));
+        
+        try {
+          const response = await fetch("https://api.anthropic.com/v1/messages", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              model: "claude-sonnet-4-20250514",
+              max_tokens: 150,
+              system: bot.personality,
+              messages: [
+                ...conversationHistory.slice(-10), // Last 10 messages for context
+                {role: 'user', content: `Respond to this message naturally and in character: "${text}"`}
+              ]
+            })
+          });
+          
+          const data = await response.json();
+          const botMessage = data.content[0].text;
+          
+          // Remove typing indicator before first response
+          if (i === 0) typingDiv.remove();
+          
+          displayMessage(bot.name, botMessage, Date.now());
+          conversationHistory.push({role: 'assistant', content: `${bot.name}: ${botMessage}`});
+          
+        } catch (error) {
+          console.error('Bot error:', error);
+        }
+      }
+      
+      // Remove typing indicator if still there
+      if (typingDiv.parentNode) typingDiv.remove();
     }
     
     chatSend.addEventListener('click', sendMessage);
