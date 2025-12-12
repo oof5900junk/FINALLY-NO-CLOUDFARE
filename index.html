@@ -1,4 +1,5 @@
     
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -2947,151 +2948,218 @@
     const usersList = document.getElementById('usersList');
     
     // AI Bots with personalities
-    const bots = [
-      {
-        name: 'blight',
-        personality: 'You are blight, a chill and laid-back person chatting casually online. Use casual slang like "lol", "fr", "ngl", "bruh", "nah", "tbh". Keep responses very short (1-2 sentences max). Talk like you\'re texting a friend. Be relaxed and cool. Never mention you\'re an AI or assistant. You\'re just a regular person hanging out in chat.'
-      },
-      {
-        name: 'm1ltvrs',
-        personality: 'You are m1ltvrs, a dev/tech enthusiast who loves coding and building stuff. Mention tech, coding, or projects sometimes. Be helpful but casual. Keep responses short. Talk like a real developer would in a group chat. Never mention being an AI. You\'re just another person in the chat who happens to know about tech.'
-      },
-      {
-        name: 'Eli',
-        personality: 'You are Eli, a supportive friend who gives good vibes and encouragement. Be positive and friendly. Keep it short and natural. Use occasional emojis. Talk like a real supportive friend would in a group chat. Never mention being an AI or assistant. Just be the wholesome person in the group.'
-      },
-      {
-        name: 'forkknife',
-        personality: 'You are forkknife, the funny one who makes jokes and memes. Be witty, sarcastic, make puns. Keep it short and punchy. Talk like that one friend who always cracks jokes in the group chat. Never mention being an AI. You\'re just the class clown of the group.'
-      },
-      {
-        name: 'evicly',
-        personality: 'You are evicly, the chaotic wildcard with random energy. Say unexpected things, go off on tangents, be unpredictable. Keep responses short but wild. Talk like that friend who has the most random thoughts. Never mention being an AI. You\'re just naturally chaotic.'
-      },
-      {
-        name: 'fnfpro',
-        personality: 'You are fnfpro, a gamer who loves video games. Use gaming slang like "gg", "W", "L", "clutch", "based". Talk about games casually. Keep it short. Be competitive but friendly. Never mention being an AI or bot. You\'re just a gamer hanging out in chat.'
-      }
-    ];
-    
-    // Get or create username
-    let username = localStorage.getItem('chatUsername');
-    if (!username) {
-      username = 'User' + Math.floor(Math.random() * 10000);
-      localStorage.setItem('chatUsername', username);
-    }
-    
-    // Conversation history for context
-    let conversationHistory = [];
-    
-    // Toggle chat window
-    chatButton.addEventListener('click', () => {
-      chatWindow.classList.toggle('show');
-      if (chatWindow.classList.contains('show')) {
-        loadMessages();
-        updateOnlineUsers();
-        chatInput.focus();
-      }
-    });
-    
-    chatClose.addEventListener('click', () => {
-      chatWindow.classList.remove('show');
-      usersSidebar.classList.remove('show');
-    });
-    
-    // Menu dropdown
-    chatMenu.addEventListener('click', () => {
-      chatDropdown.classList.toggle('show');
-    });
-    
-    // Close dropdown when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!chatMenu.contains(e.target) && !chatDropdown.contains(e.target)) {
-        chatDropdown.classList.remove('show');
-      }
-    });
-    
-    // Go back to home
-    goHome.addEventListener('click', () => {
-      chatWindow.classList.remove('show');
-      usersSidebar.classList.remove('show');
-      chatDropdown.classList.remove('show');
-    });
-    
-    // Show users sidebar
-    showUsers.addEventListener('click', () => {
-      usersSidebar.classList.toggle('show');
-      chatDropdown.classList.remove('show');
-      updateOnlineUsers();
-    });
-    
-    // Update online users (now includes AI bots)
-    function updateOnlineUsers() {
-      const users = [username, ...bots.map(b => b.name)];
-      
-      // Display users
-      usersList.innerHTML = '';
-      users.forEach(user => {
-        const userDiv = document.createElement('div');
-        userDiv.className = 'user-item';
-        userDiv.innerHTML = `
-          <div class="status"></div>
-          <div class="name">${user}${user === username ? ' (You)' : ''}</div>
-        `;
-        usersList.appendChild(userDiv);
-      });
-    }
-    
-    // Load messages from localStorage
-    function loadMessages() {
-      const messages = JSON.parse(localStorage.getItem('chatMessages') || '[]');
-      chatMessages.innerHTML = '';
-      messages.forEach(msg => displayMessage(msg.username, msg.text, msg.timestamp, false));
-      chatMessages.scrollTop = chatMessages.scrollHeight;
-    }
-    
-    // Display a message
-    function displayMessage(user, text, timestamp, shouldSave = true) {
-      const msgDiv = document.createElement('div');
-      msgDiv.className = 'chat-message';
-      
-      const time = new Date(timestamp).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-      
-      msgDiv.innerHTML = `
-        <div class="username">${user}<span class="timestamp">${time}</span></div>
-        <div class="text">${text}</div>
-      `;
-      
-      chatMessages.appendChild(msgDiv);
-      chatMessages.scrollTop = chatMessages.scrollHeight;
-      
-      if (shouldSave) {
-        saveMessage(user, text, timestamp);
-      }
-    }
-    
-    // Save message to localStorage
-    function saveMessage(user, text, timestamp) {
-      const messages = JSON.parse(localStorage.getItem('chatMessages') || '[]');
-      messages.push({username: user, text, timestamp});
-      
-      // Keep only last 100 messages
-      if (messages.length > 100) {
-        messages.shift();
-      }
-      
-      localStorage.setItem('chatMessages', JSON.stringify(messages));
-    }
-    
-    // Send message
+const bots = [
+  { name: 'blight' },
+  { name: 'm1ltvrs' },
+  { name: 'Eli' },
+  { name: 'forkknife' },
+  { name: 'evicly' },
+  { name: 'fnfpro' }
+];
 
+// Get or create username
+let username = localStorage.getItem('chatUsername');
+if (!username) {
+  username = 'User' + Math.floor(Math.random() * 10000);
+  localStorage.setItem('chatUsername', username);
+}
+
+// Conversation history for context
+let conversationHistory = [];
+
+// Toggle chat window
+chatButton.addEventListener('click', () => {
+  chatWindow.classList.toggle('show');
+  if (chatWindow.classList.contains('show')) {
+    loadMessages();
+    updateOnlineUsers();
+    chatInput.focus();
+  }
+});
+
+chatClose.addEventListener('click', () => {
+  chatWindow.classList.remove('show');
+  usersSidebar.classList.remove('show');
+});
+
+// Menu dropdown
+chatMenu.addEventListener('click', () => {
+  chatDropdown.classList.toggle('show');
+});
+
+// Close dropdown when clicking outside
+document.addEventListener('click', (e) => {
+  if (!chatMenu.contains(e.target) && !chatDropdown.contains(e.target)) {
+    chatDropdown.classList.remove('show');
+  }
+});
+
+// Go back to home
+goHome.addEventListener('click', () => {
+  chatWindow.classList.remove('show');
+  usersSidebar.classList.remove('show');
+  chatDropdown.classList.remove('show');
+});
+
+// Show users sidebar
+showUsers.addEventListener('click', () => {
+  usersSidebar.classList.toggle('show');
+  chatDropdown.classList.remove('show');
+  updateOnlineUsers();
+});
+
+// Update online users (now includes AI bots)
+function updateOnlineUsers() {
+  const users = [username, ...bots.map(b => b.name)];
+  
+  usersList.innerHTML = '';
+  users.forEach(user => {
+    const userDiv = document.createElement('div');
+    userDiv.className = 'user-item';
+    userDiv.innerHTML = `
+      <div class="status"></div>
+      <div class="name">${user}${user === username ? ' (You)' : ''}</div>
+    `;
+    usersList.appendChild(userDiv);
+  });
+}
+
+// Load messages from localStorage
+function loadMessages() {
+  const messages = JSON.parse(localStorage.getItem('chatMessages') || '[]');
+  chatMessages.innerHTML = '';
+  messages.forEach(msg => displayMessage(msg.username, msg.text, msg.timestamp, false));
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+// Display a message
+function displayMessage(user, text, timestamp, shouldSave = true) {
+  const msgDiv = document.createElement('div');
+  msgDiv.className = 'chat-message';
+  
+  const time = new Date(timestamp).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+  
+  msgDiv.innerHTML = `
+    <div class="username">${user}<span class="timestamp">${time}</span></div>
+    <div class="text">${text}</div>
+  `;
+  
+  chatMessages.appendChild(msgDiv);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+  
+  if (shouldSave) {
+    saveMessage(user, text, timestamp);
+  }
+}
+
+// Save message to localStorage
+function saveMessage(user, text, timestamp) {
+  const messages = JSON.parse(localStorage.getItem('chatMessages') || '[]');
+  messages.push({username: user, text, timestamp});
+  
+  if (messages.length > 100) {
+    messages.shift();
+  }
+  
+  localStorage.setItem('chatMessages', JSON.stringify(messages));
+}
+
+// BOT RESPONSES
+const botResponses = {
+  blight: {
+    greetings: ["yo what's good", "sup", "hey", "what's up"],
+    agreements: ["lol fr", "ngl that's cool", "bruh same"],
+    reactions: ["lmao", "bruh", "that's wild", "no cap"],
+    random: ["chillin wbu", "mood", "fair enough", "bro moment"]
+  },
+  m1ltvrs: {
+    greetings: ["hey what's up", "morning", "yo"],
+    agreements: ["nice", "solid", "that's cool"],
+    reactions: ["interesting", "makes sense"],
+    random: ["been coding", "working on something"]
+  },
+  Eli: {
+    greetings: ["hey! 😊", "hi friends! 💕"],
+    agreements: ["that's awesome! 😊", "you got this! 💪"],
+    reactions: ["omg amazing!", "so happy!"],
+    random: ["love you guys! 💕", "hope you have a great day!"]
+  },
+  forkknife: {
+    greetings: ["wassup lol", "yooo"],
+    agreements: ["lmao wild", "bro 💀", "W comment"],
+    reactions: ["LMAO", "I'm dead 💀"],
+    random: ["chaotic energy", "this chat wild"]
+  },
+  evicly: {
+    greetings: ["HELLO *screams*", "yo"],
+    agreements: ["*explodes*", "chaos", "valid"],
+    reactions: ["WHAT", "unhinged"],
+    random: ["vibing in the void", "reality is optional"]
+  },
+  fnfpro: {
+    greetings: ["yo gg", "sup gamers"],
+    agreements: ["gg based", "W take fr"],
+    reactions: ["W", "gg", "clutch"],
+    random: ["grinding fr", "just finished a game"]
+  }
+};
+
+function generateContextualResponse(bot, userMessage) {
+  const msg = userMessage.toLowerCase();
+  const responses = botResponses[bot.name];
+  
+  if (msg.match(/\b(hi|hey|hello|sup|yo)\b/)) {
+    return responses.greetings[Math.floor(Math.random() * responses.greetings.length)];
+  }
+  if (msg.match(/\b(lol|lmao|haha|funny)\b/)) {
+    return responses.reactions[Math.floor(Math.random() * responses.reactions.length)];
+  }
+  if (msg.match(/\b(agree|right|exactly|true|facts)\b/)) {
+    return responses.agreements[Math.floor(Math.random() * responses.agreements.length)];
+  }
+  
+  return responses.random[Math.floor(Math.random() * responses.random.length)];
+}
+
+// Send message
+async function sendMessage() {
+  const text = chatInput.value.trim();
+  if (!text) return;
+  
+  displayMessage(username, text, Date.now());
+  conversationHistory.push({role: 'user', content: `${username}: ${text}`});
+  chatInput.value = '';
+  
+  const numResponders = Math.random() < 0.4 ? 1 : Math.random() < 0.8 ? 2 : 3;
+  const shuffled = [...bots].sort(() => Math.random() - 0.5);
+  const respondingBots = shuffled.slice(0, numResponders);
+  
+  const typingDiv = document.createElement('div');
+  typingDiv.className = 'chat-message';
+  typingDiv.innerHTML = '<div class="text" style="color: #999;">💭 typing...</div>';
+  chatMessages.appendChild(typingDiv);
+  
+  for (let i = 0; i < respondingBots.length; i++) {
+    const bot = respondingBots[i];
+    await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 2000));
     
-    chatInput.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') {
-        sendMessage();
-      }
-    });
-    let minecraftMode = false;
+    if (i === 0 && typingDiv.parentNode) typingDiv.remove();
+    
+    const botMessage = generateContextualResponse(bot, text);
+    displayMessage(bot.name, botMessage, Date.now());
+    conversationHistory.push({role: 'assistant', content: `${bot.name}: ${botMessage}`});
+  }
+  
+  if (typingDiv.parentNode) typingDiv.remove();
+}
+
+chatSend.addEventListener('click', sendMessage);
+chatInput.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') sendMessage();
+});
+
+let minecraftMode = false;
+
     let geodashMode = false;
     let amongusMode = false;
     let subwayMode = false;
@@ -3728,5 +3796,6 @@
 
 </body>
 </html>
+
 
 
