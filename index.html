@@ -3107,18 +3107,85 @@ const botResponses = {
 function generateContextualResponse(bot, userMessage) {
   const msg = userMessage.toLowerCase();
   const responses = botResponses[bot.name];
-  
-  if (msg.match(/\b(hi|hey|hello|sup|yo)\b/)) {
-    return responses.greetings[Math.floor(Math.random() * responses.greetings.length)];
-  }
-  if (msg.match(/\b(lol|lmao|haha|funny)\b/)) {
-    return responses.reactions[Math.floor(Math.random() * responses.reactions.length)];
-  }
-  if (msg.match(/\b(agree|right|exactly|true|facts)\b/)) {
-    return responses.agreements[Math.floor(Math.random() * responses.agreements.length)];
-  }
-  
-  return responses.random[Math.floor(Math.random() * responses.random.length)];
+// CRITICAL: Mental health & safety responses
+if (msg.match(/\b(kill myself|suicide|end it|don't want to live|want to die|harm myself|cut myself)\b/i)) {
+  const crisis = {
+    blight: "hey, I know things are really tough right now. please talk to someone - 988 is the suicide hotline. you matter bro",
+    m1ltvrs: "I'm really concerned about you. Please reach out to a professional - call or text 988 (Suicide & Crisis Lifeline). You're not alone in this",
+    Eli: "I'm so sorry you're going through this 💕 Please reach out for help - 988 Suicide & Crisis Lifeline or text HOME to 741741. You are loved and valued 💕",
+    forkknife: "hey I know I joke around but this is serious. please call 988 or text HOME to 741741. you're important and people care about you",
+    evicly: "okay being real right now - please get help. 988 is the hotline. text HOME to 741741. you matter and things can get better",
+    fnfpro: "bro I'm worried about you fr. please talk to someone - 988 is the suicide hotline. you're valued and people care. reach out"
+  };
+  return crisis[bot.name];
+}
+
+if (msg.match(/\b(kill someone|hurt someone|shoot up|murder|violence against)\b/i)) {
+  const violence = {
+    blight: "hey man that's really concerning. if you're thinking about hurting others, please call 911 or 988. there are people who can help",
+    m1ltvrs: "I'm very concerned about what you're saying. If you're having thoughts of harming others, please contact authorities or call 988 immediately",
+    Eli: "I'm really worried about you. Please talk to someone who can help - call 911 if there's immediate danger, or 988 for crisis support 💕",
+    forkknife: "okay that's not cool at all. if you're serious please get help - call 988 or talk to someone. violence isn't the answer",
+    evicly: "whoa okay that's serious. please reach out for help - 988 crisis line or talk to a professional. don't do something you can't take back",
+    fnfpro: "bro that's really concerning. please talk to someone - call 988 or reach out to a counselor. there are better ways to handle this"
+  };
+  return violence[bot.name];
+}
+
+if (msg.match(/\b(depressed|depression|feeling worthless|no point|hate myself|hate my life)\b/i)) {
+  const depression = {
+    blight: "I'm sorry you're feeling this way. it's okay to not be okay. have you thought about talking to someone? 988 is always available",
+    m1ltvrs: "that sounds really difficult. depression is serious - consider reaching out to a counselor or calling 988. you don't have to go through this alone",
+    Eli: "I'm so sorry you're struggling 💕 please know it's okay to ask for help. reach out to 988 or text HOME to 741741. you're not alone in this 💕",
+    forkknife: "hey I know things seem dark right now but please talk to someone. 988 can help. you're worth it even if it doesn't feel like it",
+    evicly: "okay being serious - depression is real and hard. please reach out to someone. 988 crisis line or talk to a counselor. things can get better",
+    fnfpro: "I'm sorry you're going through this bro. please talk to someone - 988 or a school counselor. you matter and people care about you"
+  };
+  return depression[bot.name];
+}
+
+if (msg.match(/\b(so angry|rage|furious|want to hit|losing it|going to snap)\b/i)) {
+  const anger = {
+    blight: "hey take a breath. anger is valid but there are healthier ways to deal with it. maybe talk to someone or take a break?",
+    m1ltvrs: "sounds like you're going through it. consider talking to a counselor about anger management - it really helps. 988 if you need to talk now",
+    Eli: "I hear that you're really upset. it's okay to feel angry, but let's find healthy ways to cope 💕 maybe talk to someone you trust? 988 is always there",
+    forkknife: "anger is real but don't do something you'll regret. take a walk, punch a pillow, talk to someone. 988 if you need help managing it",
+    evicly: "okay redirect that energy. go for a run, scream into a pillow, but don't hurt yourself or others. talk to someone if it's overwhelming",
+    fnfpro: "bro channel that into gaming or exercise. if it's too much, talk to someone. 988 can help you work through it"
+  };
+  return anger[bot.name];
+}
+
+if (msg.match(/\b(family problems|parents fighting|abuse|my dad|my mom)\b/i)) {
+  const family = {
+    blight: "family stuff is tough. if you're in an unsafe situation, please tell a trusted adult or call 800-799-7233 (domestic violence hotline)",
+    m1ltvrs: "I'm sorry you're dealing with family issues. if there's abuse involved, please reach out to a school counselor or call 800-799-7233",
+    Eli: "I'm so sorry about your family situation 💕 if you're not safe, please tell a trusted adult or call the domestic violence hotline: 800-799-7233",
+    forkknife: "family drama sucks. if it's serious/dangerous though, please talk to a counselor or call 800-799-7233. you deserve to be safe",
+    evicly: "family stuff is complicated. if you're in danger, please reach out - school counselor, trusted adult, or 800-799-7233 for domestic violence",
+    fnfpro: "sorry about your family situation bro. if you need help or it's unsafe, talk to a counselor or call 800-799-7233. you don't have to deal with this alone"
+  };
+  return family[bot.name];
+}
+
+if (msg.match(/\b(bad day|terrible day|worst day|everything sucks|nothing is going right)\b/i)) {
+  const badday = {
+    blight: "sorry you're having a rough day. tomorrow's a new chance. want to talk about it?",
+    m1ltvrs: "that sounds frustrating. bad days happen but they don't last forever. hang in there",
+    Eli: "I'm sorry you're having a tough day 💕 remember bad days are temporary. you've got this! we're here for you 💕",
+    forkknife: "rough day huh? sometimes you just gotta survive it and try again tomorrow. you got this",
+    evicly: "bad days are the worst but they pass. do something you enjoy, take care of yourself. tomorrow is a reset",
+    fnfpro: "sorry your day's been rough bro. maybe take a break, play some games, reset. tomorrow will be better"
+  };
+  return badday[bot.name];
+}
+
+if (msg.match(/\?/) || msg.match(/\b(what|why|how|who|when|where)\b/)) {
+  return responses.questions[Math.floor(Math.random() * responses.questions.length)];
+}
+
+// Default: return random response
+return responses.random[Math.floor(Math.random() * responses.random.length)];
 }
 
 // Send message
