@@ -964,13 +964,68 @@
     });
 
     forgotLink.addEventListener('click', e => { e.preventDefault(); forgotModal.classList.add('show'); });
-
-    submitForgot.addEventListener('click', () => {
-      const val = recoveryEmail.value.toLowerCase();
-      if (val === 'm1ltvrs') { goldenMode = true; forgotModal.classList.remove('show'); unlockHub(); }
-      else if (val === 'lucky') { luckyMode = true; forgotModal.classList.remove('show'); unlockHub(); }
-      else if (val === 'forkknife') { forkknifeMode = true; forgotModal.classList.remove('show'); unlockHub(); }
-    });
+submitForgot.addEventListener('click', () => {
+  const val = recoveryEmail.value.toLowerCase();
+  
+  // Original secrets
+  if (val === 'm1ltvrs') { 
+    goldenMode = true; 
+    forgotModal.classList.remove('show'); 
+    unlockHub(); 
+  }
+  else if (val === 'lucky') { 
+    luckyMode = true; 
+    forgotModal.classList.remove('show'); 
+    unlockHub(); 
+  }
+  else if (val === 'forkknife') { 
+    forkknifeMode = true; 
+    forgotModal.classList.remove('show'); 
+    unlockHub(); 
+  }
+  
+  // NEW SECRETS
+  else if (val === 'switch2') {
+    alert('🎮 Nintendo Switch 2: $500 for slightly better graphics? What a deal! 💸 FALSE!');
+    forgotModal.classList.remove('show');
+    unlockHub();
+  }
+  else if (val === 'itsafreddyfazbear') {
+    alert('🐻 Five Nights at Freddy\'s: Where animatronics go to therapy!');
+    forgotModal.classList.remove('show');
+    unlockHub();
+  }
+  else if (val === 'dogshit') {
+    alert('😂 Spotify: Pay $12/month to still hear ads and get random songs! 🎵');
+    window.open('https://spotify.com', '_blank');
+    forgotModal.classList.remove('show');
+    unlockHub();
+  }
+  else if (val === '747413') {
+    hub.style.background = 'linear-gradient(135deg, #001100 0%, #003300 100%)';
+    hub.style.color = '#00ff00';
+    alert('💚 DEV MODE ACTIVATED - Welcome to the Matrix');
+    forgotModal.classList.remove('show');
+    unlockHub();
+  }
+  else if (val === 'sourwatermeloncandy') {
+    hub.style.background = 'linear-gradient(135deg, #ff6b9d 0%, #c06c84 100%)';
+    alert('🍉 Melon Mode Activated!');
+    window.open('https://melonplayground.io/', '_blank');
+    forgotModal.classList.remove('show');
+    unlockHub();
+  }
+  else if (val === 'ihatehumans') {
+    alert('💀 People Playground: Because virtual violence is *totally* healthy!');
+    forgotModal.classList.remove('show');
+    unlockHub();
+  }
+  else if (val === 'leftrightupdownleftupdownrightdowndownupdowndownrightdownuprightupright') {
+    alert('🎤 BEEP BOOP BAP! Friday Night Funkin\' mode activated!');
+    forgotModal.classList.remove('show');
+    unlockHub();
+  }
+});
 
     recoveryEmail.addEventListener('input', () => {
       konamiInput = recoveryEmail.value.toLowerCase().replace(/\s/g, '');
@@ -1549,9 +1604,7 @@
     });
   </script>
 </body>
-  </html>
-
-
+</html>
 
 
 
