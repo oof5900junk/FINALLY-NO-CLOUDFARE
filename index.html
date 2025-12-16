@@ -672,6 +672,147 @@
       font-size: 18px;
       cursor: pointer;
     }
+    /* Secret Developer Portal */
+    .portal-screen {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      z-index: 100000;
+    }
+
+    .portal-screen.show {
+      display: block;
+    }
+
+    #particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .portal-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 2;
+    }
+
+    .portal-title {
+      color: #fff;
+      font-size: 3em;
+      margin-bottom: 20px;
+      text-shadow: 0 0 20px rgba(255,255,255,0.5);
+      animation: glow 2s ease-in-out infinite;
+    }
+
+    @keyframes glow {
+      0%, 100% { text-shadow: 0 0 20px rgba(255,255,255,0.5); }
+      50% { text-shadow: 0 0 40px rgba(255,255,255,0.8); }
+    }
+
+    .portal-subtitle {
+      color: #aaa;
+      font-size: 1.2em;
+      margin-bottom: 40px;
+    }
+
+    .portal-buttons {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .portal-btn {
+      padding: 20px 40px;
+      font-size: 1.2em;
+      font-weight: 600;
+      border: 2px solid #fff;
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 12px;
+      transition: all 0.3s;
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .portal-btn:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(255,255,255,0.3);
+    }
+
+    .portal-close {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      background: rgba(255,255,255,0.1);
+      border: 2px solid #fff;
+      color: #fff;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 3;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .portal-close:hover {
+      background: rgba(255,255,255,0.2);
+      transform: rotate(90deg);
+    }
+
+    .invisible-trigger {
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      width: 50px;
+      height: 50px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      z-index: 9998;
+      opacity: 0;
+    }
+
+    .invisible-trigger:hover {
+      opacity: 0.1;
+      background: rgba(255,255,255,0.1);
+    }
+
+    @media (max-width: 768px) {
+      .portal-title {
+        font-size: 2em;
+      }
+      
+      .portal-subtitle {
+        font-size: 1em;
+      }
+      
+      .portal-buttons {
+        flex-direction: column;
+        gap: 20px;
+      }
+      
+      .portal-btn {
+        width: 250px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -879,7 +1020,31 @@
       <button class="chat-send" id="chatSend">➤</button>
     </div>
   </div>
+  <!-- Invisible trigger button (bottom left corner) -->
+  <button class="invisible-trigger" id="triggerBtn" title="Secret..."></button>
 
+  <!-- Secret Portal Screen -->
+  <div class="portal-screen" id="portalScreen">
+    <canvas id="particles"></canvas>
+    
+    <button class="portal-close" id="closePortal">×</button>
+    
+    <div class="portal-content">
+      <h1 class="portal-title">✨ Developer Portal ✨</h1>
+      <p class="portal-subtitle">You found the secret dimension</p>
+      
+      <div class="portal-buttons">
+        <a href="https://github.com/m1ltvrs/FINALLY-NO-CLOUDFARE/blob/main/index.html" target="_blank" class="portal-btn">
+          <span>💻</span>
+          <span>GitHub</span>
+        </a>
+        <a href="https://youtube.com/@themultiversee_good?si=iJY8iFngACApVwaD" target="_blank" class="portal-btn">
+          <span>📺</span>
+          <span>YouTube</span>
+        </a>
+      </div>
+    </div>
+  </div>
   <script>
     let clickCount = 0;
     let goldenMode = false;
@@ -1601,6 +1766,91 @@ submitForgot.addEventListener('click', () => {
     chatSend.addEventListener('click', sendMessage);
     chatInput.addEventListener('keypress', e => {
       if (e.key === 'Enter') sendMessage();
+    });
+    // SECRET DEVELOPER PORTAL
+    const triggerBtn = document.getElementById('triggerBtn');
+    const portalScreen = document.getElementById('portalScreen');
+    const closePortal = document.getElementById('closePortal');
+    const particlesCanvas = document.getElementById('particles');
+    const particlesCtx = particlesCanvas.getContext('2d');
+
+    let portalParticles = [];
+    let portalAnimationId;
+
+    function resizeParticlesCanvas() {
+      particlesCanvas.width = window.innerWidth;
+      particlesCanvas.height = window.innerHeight;
+    }
+    resizeParticlesCanvas();
+    window.addEventListener('resize', resizeParticlesCanvas);
+
+    class PortalParticle {
+      constructor() {
+        this.x = Math.random() * particlesCanvas.width;
+        this.y = Math.random() * particlesCanvas.height - particlesCanvas.height;
+        this.size = Math.random() * 3 + 1;
+        this.speedY = Math.random() * 2 + 0.5;
+        this.speedX = Math.random() * 0.5 - 0.25;
+        this.opacity = Math.random() * 0.5 + 0.3;
+      }
+
+      update() {
+        this.y += this.speedY;
+        this.x += this.speedX;
+
+        if (this.y > particlesCanvas.height) {
+          this.y = -10;
+          this.x = Math.random() * particlesCanvas.width;
+        }
+
+        if (this.x > particlesCanvas.width || this.x < 0) {
+          this.speedX = -this.speedX;
+        }
+      }
+
+      draw() {
+        particlesCtx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+        particlesCtx.beginPath();
+        particlesCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        particlesCtx.fill();
+      }
+    }
+
+    function createPortalParticles() {
+      portalParticles = [];
+      const particleCount = 150;
+      for (let i = 0; i < particleCount; i++) {
+        portalParticles.push(new PortalParticle());
+      }
+    }
+
+    function animatePortalParticles() {
+      particlesCtx.clearRect(0, 0, particlesCanvas.width, particlesCanvas.height);
+      
+      portalParticles.forEach(particle => {
+        particle.update();
+        particle.draw();
+      });
+
+      portalAnimationId = requestAnimationFrame(animatePortalParticles);
+    }
+
+    triggerBtn.addEventListener('click', () => {
+      portalScreen.classList.add('show');
+      createPortalParticles();
+      animatePortalParticles();
+    });
+
+    closePortal.addEventListener('click', () => {
+      portalScreen.classList.remove('show');
+      cancelAnimationFrame(portalAnimationId);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && portalScreen.classList.contains('show')) {
+        portalScreen.classList.remove('show');
+        cancelAnimationFrame(portalAnimationId);
+      }
     });
   </script>
 </body>
