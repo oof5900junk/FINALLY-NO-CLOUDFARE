@@ -1940,9 +1940,50 @@ function typeTitle() {
   
   titleTimeout = setTimeout(typeTitle, typeSpeed);
 }
+// HOVER + CLICK SOUNDS (EXACTLY like voucan)
+function playHover() {
+  const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+  const oscillator = audioContext.createOscillator();
+  const gainNode = audioContext.createGain();
+  
+  oscillator.connect(gainNode);
+  gainNode.connect(audioContext.destination);
+  
+  // Very soft, short tick
+  oscillator.frequency.value = 600;
+  oscillator.type = 'sine';
+  
+  gainNode.gain.setValueAtTime(0.03, audioContext.currentTime); // Super quiet
+  gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.04);
+  
+  oscillator.start(audioContext.currentTime);
+  oscillator.stop(audioContext.currentTime + 0.04);
+}
 
-// Start the animation after page loads
-setTimeout(typeTitle, 1500);
+function playClick() {
+  const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+  const oscillator = audioContext.createOscillator();
+  const gainNode = audioContext.createGain();
+  
+  oscillator.connect(gainNode);
+  gainNode.connect(audioContext.destination);
+  
+  // Short, crisp click
+  oscillator.frequency.value = 1000;
+  oscillator.type = 'sine';
+  
+  gainNode.gain.setValueAtTime(0.1, audioContext.currentTime); // Louder than hover
+  gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.05);
+  
+  oscillator.start(audioContext.currentTime);
+  oscillator.stop(audioContext.currentTime + 0.05);
+}
+
+// Add to all interactive elements
+document.querySelectorAll('button, .link-box, .category-header, a, .portal-btn, .login-logo').forEach(el => {
+  el.addEventListener('mouseenter', playHover);
+  el.addEventListener('click', playClick);
+});
   </script>
 </body>
 </html>
