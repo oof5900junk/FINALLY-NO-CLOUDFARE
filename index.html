@@ -798,7 +798,127 @@
       opacity: 0.1;
       background: rgba(255,255,255,0.1);
     }
+    /* Search Bar Styles */
+.search-container {
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto 30px;
+}
 
+.search-box {
+  width: 100%;
+  padding: 15px 50px 15px 20px;
+  border: 2px solid #ddd;
+  border-radius: 25px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.search-box:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
+}
+
+.search-icon {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #999;
+  pointer-events: none;
+}
+
+.search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  max-height: 400px;
+  overflow-y: auto;
+  margin-top: 10px;
+  display: none;
+  z-index: 1000;
+}
+
+.search-results.show {
+  display: block;
+}
+
+.search-result-item {
+  padding: 15px 20px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  text-decoration: none;
+  color: #333;
+}
+
+.search-result-item:last-child {
+  border-bottom: none;
+}
+
+.search-result-item:hover {
+  background: #f5f5f5;
+  padding-left: 25px;
+}
+
+.search-result-icon {
+  width: 40px;
+  height: 40px;
+  background: #4472c4;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.search-result-info {
+  flex: 1;
+}
+
+.search-result-name {
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 3px;
+}
+
+.search-result-category {
+  font-size: 12px;
+  color: #999;
+}
+
+.no-results {
+  padding: 30px 20px;
+  text-align: center;
+  color: #999;
+  font-size: 14px;
+}
+
+.search-shortcut {
+  position: absolute;
+  right: 60px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #f0f0f0;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  color: #666;
+  font-weight: 600;
+  pointer-events: none;
+}
     @media (max-width: 768px) {
       .portal-title {
         font-size: 2em;
@@ -877,6 +997,20 @@
       <div class="hub-header">
         <h1>🌐 Link Hub</h1>
         <p>Quick access to your favorite sites</p>
+        
+        <!-- Search Bar -->
+        <div class="search-container">
+          <input 
+            type="text" 
+            class="search-box" 
+            id="searchBox" 
+            placeholder="Search for links... (Press Ctrl+K)"
+            autocomplete="off"
+          >
+          <span class="search-icon">🔍</span>
+          <span class="search-shortcut">Ctrl+K</span>
+          <div class="search-results" id="searchResults"></div>
+        </div>
       </div>
 
       <!-- All categories with full links -->
@@ -2094,6 +2228,137 @@ function createHolidayEffect(...emojis) {
     setTimeout(() => s.remove(), 6000);
   }, 400);
 }
+    // SEARCH FUNCTIONALITY
+const searchBox = document.getElementById('searchBox');
+const searchResults = document.getElementById('searchResults');
+
+// All links data
+const allLinks = [
+  // Proxies
+  {name: 'Shuttle', url: 'https://shuttleproxy.com', icon: '🚀', category: 'Proxies'},
+  {name: 'Hypertabs', url: 'https://hy.hypertabs.net', icon: '⚡', category: 'Proxies'},
+  {name: 'Incognito', url: 'https://incog.dev', icon: '🕶️', category: 'Proxies'},
+  {name: 'Ludicrous', url: 'https://ludiproxy.com', icon: '🎯', category: 'Proxies'},
+  {name: 'Shadowtabz', url: 'https://shadowtabz.com', icon: '👤', category: 'Proxies'},
+  {name: 'Kazwire', url: 'https://kazwire.com', icon: '🔌', category: 'Proxies'},
+  {name: 'Degeneracy', url: 'https://degeneracy.netlify.app', icon: '🌀', category: 'Proxies'},
+  {name: 'Noctura', url: 'https://noctura.app', icon: '🌙', category: 'Proxies'},
+  {name: 'Elixir', url: 'https://elixirproxy.com', icon: '⚗️', category: 'Proxies'},
+  {name: 'Tsunami', url: 'https://tsunamiproxy.com', icon: '🌊', category: 'Proxies'},
+  {name: 'BlockAway', url: 'https://www.blockaway.net', icon: '🌐', category: 'Proxies'},
+  {name: 'CroxyProxy', url: 'https://www.croxyproxy.com', icon: '🔓', category: 'Proxies'},
+  {name: 'ProxySite', url: 'https://www.proxysite.com', icon: '🌍', category: 'Proxies'},
+  {name: 'Hide.me', url: 'https://hide.me/en/proxy', icon: '🔒', category: 'Proxies'},
+  {name: 'HideMyAss', url: 'https://www.hidemyass.com/en-us/proxy', icon: '🎭', category: 'Proxies'},
+  {name: 'PlainProxies', url: 'https://plainproxies.com', icon: '⚡', category: 'Proxies'},
+  
+  // Social Media
+  {name: 'YouTube', url: 'https://youtube.com', icon: '📺', category: 'Social Media'},
+  {name: 'Instagram', url: 'https://instagram.com', icon: '📷', category: 'Social Media'},
+  {name: 'Twitter/X', url: 'https://twitter.com', icon: '🐦', category: 'Social Media'},
+  {name: 'TikTok', url: 'https://tiktok.com', icon: '🎵', category: 'Social Media'},
+  {name: 'Reddit', url: 'https://reddit.com', icon: '🤖', category: 'Social Media'},
+  
+  // Streaming
+  {name: 'Netflix', url: 'https://netflix.com', icon: '🎬', category: 'Streaming'},
+  {name: 'Disney+', url: 'https://disneyplus.com', icon: '🏰', category: 'Streaming'},
+  {name: 'Hulu', url: 'https://hulu.com', icon: '📺', category: 'Streaming'},
+  {name: 'Twitch', url: 'https://twitch.tv', icon: '🎮', category: 'Streaming'},
+  {name: 'Prime Video', url: 'https://primevideo.com', icon: '📦', category: 'Streaming'},
+  
+  // Games
+  {name: 'Roblox', url: 'https://roblox.com', icon: '🎮', category: 'Games'},
+  {name: 'Krunker', url: 'https://krunker.io', icon: '🔫', category: 'Games'},
+  {name: 'Skribbl', url: 'https://skribbl.io', icon: '✏️', category: 'Games'},
+  {name: 'Agar.io', url: 'https://agar.io', icon: '⚪', category: 'Games'},
+  {name: 'Slither.io', url: 'https://slither.io', icon: '🐍', category: 'Games'},
+  
+  // Tools
+  {name: 'Discord', url: 'https://discord.com', icon: '💬', category: 'Tools'},
+  {name: 'Gmail', url: 'https://gmail.com', icon: '📧', category: 'Tools'},
+  {name: 'Google Drive', url: 'https://drive.google.com', icon: '💾', category: 'Tools'},
+  {name: 'Google Docs', url: 'https://docs.google.com', icon: '📝', category: 'Tools'},
+  {name: 'GitHub', url: 'https://github.com', icon: '💻', category: 'Tools'},
+  
+  // Music
+  {name: 'Spotify', url: 'https://spotify.com', icon: '🎵', category: 'Music'},
+  {name: 'SoundCloud', url: 'https://soundcloud.com', icon: '☁️', category: 'Music'},
+  {name: 'YouTube Music', url: 'https://music.youtube.com', icon: '🎶', category: 'Music'},
+  {name: 'Apple Music', url: 'https://music.apple.com', icon: '🍎', category: 'Music'},
+  
+  // Finance
+  {name: 'MarketWatch', url: 'https://www.marketwatch.com/market-data', icon: '📈', category: 'Finance'},
+  {name: 'Rush Gold', url: 'https://rush.gold/', icon: '🥇', category: 'Finance'},
+  {name: 'Investing.com', url: 'https://www.investing.com', icon: '💰', category: 'Finance'},
+  {name: 'Yahoo Finance', url: 'https://finance.yahoo.com', icon: '💹', category: 'Finance'},
+  {name: 'TradingView', url: 'https://www.tradingview.com', icon: '📊', category: 'Finance'}
+];
+
+// Search function
+function performSearch(query) {
+  if (!query.trim()) {
+    searchResults.classList.remove('show');
+    return;
+  }
+  
+  const lowerQuery = query.toLowerCase();
+  const filtered = allLinks.filter(link => 
+    link.name.toLowerCase().includes(lowerQuery) ||
+    link.category.toLowerCase().includes(lowerQuery) ||
+    link.url.toLowerCase().includes(lowerQuery)
+  );
+  
+  if (filtered.length === 0) {
+    searchResults.innerHTML = '<div class="no-results">😕 No results found for "' + query + '"</div>';
+    searchResults.classList.add('show');
+    return;
+  }
+  
+  searchResults.innerHTML = filtered.map(link => `
+    <a href="${link.url}" target="_blank" class="search-result-item">
+      <div class="search-result-icon">${link.icon}</div>
+      <div class="search-result-info">
+        <div class="search-result-name">${link.name}</div>
+        <div class="search-result-category">${link.category}</div>
+      </div>
+    </a>
+  `).join('');
+  
+  searchResults.classList.add('show');
+}
+
+// Search input handler
+searchBox.addEventListener('input', (e) => {
+  performSearch(e.target.value);
+});
+
+// Click outside to close
+document.addEventListener('click', (e) => {
+  if (!searchBox.contains(e.target) && !searchResults.contains(e.target)) {
+    searchResults.classList.remove('show');
+  }
+});
+
+// Ctrl+K shortcut to focus search
+document.addEventListener('keydown', (e) => {
+  if (e.ctrlKey && e.key === 'k') {
+    e.preventDefault();
+    searchBox.focus();
+  }
+  
+  // ESC to clear search
+  if (e.key === 'Escape' && document.activeElement === searchBox) {
+    searchBox.value = '';
+    searchResults.classList.remove('show');
+    searchBox.blur();
+  }
+});
+
+// Click on search result
+searchResults.addEventListener('click', (e) => {
+  searchBox.value = '';
+  searchResults.classList.remove('show');
+});
   </script>
 </body>
 </html>
