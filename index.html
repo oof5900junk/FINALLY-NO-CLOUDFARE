@@ -1923,20 +1923,20 @@ function typeTitle() {
     charIndex++;
   }
   
-  // Medium-slow typing speed
-  let typeSpeed = isDeleting ? 100 : 150;
-  
-  // If word is complete
-  if (!isDeleting && charIndex === currentTitle.length) {
-    // Pause at end of word
-    typeSpeed = 3000;
-    isDeleting = true;
-  } else if (isDeleting && charIndex === 0) {
-    // Move to next title
-    isDeleting = false;
-    titleIndex = (titleIndex + 1) % titles.length;
-    typeSpeed = 800;
-  }
+  // SLOWER typing speed
+let typeSpeed = isDeleting ? 150 : 250;
+
+// If word is complete
+if (!isDeleting && charIndex === currentTitle.length) {
+  // Pause at end of word
+  typeSpeed = 4000;
+  isDeleting = true;
+} else if (isDeleting && charIndex === 0) {
+  // Move to next title
+  isDeleting = false;
+  titleIndex = (titleIndex + 1) % titles.length;
+  typeSpeed = 1200;
+}
   
   titleTimeout = setTimeout(typeTitle, typeSpeed);
 }
