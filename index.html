@@ -1131,6 +1131,86 @@
     forgotLink.addEventListener('click', e => { e.preventDefault(); forgotModal.classList.add('show'); });
 submitForgot.addEventListener('click', () => {
   const val = recoveryEmail.value.toLowerCase();
+    // CHECK FOR HOLIDAY THEMES FIRST
+  const today = new Date();
+  const month = today.getMonth() + 1;
+  const day = today.getDate();
+  
+  // Christmas (December 25)
+  if (month === 12 && day === 25 && val === 'christmas') {
+    hub.style.background = 'linear-gradient(135deg, #c41e3a 0%, #165b33 100%)';
+    forgotModal.classList.remove('show');
+    unlockHub();
+    createHolidayEffect('❄️', '🎄', '🎅', '⛄', '🎁', '⭐');
+    alert('🎄 Merry Christmas! Special theme activated!');
+    return;
+  }
+  
+  // Halloween (October 31)
+  if (month === 10 && day === 31 && val === 'halloween') {
+    hub.style.background = 'linear-gradient(135deg, #ff6600 0%, #1a1a1a 100%)';
+    forgotModal.classList.remove('show');
+    unlockHub();
+    createHolidayEffect('🎃', '👻', '🦇', '🕷️', '💀', '🕸️');
+    alert('🎃 Happy Halloween! Spooky theme activated!');
+    return;
+  }
+  
+  // New Year's (January 1)
+  if (month === 1 && day === 1 && val === 'newyear') {
+    hub.style.background = 'linear-gradient(135deg, #ffd700 0%, #4169e1 100%)';
+    forgotModal.classList.remove('show');
+    unlockHub();
+    createHolidayEffect('🎉', '🎊', '✨', '🥳', '🎆', '🍾');
+    alert('🎉 Happy New Year! Party theme activated!');
+    return;
+  }
+  
+  // Valentine's Day (February 14)
+  if (month === 2 && day === 14 && val === 'valentine') {
+    hub.style.background = 'linear-gradient(135deg, #ff69b4 0%, #ff1493 100%)';
+    forgotModal.classList.remove('show');
+    unlockHub();
+    createHolidayEffect('❤️', '💕', '💖', '💝', '🌹', '💘');
+    alert('💕 Happy Valentine\'s Day! Love theme activated!');
+    return;
+  }
+  
+  // St. Patrick's Day (March 17)
+  if (month === 3 && day === 17 && val === 'stpatricks') {
+    hub.style.background = 'linear-gradient(135deg, #00ff00 0%, #006400 100%)';
+    forgotModal.classList.remove('show');
+    unlockHub();
+    createHolidayEffect('☘️', '🍀', '🌈', '🎩', '🍺', '💚');
+    alert('☘️ Happy St. Patrick\'s Day! Lucky theme activated!');
+    return;
+  }
+  
+  // July 4th
+  if (month === 7 && day === 4 && val === 'july4th') {
+    hub.style.background = 'linear-gradient(135deg, #b22234 0%, #3c3b6e 100%)';
+    forgotModal.classList.remove('show');
+    unlockHub();
+    createHolidayEffect('🇺🇸', '🎆', '🎇', '🗽', '🦅', '⭐');
+    alert('🇺🇸 Happy 4th of July! Patriotic theme activated!');
+    return;
+  }
+  
+  // Halloween (October 31)
+  if (month === 10 && day === 31 && val === 'thanksgiving') {
+    hub.style.background = 'linear-gradient(135deg, #ff8c00 0%, #8b4513 100%)';
+    forgotModal.classList.remove('show');
+    unlockHub();
+    createHolidayEffect('🦃', '🍂', '🥧', '🌽', '🍁', '🎃');
+    alert('🦃 Happy Thanksgiving! Harvest theme activated!');
+    return;
+  }
+  
+  // If holiday code on wrong day
+  if (['christmas', 'halloween', 'newyear', 'valentine', 'stpatricks', 'july4th', 'thanksgiving'].includes(val)) {
+    alert('❌ This holiday theme only works on the actual holiday!');
+    return;
+  }
   
   // Original secrets
   if (val === 'm1ltvrs') { 
@@ -1997,7 +2077,19 @@ document.querySelectorAll('button, .link-box, .category-header, a, .portal-btn, 
 
 // Start the title animation
 setTimeout(typeTitle, 1500);
-  </script>
+  // Holiday effect helper function
+function createHolidayEffect(...emojis) {
+  setInterval(() => {
+    const s = document.createElement('div');
+    s.className = 'sparkle';
+    s.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    s.style.left = Math.random() * 100 + 'vw';
+    s.style.fontSize = (Math.random() * 25 + 20) + 'px';
+    s.style.animationDuration = (Math.random() * 3 + 3) + 's';
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 6000);
+  }, 400);
+}
   </script>
 </body>
 </html>
