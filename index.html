@@ -1895,7 +1895,7 @@ submitForgot.addEventListener('click', () => {
         cancelAnimationFrame(portalAnimationId);
       }
     });
-    // ANIMATED PAGE TITLE
+   // ANIMATED PAGE TITLE
 const titles = [
   'PowerSchool LSR7',
   'Find the secrets...',
@@ -1940,43 +1940,53 @@ function typeTitle() {
   
   titleTimeout = setTimeout(typeTitle, typeSpeed);
 }
+
+// Start the animation after page loads
+setTimeout(typeTitle, 1500);
+  // Create AudioContext ONCE (reuse it)
+let audioContext;
+function getAudioContext() {
+  if (!audioContext) {
+    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+  }
+  return audioContext;
+}
+
 // HOVER + CLICK SOUNDS (EXACTLY like voucan)
 function playHover() {
-  const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-  const oscillator = audioContext.createOscillator();
-  const gainNode = audioContext.createGain();
+  const ctx = getAudioContext();
+  const oscillator = ctx.createOscillator();
+  const gainNode = ctx.createGain();
   
   oscillator.connect(gainNode);
-  gainNode.connect(audioContext.destination);
+  gainNode.connect(ctx.destination);
   
-  // Very soft, short tick
   oscillator.frequency.value = 600;
   oscillator.type = 'sine';
   
-  gainNode.gain.setValueAtTime(0.03, audioContext.currentTime); // Super quiet
-  gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.04);
+  gainNode.gain.setValueAtTime(0.03, ctx.currentTime);
+  gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.04);
   
-  oscillator.start(audioContext.currentTime);
-  oscillator.stop(audioContext.currentTime + 0.04);
+  oscillator.start(ctx.currentTime);
+  oscillator.stop(ctx.currentTime + 0.04);
 }
 
 function playClick() {
-  const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-  const oscillator = audioContext.createOscillator();
-  const gainNode = audioContext.createGain();
+  const ctx = getAudioContext();
+  const oscillator = ctx.createOscillator();
+  const gainNode = ctx.createGain();
   
   oscillator.connect(gainNode);
-  gainNode.connect(audioContext.destination);
+  gainNode.connect(ctx.destination);
   
-  // Short, crisp click
   oscillator.frequency.value = 1000;
   oscillator.type = 'sine';
   
-  gainNode.gain.setValueAtTime(0.1, audioContext.currentTime); // Louder than hover
-  gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.05);
+  gainNode.gain.setValueAtTime(0.1, ctx.currentTime);
+  gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.05);
   
-  oscillator.start(audioContext.currentTime);
-  oscillator.stop(audioContext.currentTime + 0.05);
+  oscillator.start(ctx.currentTime);
+  oscillator.stop(ctx.currentTime + 0.05);
 }
 
 // Add to all interactive elements
@@ -1984,6 +1994,10 @@ document.querySelectorAll('button, .link-box, .category-header, a, .portal-btn, 
   el.addEventListener('mouseenter', playHover);
   el.addEventListener('click', playClick);
 });
+
+// Start the title animation
+setTimeout(typeTitle, 1500);
+  </script>
   </script>
 </body>
 </html>
