@@ -1210,39 +1210,82 @@ submitForgot.addEventListener('click', () => {
     const gridSize = 14, tileCount = 20;
 
     function initSnakeGame() {
-      snake = [{x:10,y:10}];
-      food = {x:15,y:15};
-      dx = 0; dy = 0; score = 0;
-      document.getElementById('snakeScore').textContent = score;
-      if (gameLoop) clearInterval(gameLoop);
-      gameLoop = setInterval(updateSnake, 100);
-      document.addEventListener('keydown', handleSnakeInput);
-    }
+  snake = [{x:10,y:10}];
+  food = {x:15,y:15};
+  dx = 0; dy = 0; score = 0;
+  document.getElementById('snakeScore').textContent = score;
+  if (gameLoop) clearInterval(gameLoop);
+  
+  // Remove old listener first to prevent duplicates
+  document.removeEventListener('keydown', handleSnakeInput);
+  document.addEventListener('keydown', handleSnakeInput);
+  
+  gameLoop = setInterval(updateSnake, 100);
+}
 
-    function stopSnakeGame() {
-      if (gameLoop) clearInterval(gameLoop);
-      document.removeEventListener('keydown', handleSnakeInput);
-    }
+   function stopSnakeGame() {
+  if (gameLoop) clearInterval(gameLoop);
+  document.removeEventListener('keydown', handleSnakeInput);
+  dx = 0;
+  dy = 0;
+}
 
-    function handleSnakeInput(e) {
-      if (!snakeWindow.classList.contains('show')) return;
-      switch(e.key) {
-        case 'ArrowUp': if (dy===0) {dx=0;dy=-1;} break;
-        case 'ArrowDown': if (dy===0) {dx=0;dy=1;} break;
-        case 'ArrowLeft': if (dx===0) {dx=-1;dy=0;} break;
-        case 'ArrowRight': if (dx===0) {dx=1;dy=0;} break;
-      }
-      e.preventDefault();
+   function handleSnakeInput(e) {
+  if (!snakeWindow.classList.contains('show')) return;
+  
+  // Only handle arrow keys
+  if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    switch(e.key) {
+      case 'ArrowUp': if (dy===0) {dx=0;dy=-1;} break;
+      case 'ArrowDown': if (dy===0) {dx=0;dy=1;} break;
+      case 'ArrowLeft': if (dx===0) {dx=-1;dy=0;} break;
+      case 'ArrowRight': if (dx===0) {dx=1;dy=0;} break;
     }
+  }
+}
 
     function updateSnake() {
-      const head = {x: snake[0].x + dx, y: snake[0].y + dy};
-      if (head.x < 0 || head.x >= tileCount || head.y < 0 || head.y >= tileCount) { stopSnakeGame(); snakeWindow.classList.remove('show'); return; }
-      for (let s of snake) if (head.x === s.x && head.y === s.y) { stopSnakeGame(); snakeWindow.classList.remove('show'); return; }
-      snake.unshift(head);
-      if (head.x === food.x && head.y === food.y) { score++; document.getElementById('snakeScore').textContent = score; placeFood(); } else snake.pop();
-      drawSnake();
+  // Don't update if snake hasn't started moving yet
+  if (dx === 0 && dy === 0) {
+    drawSnake();
+    return;
+  }
+
+  const head = {x: snake[0].x + dx, y: snake[0].y + dy};
+  
+  // Check wall collision
+  if (head.x < 0 || head.x >= tileCount || head.y < 0 || head.y >= tileCount) {
+    alert('Game Over! Score: ' + score);
+    stopSnakeGame();
+    snakeWindow.classList.remove('show');
+    return;
+  }
+  
+  // Check self collision
+  for (let s of snake) {
+    if (head.x === s.x && head.y === s.y) {
+      alert('Game Over! Score: ' + score);
+      stopSnakeGame();
+      snakeWindow.classList.remove('show');
+      return;
     }
+  }
+  
+  snake.unshift(head);
+  
+  if (head.x === food.x && head.y === food.y) {
+    score++;
+    document.getElementById('snakeScore').textContent = score;
+    placeFood();
+  } else {
+    snake.pop();
+  }
+  
+  drawSnake();
+}
 
     function placeFood() { food = {x: Math.floor(Math.random()*tileCount), y: Math.floor(Math.random()*tileCount)}; }
 
