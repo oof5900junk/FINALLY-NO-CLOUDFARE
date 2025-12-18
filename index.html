@@ -1028,6 +1028,41 @@
   font-size: 13px;
   padding: 10px;
 }
+ /* Scroll Arrows */
+.scroll-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: white;
+  border: 2px solid #ddd;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  color: #667eea;
+  font-weight: bold;
+}
+
+.scroll-arrow:hover {
+  background: #667eea;
+  color: white;
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.scroll-left {
+  left: -50px;
+}
+
+.scroll-right {
+  right: -50px;
+}
     @media (max-width: 768px) {
       .portal-title {
         font-size: 2em;
@@ -1121,7 +1156,7 @@
          <div class="search-results" id="searchResults"></div>
         </div>
         
-        <!-- Recently Clicked -->
+   <!-- Recently Clicked -->
         <div class="recent-section" id="recentSection" style="display: none;">
           <div class="recent-header">
             <div class="recent-title">
@@ -1130,11 +1165,14 @@
             </div>
             <button class="clear-history" id="clearHistory">Clear</button>
           </div>
-          <div class="recent-links" id="recentLinks">
-            <div class="no-history">No recent links yet</div>
+          <div style="position: relative;">
+            <button class="scroll-arrow scroll-left" id="scrollLeft">‹</button>
+            <div class="recent-links" id="recentLinks">
+              <div class="no-history">No recent links yet</div>
+            </div>
+            <button class="scroll-arrow scroll-right" id="scrollRight">›</button>
           </div>
         </div>
-      </div>
       <!-- All categories with full links -->
       <!-- Proxies -->
       <div class="category">
@@ -2574,20 +2612,30 @@ clearHistoryBtn.addEventListener('click', () => {
   }
 });
 
-// Track clicks on main link boxes
-document.querySelectorAll('.link-box').forEach(linkBox => {
-  linkBox.addEventListener('click', (e) => {
-    const url = e.currentTarget.href;
+// Track clicks on main link boxes (using event delegation)
+document.addEventListener('click', (e) => {
+  // Check if clicked on a link box
+  const linkBox = e.target.closest('.link-box');
+  if (linkBox) {
+    const url = linkBox.href;
     const link = allLinks.find(l => l.url === url);
     if (link) trackLinkClick(link);
-  });
-});
-
-// Track clicks on search results
-document.getElementById('searchResults').addEventListener('click', (e) => {
-  const resultItem = e.target.closest('.search-result-item');
-  if (resultItem) {
-    const url = resultItem.href;
+    return;
+  }
+  
+  // Check if clicked on search result
+  const searchResult = e.target.closest('.search-result-item');
+  if (searchResult) {
+    const url = searchResult.href;
+    const link = allLinks.find(l => l.url === url);
+    if (link) trackLinkClick(link);
+    return;
+  }
+  
+  // Check if clicked on recent link
+  const recentLink = e.target.closest('.recent-link');
+  if (recentLink) {
+    const url = recentLink.dataset.url;
     const link = allLinks.find(l => l.url === url);
     if (link) trackLinkClick(link);
   }
@@ -2595,6 +2643,20 @@ document.getElementById('searchResults').addEventListener('click', (e) => {
 
 // Load on page load
 loadRecentLinks();
+  // Scroll arrows for recent links
+document.getElementById('scrollLeft').addEventListener('click', () => {
+  document.getElementById('recentLinks').scrollBy({
+    left: -200,
+    behavior: 'smooth'
+  });
+});
+
+document.getElementById('scrollRight').addEventListener('click', () => {
+  document.getElementById('recentLinks').scrollBy({
+    left: 200,
+    behavior: 'smooth'
+  });
+});
   </script>
 </body>
 </html>
