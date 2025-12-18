@@ -651,7 +651,7 @@
       transform: rotate(90deg);
     }
 
-  .invisible-trigger {
+.invisible-trigger {
   position: fixed;
   top: 10px;
   left: 10px;
@@ -661,11 +661,14 @@
   border: none;
   cursor: pointer;
   z-index: 100001;
-  opacity: 0;
+  opacity: 0.05;
+  transition: all 0.3s ease;
 }
-    .invisible-trigger:hover {
-  opacity: 0.1;
-  background: rgba(255,255,255,0.1);
+
+.invisible-trigger:hover {
+  opacity: 0.3;
+  background: rgba(255,255,255,0.2);
+  transform: scale(1.05);
 }
     /* Search Bar Styles */
 .search-container {
