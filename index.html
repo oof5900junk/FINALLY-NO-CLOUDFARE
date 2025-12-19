@@ -1434,8 +1434,17 @@ submitForgot.addEventListener('click', () => {
     forgotModal.classList.remove('show'); 
     unlockHub(); 
   }
-  
-  // NEW SECRETS
+  else if (val === 'crewmate') {
+  hub.style.background = '#000';
+  hub.style.backgroundImage = 'url(https://i.ibb.co/HfVtvrjt/image.png)';
+  hub.style.backgroundSize = 'cover';
+  hub.style.backgroundPosition = 'center';
+  hub.style.backgroundRepeat = 'no-repeat';
+  alert('🚀 There is 1 Impostor among us...');
+  forgotModal.classList.remove('show');
+  unlockHub();
+}
+   // NEW SECRETS
   else if (val === 'switch2') {
     alert('🎮 Nintendo Switch 2: $500 for slightly better graphics? What a deal! 💸 FALSE!');
     forgotModal.classList.remove('show');
