@@ -407,6 +407,27 @@
       pointer-events: none;
       z-index: 1;
     }
+    .hub-content.fnf {
+  background: #ff6b9d;
+  position: relative;
+  overflow: hidden;
+}
+
+.hub-content.fnf::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://fridaynightfunkin.wiki.gg/images/Week_Thr33.png?c0cb9e');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.8;
+}
     
     @keyframes sparkle {
       0% { opacity: 0.5; transform: scale(1); }
@@ -1201,13 +1222,15 @@
       callback();
       return true;
     }
-    let clickCount = 0;
-    let goldenMode = false;
-    let luckyMode = false;
-    let forkknifeMode = false;
-    const konamiCode = 'uuddlrlrabab';
-    let konamiInput = '';
-
+   let clickCount = 0;
+  let goldenMode = false;
+  let luckyMode = false;
+  let forkknifeMode = false;
+  let fnfMode = false;
+  const konamiCode = 'uuddlrlrabab';
+  const fnfCode = 'uuuuuuuuuullllllllrrrrrdddddddddddddddddddddddddddddddddddddddddddddddddddd';
+  let konamiInput = '';
+  let fnfInput = '';
     const cloak = document.getElementById('cloak');
     const hub = document.getElementById('hub');
     const loginBtn = document.getElementById('loginBtn');
@@ -1222,18 +1245,20 @@
     const snakeWindow = document.getElementById('snakeWindow');
     const snakeClose = document.getElementById('snakeClose');
 
-    function unlockHub() {
-      cloak.style.display = 'none';
-      hub.style.display = 'block';
-      if (goldenMode) { hub.classList.add('golden'); createSparkles('golden'); }
-      if (luckyMode) { hub.classList.add('lucky'); createSparkles('lucky'); }
-      if (forkknifeMode) { hub.classList.add('forkknife'); createSparkles('forkknife'); }
-    }
+   function unlockHub() {
+  cloak.style.display = 'none';
+  hub.style.display = 'block';
+  if (goldenMode) { hub.classList.add('golden'); createSparkles('golden'); }
+  if (luckyMode) { hub.classList.add('lucky'); createSparkles('lucky'); }
+  if (forkknifeMode) { hub.classList.add('forkknife'); createSparkles('forkknife'); }
+  if (fnfMode) { hub.classList.add('fnf'); createSparkles('fnf'); }
+}
 
     function createSparkles(mode) {
-      const emojis = mode === 'golden' ? ['✨','⭐','🌟','💫','⚡','💛','🔆'] :
-                     mode === 'lucky' ? ['🍀','🎰','🎲','💚','🌈','🎊','🔮','🎱'] :
-                     ['🍴','🔪','🥄','🍽️','🔱','⚔️'];
+  const emojis = mode === 'golden' ? ['✨','⭐','🌟','💫','⚡','💛','🔆'] :
+                 mode === 'lucky' ? ['🍀','🎰','🎲','💚','🌈','🎊','🔮','🎱'] :
+                 mode === 'fnf' ? ['🎤','🎵','🎶','💙','❤️','🔫','⬆️','⬇️','⬅️','➡️'] :
+                 ['🍴','🔪','🥄','🍽️','🔱','⚔️'];
       setInterval(() => {
         const s = document.createElement('div');
         s.className = 'sparkle';
@@ -1454,16 +1479,25 @@ submitForgot.addEventListener('click', () => {
   }
 });
 
-    recoveryEmail.addEventListener('input', () => {
-      konamiInput = recoveryEmail.value.toLowerCase().replace(/\s/g, '');
-      if (konamiInput === konamiCode) {
-        recoveryEmail.value = '';
-        forgotModal.classList.remove('show');
-        snakeWindow.classList.add('show');
-        initSnakeGame();
-      }
-    });
-
+   recoveryEmail.addEventListener('input', () => {
+  konamiInput = recoveryEmail.value.toLowerCase().replace(/\s/g, '');
+  fnfInput = recoveryEmail.value.toLowerCase().replace(/\s/g, '');
+  
+  if (konamiInput === konamiCode) {
+    recoveryEmail.value = '';
+    forgotModal.classList.remove('show');
+    snakeWindow.classList.add('show');
+    initSnakeGame();
+  }
+  
+  if (fnfInput === fnfCode) {
+    fnfMode = true;
+    recoveryEmail.value = '';
+    forgotModal.classList.remove('show');
+    alert('🎤 BEEP BOOP BAP! Friday Night Funkin\' Week 3 mode activated!');
+    unlockHub();
+  }
+});
     snakeClose.addEventListener('click', () => { snakeWindow.classList.remove('show'); stopSnakeGame(); });
 
     // Snake game full code
