@@ -1071,6 +1071,18 @@
     <div class="snake-controls">W/S or ↑/↓ to move | First to 5 wins!</div>
   </div>
 </div>
+<div class="snake-window" id="breakoutWindow">
+  <div class="snake-header">
+    <h4>🧱 Breakout</h4>
+    <button class="snake-close" id="breakoutClose">×</button>
+  </div>
+  <div class="snake-game">
+    <canvas id="breakoutCanvas" width="400" height="500"></canvas>
+    <div class="snake-score">Score: <span id="breakoutScore">0</span></div>
+    <div class="snake-score">Lives: <span id="breakoutLives">3</span></div>
+    <div class="snake-controls">Arrow Keys to move | Space to start</div>
+  </div>
+</div>
   <div class="snake-window" id="tetrisWindow">
   <div class="snake-header">
     <h4>🎮 Tetris</h4>
@@ -1560,6 +1572,11 @@ else if (val === 'pong') {
   pongWindow.classList.add('show');
   initPongGame();
 }
+else if (val === 'breakout') {
+  forgotModal.classList.remove('show');
+  breakoutWindow.classList.add('show');
+  initBreakoutGame();
+}
    // NEW SECRETS
   else if (val === 'switch2') {
     alert('🎮 Nintendo Switch 2: $500 for slightly better graphics? What a deal! 💸 FALSE!');
@@ -2041,6 +2058,177 @@ pongClose.addEventListener('click', () => {
   if (pongGame) cancelAnimationFrame(pongGame);
   document.removeEventListener('keydown', handlePongKeyDown);
   document.removeEventListener('keyup', handlePongKeyUp);
+});
+// BREAKOUT GAME
+const breakoutWindow = document.getElementById('breakoutWindow');
+const breakoutClose = document.getElementById('breakoutClose');
+const breakoutCanvas = document.getElementById('breakoutCanvas');
+const breakoutCtx = breakoutCanvas.getContext('2d');
+
+let breakoutGame = null;
+let breakoutBall = { x: 200, y: 400, dx: 3, dy: -3, radius: 8 };
+let breakoutPaddle = { x: 160, y: 470, width: 80, height: 10, speed: 7 };
+let breakoutBricks = [];
+let breakoutScore = 0;
+let breakoutLives = 3;
+let breakoutStarted = false;
+let breakoutKeys = {};
+
+const BRICK_ROWS = 5;
+const BRICK_COLS = 8;
+const BRICK_WIDTH = 45;
+const BRICK_HEIGHT = 20;
+const BRICK_PADDING = 5;
+const BRICK_COLORS = ['#e74c3c', '#e67e22', '#f39c12', '#2ecc71', '#3498db'];
+
+function initBreakoutGame() {
+  breakoutScore = 0;
+  breakoutLives = 3;
+  breakoutStarted = false;
+  document.getElementById('breakoutScore').textContent = breakoutScore;
+  document.getElementById('breakoutLives').textContent = breakoutLives;
+  
+  breakoutBall = { x: 200, y: 400, dx: 3, dy: -3, radius: 8 };
+  breakoutPaddle = { x: 160, y: 470, width: 80, height: 10, speed: 7 };
+  
+  breakoutBricks = [];
+  for (let row = 0; row < BRICK_ROWS; row++) {
+    for (let col = 0; col < BRICK_COLS; col++) {
+      breakoutBricks.push({
+        x: col * (BRICK_WIDTH + BRICK_PADDING) + 15,
+        y: row * (BRICK_HEIGHT + BRICK_PADDING) + 30,
+        width: BRICK_WIDTH,
+        height: BRICK_HEIGHT,
+        visible: true,
+        color: BRICK_COLORS[row]
+      });
+    }
+  }
+  
+  document.removeEventListener('keydown', handleBreakoutKeyDown);
+  document.removeEventListener('keyup', handleBreakoutKeyUp);
+  document.addEventListener('keydown', handleBreakoutKeyDown);
+  document.addEventListener('keyup', handleBreakoutKeyUp);
+  
+  if (breakoutGame) cancelAnimationFrame(breakoutGame);
+  breakoutGameLoop();
+}
+
+function handleBreakoutKeyDown(e) {
+  if (!breakoutWindow.classList.contains('show')) return;
+  
+  if (['ArrowLeft', 'ArrowRight', ' '].includes(e.key)) {
+    e.preventDefault();
+    breakoutKeys[e.key] = true;
+    
+    if (e.key === ' ' && !breakoutStarted) {
+      breakoutStarted = true;
+    }
+  }
+}
+
+function handleBreakoutKeyUp(e) {
+  if (!breakoutWindow.classList.contains('show')) return;
+  breakoutKeys[e.key] = false;
+}
+
+function breakoutGameLoop() {
+  if (breakoutKeys['ArrowLeft'] && breakoutPaddle.x > 0) {
+    breakoutPaddle.x -= breakoutPaddle.speed;
+  }
+  if (breakoutKeys['ArrowRight'] && breakoutPaddle.x < 400 - breakoutPaddle.width) {
+    breakoutPaddle.x += breakoutPaddle.speed;
+  }
+  
+  if (breakoutStarted) {
+    breakoutBall.x += breakoutBall.dx;
+    breakoutBall.y += breakoutBall.dy;
+    
+    if (breakoutBall.x <= breakoutBall.radius || breakoutBall.x >= 400 - breakoutBall.radius) {
+      breakoutBall.dx = -breakoutBall.dx;
+    }
+    
+    if (breakoutBall.y <= breakoutBall.radius) {
+      breakoutBall.dy = -breakoutBall.dy;
+    }
+    
+    if (breakoutBall.y + breakoutBall.radius >= breakoutPaddle.y &&
+        breakoutBall.x >= breakoutPaddle.x &&
+        breakoutBall.x <= breakoutPaddle.x + breakoutPaddle.width) {
+      breakoutBall.dy = -Math.abs(breakoutBall.dy);
+      breakoutBall.dx += (breakoutBall.x - (breakoutPaddle.x + breakoutPaddle.width / 2)) * 0.1;
+    }
+    
+    breakoutBricks.forEach(brick => {
+      if (brick.visible &&
+          breakoutBall.x >= brick.x &&
+          breakoutBall.x <= brick.x + brick.width &&
+          breakoutBall.y >= brick.y &&
+          breakoutBall.y <= brick.y + brick.height) {
+        brick.visible = false;
+        breakoutBall.dy = -breakoutBall.dy;
+        breakoutScore += 10;
+        document.getElementById('breakoutScore').textContent = breakoutScore;
+      }
+    });
+    
+    if (breakoutBricks.every(brick => !brick.visible)) {
+      alert('You Win! 🎉 Score: ' + breakoutScore);
+      breakoutWindow.classList.remove('show');
+      return;
+    }
+    
+    if (breakoutBall.y > 500) {
+      breakoutLives--;
+      document.getElementById('breakoutLives').textContent = breakoutLives;
+      
+      if (breakoutLives <= 0) {
+        alert('Game Over! Score: ' + breakoutScore);
+        breakoutWindow.classList.remove('show');
+        return;
+      }
+      
+      breakoutBall = { x: 200, y: 400, dx: 3, dy: -3, radius: 8 };
+      breakoutStarted = false;
+    }
+  }
+  
+  drawBreakout();
+  breakoutGame = requestAnimationFrame(breakoutGameLoop);
+}
+
+function drawBreakout() {
+  breakoutCtx.fillStyle = '#000';
+  breakoutCtx.fillRect(0, 0, 400, 500);
+  
+  breakoutBricks.forEach(brick => {
+    if (brick.visible) {
+      breakoutCtx.fillStyle = brick.color;
+      breakoutCtx.fillRect(brick.x, brick.y, brick.width, brick.height);
+    }
+  });
+  
+  breakoutCtx.fillStyle = '#fff';
+  breakoutCtx.fillRect(breakoutPaddle.x, breakoutPaddle.y, breakoutPaddle.width, breakoutPaddle.height);
+  
+  breakoutCtx.beginPath();
+  breakoutCtx.arc(breakoutBall.x, breakoutBall.y, breakoutBall.radius, 0, Math.PI * 2);
+  breakoutCtx.fillStyle = '#fff';
+  breakoutCtx.fill();
+  
+  if (!breakoutStarted) {
+    breakoutCtx.fillStyle = '#fff';
+    breakoutCtx.font = '20px Arial';
+    breakoutCtx.textAlign = 'center';
+    breakoutCtx.fillText('Press SPACE to Start', 200, 250);
+  }
+}
+
+breakoutClose.addEventListener('click', () => {
+  breakoutWindow.classList.remove('show');
+  if (breakoutGame) cancelAnimationFrame(breakoutGame);
+  document.removeEventListener('keydown', handleBreakoutKeyDown);
+  document.removeEventListener('keyup', handleBreakoutKeyUp);
 });
 
     // SECRET DEVELOPER PORTAL
