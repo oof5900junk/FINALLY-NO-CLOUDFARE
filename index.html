@@ -1083,6 +1083,17 @@
     <div class="snake-controls">Arrow Keys to move | Space to start</div>
   </div>
 </div>
+<div class="snake-window" id="flappyWindow">
+  <div class="snake-header">
+    <h4>🐦 Flappy Bird</h4>
+    <button class="snake-close" id="flappyClose">×</button>
+  </div>
+  <div class="snake-game">
+    <canvas id="flappyCanvas" width="320" height="480"></canvas>
+    <div class="snake-score">Score: <span id="flappyScore">0</span></div>
+    <div class="snake-controls">Space or Click to Flap</div>
+  </div>
+</div>
   <div class="snake-window" id="tetrisWindow">
   <div class="snake-header">
     <h4>🎮 Tetris</h4>
@@ -1576,6 +1587,11 @@ else if (val === 'breakout') {
   forgotModal.classList.remove('show');
   breakoutWindow.classList.add('show');
   initBreakoutGame();
+}
+else if (val === 'flappy' || val === 'flappybird') {
+  forgotModal.classList.remove('show');
+  flappyWindow.classList.add('show');
+  initFlappyGame();
 }
    // NEW SECRETS
   else if (val === 'switch2') {
@@ -2229,6 +2245,172 @@ breakoutClose.addEventListener('click', () => {
   if (breakoutGame) cancelAnimationFrame(breakoutGame);
   document.removeEventListener('keydown', handleBreakoutKeyDown);
   document.removeEventListener('keyup', handleBreakoutKeyUp);
+});
+// FLAPPY BIRD GAME
+const flappyWindow = document.getElementById('flappyWindow');
+const flappyClose = document.getElementById('flappyClose');
+const flappyCanvas = document.getElementById('flappyCanvas');
+const flappyCtx = flappyCanvas.getContext('2d');
+
+let flappyGame = null;
+let flappyBird = { x: 50, y: 240, width: 34, height: 24, velocity: 0, gravity: 0.4, jump: -8 };
+let flappyPipes = [];
+let flappyScore = 0;
+let flappyStarted = false;
+let flappyFrame = 0;
+
+const PIPE_WIDTH = 52;
+const PIPE_GAP = 120;
+const PIPE_SPEED = 2;
+
+function initFlappyGame() {
+  flappyScore = 0;
+  flappyStarted = false;
+  flappyFrame = 0;
+  document.getElementById('flappyScore').textContent = flappyScore;
+  
+  flappyBird = { x: 50, y: 240, width: 34, height: 24, velocity: 0, gravity: 0.4, jump: -8 };
+  flappyPipes = [];
+  
+  flappyCanvas.removeEventListener('click', handleFlappyClick);
+  document.removeEventListener('keydown', handleFlappyKey);
+  
+  flappyCanvas.addEventListener('click', handleFlappyClick);
+  document.addEventListener('keydown', handleFlappyKey);
+  
+  if (flappyGame) cancelAnimationFrame(flappyGame);
+  flappyGameLoop();
+}
+
+function handleFlappyClick() {
+  if (!flappyStarted) {
+    flappyStarted = true;
+  }
+  flappyBird.velocity = flappyBird.jump;
+}
+
+function handleFlappyKey(e) {
+  if (!flappyWindow.classList.contains('show')) return;
+  
+  if (e.key === ' ') {
+    e.preventDefault();
+    if (!flappyStarted) {
+      flappyStarted = true;
+    }
+    flappyBird.velocity = flappyBird.jump;
+  }
+}
+
+function flappyGameLoop() {
+  if (flappyStarted) {
+    flappyFrame++;
+    
+    // Bird physics
+    flappyBird.velocity += flappyBird.gravity;
+    flappyBird.y += flappyBird.velocity;
+    
+    // Generate pipes
+    if (flappyFrame % 90 === 0) {
+      const gapY = Math.random() * (320 - PIPE_GAP) + 80;
+      flappyPipes.push({
+        x: 320,
+        topHeight: gapY - PIPE_GAP / 2,
+        bottomY: gapY + PIPE_GAP / 2,
+        scored: false
+      });
+    }
+    
+    // Move and check pipes
+    flappyPipes.forEach((pipe, index) => {
+      pipe.x -= PIPE_SPEED;
+      
+      // Score
+      if (!pipe.scored && pipe.x + PIPE_WIDTH < flappyBird.x) {
+        pipe.scored = true;
+        flappyScore++;
+        document.getElementById('flappyScore').textContent = flappyScore;
+      }
+      
+      // Remove off-screen pipes
+      if (pipe.x + PIPE_WIDTH < 0) {
+        flappyPipes.splice(index, 1);
+      }
+      
+      // Collision detection
+      if (flappyBird.x + flappyBird.width > pipe.x && flappyBird.x < pipe.x + PIPE_WIDTH) {
+        if (flappyBird.y < pipe.topHeight || flappyBird.y + flappyBird.height > pipe.bottomY) {
+          alert('Game Over! Score: ' + flappyScore);
+          flappyWindow.classList.remove('show');
+          return;
+        }
+      }
+    });
+    
+    // Ground/ceiling collision
+    if (flappyBird.y + flappyBird.height > 480 || flappyBird.y < 0) {
+      alert('Game Over! Score: ' + flappyScore);
+      flappyWindow.classList.remove('show');
+      return;
+    }
+  }
+  
+  drawFlappy();
+  flappyGame = requestAnimationFrame(flappyGameLoop);
+}
+
+function drawFlappy() {
+  // Sky
+  flappyCtx.fillStyle = '#70c5ce';
+  flappyCtx.fillRect(0, 0, 320, 480);
+  
+  // Pipes
+  flappyPipes.forEach(pipe => {
+    flappyCtx.fillStyle = '#5cb85c';
+    // Top pipe
+    flappyCtx.fillRect(pipe.x, 0, PIPE_WIDTH, pipe.topHeight);
+    // Bottom pipe
+    flappyCtx.fillRect(pipe.x, pipe.bottomY, PIPE_WIDTH, 480 - pipe.bottomY);
+    
+    // Pipe borders
+    flappyCtx.strokeStyle = '#2d5a2d';
+    flappyCtx.lineWidth = 3;
+    flappyCtx.strokeRect(pipe.x, 0, PIPE_WIDTH, pipe.topHeight);
+    flappyCtx.strokeRect(pipe.x, pipe.bottomY, PIPE_WIDTH, 480 - pipe.bottomY);
+  });
+  
+  // Bird
+  flappyCtx.fillStyle = '#ffd700';
+  flappyCtx.fillRect(flappyBird.x, flappyBird.y, flappyBird.width, flappyBird.height);
+  
+  // Bird eye
+  flappyCtx.fillStyle = '#000';
+  flappyCtx.beginPath();
+  flappyCtx.arc(flappyBird.x + 25, flappyBird.y + 8, 3, 0, Math.PI * 2);
+  flappyCtx.fill();
+  
+  // Beak
+  flappyCtx.fillStyle = '#ff8c00';
+  flappyCtx.beginPath();
+  flappyCtx.moveTo(flappyBird.x + flappyBird.width, flappyBird.y + 12);
+  flappyCtx.lineTo(flappyBird.x + flappyBird.width + 8, flappyBird.y + 12);
+  flappyCtx.lineTo(flappyBird.x + flappyBird.width, flappyBird.y + 16);
+  flappyCtx.fill();
+  
+  // Start message
+  if (!flappyStarted) {
+    flappyCtx.fillStyle = '#000';
+    flappyCtx.font = 'bold 20px Arial';
+    flappyCtx.textAlign = 'center';
+    flappyCtx.fillText('Click or Press SPACE', 160, 240);
+    flappyCtx.fillText('to Start!', 160, 270);
+  }
+}
+
+flappyClose.addEventListener('click', () => {
+  flappyWindow.classList.remove('show');
+  if (flappyGame) cancelAnimationFrame(flappyGame);
+  flappyCanvas.removeEventListener('click', handleFlappyClick);
+  document.removeEventListener('keydown', handleFlappyKey);
 });
 
     // SECRET DEVELOPER PORTAL
