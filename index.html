@@ -1126,6 +1126,8 @@
           <span class="search-shortcut">Ctrl+K</span>
          <div class="search-results" id="searchResults"></div>
         </div>
+        <!-- Panic Button -->
+<button class="panic-btn" id="panicBtn">🚨 PANIC</button>
         
    <!-- Recently Clicked -->
         <div class="recent-section" id="recentSection" style="display: none;">
@@ -2975,7 +2977,13 @@ function show404() {
     chatbot_id="6943929a190e85dc71392e73"
     data-type="default"
     src="https://app.thinkstack.ai/bot/thinkstackai-loader.min.js"
-  ></script>
+    });
+
+// Panic Button
+document.getElementById('panicBtn').addEventListener('click', () => {
+  window.location.href = 'https://www.khanacademy.org';
+});
+></script>
 </body>
 </html>
 
