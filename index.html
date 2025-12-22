@@ -994,10 +994,23 @@
   transform: scale(1.5) !important;
   transform-origin: top left !important;
 }
-
-.statcounter img {
+statcounter img {
   width: auto !important;
   height: auto !important;
+}
+/* Visitor label */
+.statcounter::after {
+  content: '← Visitors';
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 10px;
+  color: #333;
+  font-weight: 600;
+  font-size: 14px;
+  white-space: nowrap;
+  pointer-events: none;
 }
     @media (max-width: 768px) {
       .portal-title {
