@@ -1641,7 +1641,11 @@ else if (val === 'flappy' || val === 'flappybird') {
 else if (val === 'pacman' || val === 'wakawaka') {
   forgotModal.classList.remove('show');
   pacmanWindow.classList.add('show');
-  initPacmanGame();
+  
+  // Small delay to ensure window is visible before initializing
+  setTimeout(() => {
+    initPacmanGame();
+  }, 100);
 }
    // NEW SECRETS
   else if (val === 'switch2') {
@@ -2516,6 +2520,49 @@ function initPacmanGame() {
   pacmanStarted = false;
   document.getElementById('pacmanScore').textContent = pacmanScore;
   document.getElementById('pacmanLives').textContent = pacmanLives;
+  
+  // Make sure canvas is ready
+  if (!pacmanCanvas || !pacmanCtx) {
+    console.error('Canvas not ready');
+    return;
+  }
+  
+  // Initialize maze
+  pacmanMaze = MAZE_LAYOUT.map(row => [...row]);
+  
+  // Count dots
+  pacmanDots = 0;
+  for (let y = 0; y < MAZE_HEIGHT; y++) {
+    for (let x = 0; x < MAZE_WIDTH; x++) {
+      if (pacmanMaze[y][x] === 2 || pacmanMaze[y][x] === 3) {
+        pacmanDots++;
+      }
+    }
+  }
+  
+  // Initialize Pac-Man
+  pacman = { x: 10, y: 16, direction: 0, nextDirection: 0, mouth: 0 };
+  
+  // Initialize ghosts
+  ghosts = [
+    { x: 9, y: 9, color: GHOST_COLORS[0], direction: 0 },
+    { x: 10, y: 9, color: GHOST_COLORS[1], direction: 1 },
+    { x: 11, y: 9, color: GHOST_COLORS[2], direction: 2 },
+    { x: 10, y: 10, color: GHOST_COLORS[3], direction: 3 }
+  ];
+  
+  document.removeEventListener('keydown', handlePacmanKeyDown);
+  document.addEventListener('keydown', handlePacmanKeyDown);
+  
+  if (pacmanGame) cancelAnimationFrame(pacmanGame);
+  
+  // Draw initial frame immediately
+  drawPacman();
+  
+  // Start game loop
+  pacmanFrameCount = 0;
+  pacmanGameLoop();
+}
   
   // Initialize maze
   pacmanMaze = MAZE_LAYOUT.map(row => [...row]);
