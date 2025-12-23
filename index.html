@@ -2470,7 +2470,7 @@ flappyClose.addEventListener('click', () => {
 const pacmanWindow = document.getElementById('pacmanWindow');
 const pacmanClose = document.getElementById('pacmanClose');
 const pacmanCanvas = document.getElementById('pacmanCanvas');
-let pacmanCtx = null;
+const pacmanCtx = pacmanCanvas.getContext('2d');
 
 let pacmanGame = null;
 let pacman = { x: 10, y: 16, direction: 0, nextDirection: 0, mouth: 0 };
@@ -2514,14 +2514,6 @@ const MAZE_LAYOUT = [
 const GHOST_COLORS = ['#FF0000', '#FFB8FF', '#00FFFF', '#FFB852'];
 
 function initPacmanGame() {
-  // Get canvas context
-  pacmanCtx = pacmanCanvas.getContext('2d');
-  
-  if (!pacmanCtx) {
-    console.error('Could not get canvas context');
-    return;
-  }
-  
   console.log('Initializing Pac-Man game...');
   
   pacmanScore = 0;
@@ -2709,8 +2701,6 @@ function canMove(x, y) {
 }
 
 function drawPacman() {
-  if (!pacmanCtx) return;
-  
   pacmanCtx.fillStyle = '#000';
   pacmanCtx.fillRect(0, 0, 420, 460);
   
