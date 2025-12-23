@@ -1642,8 +1642,11 @@ else if (val === 'pacman' || val === 'wakawaka') {
   forgotModal.classList.remove('show');
   pacmanWindow.classList.add('show');
   
-  // Small delay to ensure window is visible before initializing
+  // Force canvas redraw and initialize
   setTimeout(() => {
+    // Reset canvas dimensions
+    pacmanCanvas.width = 420;
+    pacmanCanvas.height = 460;
     initPacmanGame();
   }, 100);
 }
@@ -2516,6 +2519,10 @@ const GHOST_COLORS = ['#FF0000', '#FFB8FF', '#00FFFF', '#FFB852'];
 function initPacmanGame() {
   console.log('Initializing Pac-Man game...');
   
+  // Force canvas context refresh
+  const ctx = pacmanCanvas.getContext('2d');
+  ctx.clearRect(0, 0, pacmanCanvas.width, pacmanCanvas.height);
+  
   pacmanScore = 0;
   pacmanLives = 3;
   pacmanStarted = false;
@@ -2701,79 +2708,86 @@ function canMove(x, y) {
 }
 
 function drawPacman() {
-  pacmanCtx.fillStyle = '#000';
-  pacmanCtx.fillRect(0, 0, 420, 460);
+  // Get fresh context
+  const ctx = pacmanCanvas.getContext('2d');
   
+  // Black background
+  ctx.fillStyle = '#000';
+  ctx.fillRect(0, 0, 420, 460);
+  
+  // Draw maze
   for (let y = 0; y < MAZE_HEIGHT; y++) {
     for (let x = 0; x < MAZE_WIDTH; x++) {
       const tile = pacmanMaze[y][x];
       
       if (tile === 1) {
-        pacmanCtx.fillStyle = '#0000FF';
-        pacmanCtx.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
-        pacmanCtx.strokeStyle = '#4169E1';
-        pacmanCtx.lineWidth = 1;
-        pacmanCtx.strokeRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+        ctx.fillStyle = '#0000FF';
+        ctx.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+        ctx.strokeStyle = '#4169E1';
+        ctx.lineWidth = 1;
+        ctx.strokeRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
       } else if (tile === 2) {
-        pacmanCtx.fillStyle = '#FFB852';
-        pacmanCtx.beginPath();
-        pacmanCtx.arc(x * TILE_SIZE + TILE_SIZE/2, y * TILE_SIZE + TILE_SIZE/2, 2, 0, Math.PI * 2);
-        pacmanCtx.fill();
+        ctx.fillStyle = '#FFB852';
+        ctx.beginPath();
+        ctx.arc(x * TILE_SIZE + TILE_SIZE/2, y * TILE_SIZE + TILE_SIZE/2, 2, 0, Math.PI * 2);
+        ctx.fill();
       } else if (tile === 3) {
-        pacmanCtx.fillStyle = '#FFF';
-        pacmanCtx.beginPath();
-        pacmanCtx.arc(x * TILE_SIZE + TILE_SIZE/2, y * TILE_SIZE + TILE_SIZE/2, 4, 0, Math.PI * 2);
-        pacmanCtx.fill();
+        ctx.fillStyle = '#FFF';
+        ctx.beginPath();
+        ctx.arc(x * TILE_SIZE + TILE_SIZE/2, y * TILE_SIZE + TILE_SIZE/2, 4, 0, Math.PI * 2);
+        ctx.fill();
       }
     }
   }
   
-  pacmanCtx.fillStyle = '#FFFF00';
-  pacmanCtx.beginPath();
+  // Draw Pac-Man
+  ctx.fillStyle = '#FFFF00';
+  ctx.beginPath();
   
   const mouthAngle = pacman.mouth < 10 ? pacman.mouth / 10 * 0.3 : (20 - pacman.mouth) / 10 * 0.3;
   const rotation = pacman.direction * Math.PI / 2;
   
-  pacmanCtx.arc(
+  ctx.arc(
     pacman.x * TILE_SIZE + TILE_SIZE/2,
     pacman.y * TILE_SIZE + TILE_SIZE/2,
     TILE_SIZE/2 - 2,
     rotation + mouthAngle,
     rotation + (2 * Math.PI - mouthAngle)
   );
-  pacmanCtx.lineTo(pacman.x * TILE_SIZE + TILE_SIZE/2, pacman.y * TILE_SIZE + TILE_SIZE/2);
-  pacmanCtx.fill();
+  ctx.lineTo(pacman.x * TILE_SIZE + TILE_SIZE/2, pacman.y * TILE_SIZE + TILE_SIZE/2);
+  ctx.fill();
   
+  // Draw ghosts
   ghosts.forEach(ghost => {
-    pacmanCtx.fillStyle = ghost.color;
-    pacmanCtx.beginPath();
-    pacmanCtx.arc(ghost.x * TILE_SIZE + TILE_SIZE/2, ghost.y * TILE_SIZE + TILE_SIZE/2, TILE_SIZE/2 - 2, Math.PI, 0);
-    pacmanCtx.lineTo(ghost.x * TILE_SIZE + TILE_SIZE/2 + TILE_SIZE/2 - 2, ghost.y * TILE_SIZE + TILE_SIZE);
-    pacmanCtx.lineTo(ghost.x * TILE_SIZE + TILE_SIZE/2 + 2, ghost.y * TILE_SIZE + TILE_SIZE - 4);
-    pacmanCtx.lineTo(ghost.x * TILE_SIZE + TILE_SIZE/2 - 2, ghost.y * TILE_SIZE + TILE_SIZE - 4);
-    pacmanCtx.lineTo(ghost.x * TILE_SIZE + TILE_SIZE/2 - TILE_SIZE/2 + 2, ghost.y * TILE_SIZE + TILE_SIZE);
-    pacmanCtx.fill();
+    ctx.fillStyle = ghost.color;
+    ctx.beginPath();
+    ctx.arc(ghost.x * TILE_SIZE + TILE_SIZE/2, ghost.y * TILE_SIZE + TILE_SIZE/2, TILE_SIZE/2 - 2, Math.PI, 0);
+    ctx.lineTo(ghost.x * TILE_SIZE + TILE_SIZE/2 + TILE_SIZE/2 - 2, ghost.y * TILE_SIZE + TILE_SIZE);
+    ctx.lineTo(ghost.x * TILE_SIZE + TILE_SIZE/2 + 2, ghost.y * TILE_SIZE + TILE_SIZE - 4);
+    ctx.lineTo(ghost.x * TILE_SIZE + TILE_SIZE/2 - 2, ghost.y * TILE_SIZE + TILE_SIZE - 4);
+    ctx.lineTo(ghost.x * TILE_SIZE + TILE_SIZE/2 - TILE_SIZE/2 + 2, ghost.y * TILE_SIZE + TILE_SIZE);
+    ctx.fill();
     
-    pacmanCtx.fillStyle = '#FFF';
-    pacmanCtx.beginPath();
-    pacmanCtx.arc(ghost.x * TILE_SIZE + TILE_SIZE/2 - 3, ghost.y * TILE_SIZE + TILE_SIZE/2 - 2, 3, 0, Math.PI * 2);
-    pacmanCtx.arc(ghost.x * TILE_SIZE + TILE_SIZE/2 + 3, ghost.y * TILE_SIZE + TILE_SIZE/2 - 2, 3, 0, Math.PI * 2);
-    pacmanCtx.fill();
+    ctx.fillStyle = '#FFF';
+    ctx.beginPath();
+    ctx.arc(ghost.x * TILE_SIZE + TILE_SIZE/2 - 3, ghost.y * TILE_SIZE + TILE_SIZE/2 - 2, 3, 0, Math.PI * 2);
+    ctx.arc(ghost.x * TILE_SIZE + TILE_SIZE/2 + 3, ghost.y * TILE_SIZE + TILE_SIZE/2 - 2, 3, 0, Math.PI * 2);
+    ctx.fill();
     
-    pacmanCtx.fillStyle = '#000';
-    pacmanCtx.beginPath();
-    pacmanCtx.arc(ghost.x * TILE_SIZE + TILE_SIZE/2 - 3, ghost.y * TILE_SIZE + TILE_SIZE/2 - 2, 1.5, 0, Math.PI * 2);
-    pacmanCtx.arc(ghost.x * TILE_SIZE + TILE_SIZE/2 + 3, ghost.y * TILE_SIZE + TILE_SIZE/2 - 2, 1.5, 0, Math.PI * 2);
-    pacmanCtx.fill();
+    ctx.fillStyle = '#000';
+    ctx.beginPath();
+    ctx.arc(ghost.x * TILE_SIZE + TILE_SIZE/2 - 3, ghost.y * TILE_SIZE + TILE_SIZE/2 - 2, 1.5, 0, Math.PI * 2);
+    ctx.arc(ghost.x * TILE_SIZE + TILE_SIZE/2 + 3, ghost.y * TILE_SIZE + TILE_SIZE/2 - 2, 1.5, 0, Math.PI * 2);
+    ctx.fill();
   });
   
   if (!pacmanStarted) {
-    pacmanCtx.fillStyle = 'rgba(0, 0, 0, 0.7)';
-    pacmanCtx.fillRect(50, 200, 320, 60);
-    pacmanCtx.fillStyle = '#FFF';
-    pacmanCtx.font = 'bold 20px Arial';
-    pacmanCtx.textAlign = 'center';
-    pacmanCtx.fillText('Press SPACE to Start!', 210, 235);
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+    ctx.fillRect(50, 200, 320, 60);
+    ctx.fillStyle = '#FFF';
+    ctx.font = 'bold 20px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText('Press SPACE to Start!', 210, 235);
   }
 }
 
