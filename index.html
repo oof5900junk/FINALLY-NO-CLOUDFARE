@@ -985,6 +985,33 @@
   font-size: 13px;
   padding: 10px;
 }
+/* Panic Button */
+.panic-btn {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  padding: 15px 25px;
+  background: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  z-index: 99999;
+  box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
+  transition: all 0.3s ease;
+}
+
+.panic-btn:hover {
+  background: #c0392b;
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(231, 76, 60, 0.6);
+}
+
+.panic-btn:active {
+  transform: scale(0.95);
+}
 /* Statcounter positioning */
 .statcounter {
   position: fixed !important;
@@ -2880,12 +2907,6 @@ document.addEventListener('click', (e) => {
 });
 // Load on page load
 loadRecentLinks();
-document.getElementById('scrollRight').addEventListener('click', () => {
-  document.getElementById('recentLinks').scrollBy({
-    left: 200,
-    behavior: 'smooth'
-  });
-});
 // 404 Page Function
 function show404() {
   document.getElementById('error404').classList.add('show');
