@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>PowerSchool LSR7</title>
+  <title>PowerSchool LSR7 - DEMO</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- Security Headers -->
@@ -23,319 +23,51 @@
       color: #333;
     }
     
-    /* Fake Login Screen */
-    .login-box {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    }
-    
-    .login-card {
-      background: white;
-      padding: 40px 50px;
-      border-radius: 12px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-      width: 400px;
-      max-width: 90%;
-    }
-    
-    .login-header {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-    
-    .login-logo {
-      width: 60px;
-      height: 60px;
-      margin: 0 auto 15px;
-      background: #667eea;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 32px;
-      cursor: pointer;
-      transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    }
-    .login-logo:hover {
-  transform: rotate(360deg) scale(1.15);
-}
-    
-    .login-box h2 {
-      color: #2c3e50;
-      margin-bottom: 8px;
-      font-size: 1.8em;
-    }
-    
-    .login-subtitle {
-      color: #7f8c8d;
-      font-size: 14px;
-    }
-    
-    .input-group {
-      margin-bottom: 20px;
-      position: relative;
-    }
-    
-    .input-group label {
-      display: block;
-      margin-bottom: 8px;
-      color: #555;
-      font-size: 14px;
-      font-weight: 500;
-    }
-    
-    .login-box input {
-      width: 100%;
-      padding: 12px 15px;
-      border-radius: 6px;
-      border: 1.5px solid #ddd;
-      font-size: 14px;
-      transition: all 0.3s;
-    }
-    
-    .login-box input:focus {
-      outline: none;
-      border-color: #667eea;
-      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-    }
-    
-    .login-box button {
-      width: 100%;
-      padding: 13px 15px;
-      margin: 10px 0;
-      background: #667eea;
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 15px;
-      font-weight: 600;
-      transition: all 0.3s;
-    }
-    
-   .login-box button:hover {
-  background: #5568d3;
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
-}
-    
-    .login-box button:active {
-      transform: translateY(0);
-    }
-    
-    .error-msg {
-      color: #e74c3c;
-      background: #ffe5e5;
-      padding: 10px 15px;
-      border-radius: 6px;
-      font-size: 13px;
-      margin-top: 15px;
-      display: none;
-      border-left: 3px solid #e74c3c;
-    }
-    
-    .forgot-password {
-      text-align: center;
-      margin-top: 15px;
-    }
-    
-    .forgot-password a {
-      color: #667eea;
-      text-decoration: none;
-      font-size: 13px;
-      cursor: pointer;
-    }
-    
-    .forgot-password a:hover {
-      text-decoration: underline;
-    }
-    
-    .forgot-modal {
-      display: none;
+    /* DEMO BANNER */
+    .demo-banner {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.5);
-      z-index: 1000;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .forgot-modal.show {
-      display: flex;
-    }
-    
-    .forgot-content {
-      background: white;
-      padding: 30px 40px;
-      border-radius: 12px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-      width: 400px;
-      max-width: 90%;
-    }
-    
-    .forgot-content h3 {
-      color: #2c3e50;
-      margin-bottom: 10px;
-    }
-    
-    .forgot-content p {
-      color: #7f8c8d;
-      font-size: 14px;
-      margin-bottom: 20px;
-    }
-    
-    .forgot-content input {
-      width: 100%;
-      padding: 12px 15px;
-      border-radius: 6px;
-      border: 1.5px solid #ddd;
-      font-size: 14px;
-      margin-bottom: 15px;
-    }
-    
-    .forgot-content input:focus {
-      outline: none;
-      border-color: #667eea;
-      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-    }
-    
-    .forgot-buttons {
-      display: flex;
-      gap: 10px;
-    }
-    
-    .forgot-buttons button {
-      flex: 1;
-      padding: 12px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 14px;
-      font-weight: 600;
-      transition: all 0.3s;
-    }
-    
-    .forgot-submit {
-      background: #667eea;
+      background: linear-gradient(90deg, #ff6b6b 0%, #ee5a6f 100%);
       color: white;
+      padding: 12px 20px;
+      text-align: center;
+      font-weight: 600;
+      z-index: 999999;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      font-size: 14px;
     }
     
-    .forgot-submit:hover {
-      background: #5568d3;
+    .demo-banner strong {
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
     
-    .forgot-cancel {
-      background: #e0e0e0;
-      color: #555;
-    }
-    
-    .forgot-cancel:hover {
-      background: #d0d0d0;
-    }
-    
-    /* Snake Game Window */
-    .snake-window {
-      display: none;
+    /* DEMO WATERMARK */
+    .demo-watermark {
       position: fixed;
       bottom: 20px;
       right: 20px;
-      width: 320px;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-      z-index: 10000;
-      overflow: hidden;
-    }
-    
-    .snake-window.show {
-      display: block;
-    }
-    
-    .snake-header {
-      background: #667eea;
+      background: rgba(0,0,0,0.7);
       color: white;
-      padding: 12px 15px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      cursor: move;
-    }
-    
-    .snake-header h4 {
-      margin: 0;
-      font-size: 14px;
-    }
-    
-    .snake-close {
-      background: none;
-      border: none;
-      color: white;
-      font-size: 20px;
-      cursor: pointer;
-      padding: 0;
-      width: 24px;
-      height: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 4px;
-    }
-    
-    .snake-close:hover {
-      background: rgba(255,255,255,0.2);
-    }
-    
-    .snake-game {
-      padding: 15px;
-      text-align: center;
-    }
-    
-    .snake-canvas {
-      border: 2px solid #333;
-      border-radius: 4px;
-      background: #000;
-    }
-    
-    .snake-score {
-      margin-top: 10px;
-      font-size: 14px;
-      color: #333;
-      font-weight: 600;
-    }
-    
-    .snake-controls {
-      margin-top: 10px;
+      padding: 10px 20px;
+      border-radius: 8px;
       font-size: 12px;
-      color: #7f8c8d;
+      z-index: 999999;
+      pointer-events: none;
     }
     
-    .loading {
+    /* Fake Login Screen - HIDDEN IN DEMO */
+    .login-box {
       display: none;
-      width: 20px;
-      height: 20px;
-      border: 3px solid #f3f3f3;
-      border-top: 3px solid #667eea;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin: 10px auto;
     }
     
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    
-    /* Real Hub Content (Hidden initially) */
+    /* Real Hub Content */
     .hub-content {
-      display: none;
-      padding: 40px 20px;
+      display: block;
+      padding: 60px 20px 40px 20px; /* Extra padding for demo banner */
       transition: background 0.5s ease;
     }
     
@@ -407,91 +139,12 @@
       pointer-events: none;
       z-index: 1;
     }
-    .hub-content.fnf {
-  background: #ff6b9d;
-  position: relative;
-  overflow: hidden;
-}
-
-.hub-content.fnf::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('https://fridaynightfunkin.wiki.gg/images/Week_Thr33.png?c0cb9e');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  pointer-events: none;
-  z-index: 1;
-  opacity: 0.8;
-}
     
     @keyframes sparkle {
       0% { opacity: 0.5; transform: scale(1); }
       50% { opacity: 1; transform: scale(1.1); }
       100% { opacity: 0.5; transform: scale(1); }
     }
-    .error-404 {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #1a1a1a;
-  z-index: 999999;
-  color: white;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
-}
-
-.error-404.show {
-  display: flex;
-}
-
-.error-404 h1 {
-  font-size: 120px;
-  margin: 0;
-  color: #e74c3c;
-  text-shadow: 0 0 20px rgba(231, 76, 60, 0.5);
-}
-
-.error-404 p {
-  font-size: 24px;
-  margin: 20px 0;
-}
-
-.error-404 button {
-  padding: 15px 30px;
-  font-size: 18px;
-  background: #e74c3c;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  margin-top: 20px;
-}
-
-.error-404 button:hover {
-  background: #c0392b;
-}
-
-.glitch {
-  animation: glitch 1s infinite;
-}
-
-@keyframes glitch {
-  0%, 100% { transform: translate(0); }
-  20% { transform: translate(-2px, 2px); }
-  40% { transform: translate(-2px, -2px); }
-  60% { transform: translate(2px, 2px); }
-  80% { transform: translate(2px, -2px); }
-}
     
     .hub-content .container {
       position: relative;
@@ -553,10 +206,10 @@
     }
     
     .category-header:hover {
-  background: #3a5fa9;
-  transform: translateX(5px) scale(1.01);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
-}
+      background: #3a5fa9;
+      transform: translateX(5px) scale(1.01);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+    }
     
     .category-title {
       font-size: 1.5em;
@@ -576,20 +229,21 @@
     }
     
     .category-content {
-  display: none;
-  padding: 20px 0;
-  margin-bottom: 20px;
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.4s ease;
-}
+      display: none;
+      padding: 20px 0;
+      margin-bottom: 20px;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.4s ease;
+    }
 
-.category-content.show {
-  display: block;
-  max-height: 2000px;
-  opacity: 1;
-}
+    .category-content.show {
+      display: block;
+      max-height: 2000px;
+      opacity: 1;
+    }
+    
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -611,10 +265,10 @@
     }
     
     .link-box:hover {
-  transform: translateY(-8px) scale(1.05);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-  border-color: #4472c4;
- }
+      transform: translateY(-8px) scale(1.05);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      border-color: #4472c4;
+    }
     
     .link-icon {
       width: 60px;
@@ -634,511 +288,170 @@
       text-align: center;
     }
     
-    /* Secret Developer Portal */
-    .portal-screen {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: #000;
-      z-index: 100000;
+    /* Search Bar Styles */
+    .search-container {
+      position: relative;
+      max-width: 600px;
+      margin: 0 auto 30px;
     }
 
-    .portal-screen.show {
+    .search-box {
+      width: 100%;
+      padding: 15px 50px 15px 20px;
+      border: 2px solid #ddd;
+      border-radius: 25px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      background: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .search-box:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
+    }
+
+    .search-icon {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 20px;
+      color: #999;
+      pointer-events: none;
+    }
+
+    .search-results {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      max-height: 400px;
+      overflow-y: auto;
+      margin-top: 10px;
+      display: none;
+      z-index: 1000;
+    }
+
+    .search-results.show {
       display: block;
     }
 
-    #particles {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-
-    .portal-content {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      z-index: 2;
-    }
-
-    .portal-title {
-      color: #fff;
-      font-size: 3em;
-      margin-bottom: 20px;
-      text-shadow: 0 0 20px rgba(255,255,255,0.5);
-      animation: glow 2s ease-in-out infinite;
-    }
-
-    @keyframes glow {
-      0%, 100% { text-shadow: 0 0 20px rgba(255,255,255,0.5); }
-      50% { text-shadow: 0 0 40px rgba(255,255,255,0.8); }
-    }
-
-    .portal-subtitle {
-      color: #aaa;
-      font-size: 1.2em;
-      margin-bottom: 40px;
-    }
-
-    .portal-buttons {
-      display: flex;
-      gap: 30px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .portal-btn {
-      padding: 20px 40px;
-      font-size: 1.2em;
-      font-weight: 600;
-      border: 2px solid #fff;
-      background: rgba(255,255,255,0.1);
-      color: #fff;
-      text-decoration: none;
-      border-radius: 12px;
-      transition: all 0.3s;
-      backdrop-filter: blur(10px);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .portal-btn:hover {
-      background: rgba(255,255,255,0.2);
-      transform: translateY(-5px);
-      box-shadow: 0 10px 30px rgba(255,255,255,0.3);
-    }
-
-    .portal-close {
-      position: absolute;
-      top: 30px;
-      right: 30px;
-      background: rgba(255,255,255,0.1);
-      border: 2px solid #fff;
-      color: #fff;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      font-size: 24px;
+    .search-result-item {
+      padding: 15px 20px;
+      border-bottom: 1px solid #eee;
       cursor: pointer;
-      z-index: 3;
-      transition: all 0.3s;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      text-decoration: none;
+      color: #333;
+    }
+
+    .search-result-item:last-child {
+      border-bottom: none;
+    }
+
+    .search-result-item:hover {
+      background: #f5f5f5;
+      padding-left: 25px;
+    }
+
+    .search-result-icon {
+      width: 40px;
+      height: 40px;
+      background: #4472c4;
+      border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
     }
 
-    .portal-close:hover {
-      background: rgba(255,255,255,0.2);
-      transform: rotate(90deg);
+    .search-result-info {
+      flex: 1;
     }
 
-.invisible-trigger {
-  position: fixed;
-  top: 15px;
-  left: 15px;
-  width: 40px;
-  height: 40px;
-  background: rgba(255,255,255,0.7);
-  border: 2px solid rgba(255,255,255,0.9);
-  border-radius: 50%;
-  cursor: pointer;
-  z-index: 100001;
-  opacity: 1;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-}
+    .search-result-name {
+      font-weight: 600;
+      font-size: 15px;
+      margin-bottom: 3px;
+    }
 
-.invisible-trigger:hover {
-  background: rgba(255,255,255,0.95);
-  transform: scale(1.2);
-  box-shadow: 0 4px 16px rgba(255,255,255,0.5);
-}
-    /* Search Bar Styles */
-.search-container {
-  position: relative;
-  max-width: 600px;
-  margin: 0 auto 30px;
-}
+    .search-result-category {
+      font-size: 12px;
+      color: #999;
+    }
 
-.search-box {
-  width: 100%;
-  padding: 15px 50px 15px 20px;
-  border: 2px solid #ddd;
-  border-radius: 25px;
-  font-size: 16px;
-  transition: all 0.3s ease;
-  background: white;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
+    .no-results {
+      padding: 30px 20px;
+      text-align: center;
+      color: #999;
+      font-size: 14px;
+    }
 
-.search-box:focus {
-  outline: none;
-  border-color: #667eea;
-  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
-}
-
-.search-icon {
-  position: absolute;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 20px;
-  color: #999;
-  pointer-events: none;
-}
-
-.search-results {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-  max-height: 400px;
-  overflow-y: auto;
-  margin-top: 10px;
-  display: none;
-  z-index: 1000;
-}
-
-.search-results.show {
-  display: block;
-}
-
-.search-result-item {
-  padding: 15px 20px;
-  border-bottom: 1px solid #eee;
-  cursor: pointer;
-  transition: all 0.2s;
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  text-decoration: none;
-  color: #333;
-}
-
-.search-result-item:last-child {
-  border-bottom: none;
-}
-
-.search-result-item:hover {
-  background: #f5f5f5;
-  padding-left: 25px;
-}
-
-.search-result-icon {
-  width: 40px;
-  height: 40px;
-  background: #4472c4;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  flex-shrink: 0;
-}
-
-.search-result-info {
-  flex: 1;
-}
-
-.search-result-name {
-  font-weight: 600;
-  font-size: 15px;
-  margin-bottom: 3px;
-}
-
-.search-result-category {
-  font-size: 12px;
-  color: #999;
-}
-
-.no-results {
-  padding: 30px 20px;
-  text-align: center;
-  color: #999;
-  font-size: 14px;
-}
-
-.search-shortcut {
-  position: absolute;
-  right: 60px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: #f0f0f0;
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 12px;
-  color: #666;
-  font-weight: 600;
-  pointer-events: none;
-}
-    /* Recently Clicked Section */
-.recent-section {
-  max-width: 600px;
-  margin: 0 auto 30px;
-  padding: 15px 20px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-.recent-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.recent-title {
-  font-size: 14px;
-  font-weight: 600;
-  color: #666;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.clear-history {
-  background: none;
-  border: none;
-  color: #e74c3c;
-  font-size: 12px;
-  cursor: pointer;
-  padding: 4px 8px;
-  border-radius: 4px;
-  transition: all 0.2s;
-}
-
-.clear-history:hover {
-  background: #ffe5e5;
-}
-
-.recent-links {
-  display: flex;
-  gap: 10px;
-  overflow-x: auto;
-  padding: 5px 0;
-  scroll-behavior: smooth;
-  scrollbar-width: thin;
-}
-
-.recent-links::-webkit-scrollbar {
-  height: 6px;
-}
-
-.recent-links::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 10px;
-}
-
-.recent-links::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 10px;
-}
-
-.recent-links::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-
-.recent-link {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
-  background: #f5f5f5;
-  border-radius: 8px;
-  text-decoration: none;
-  color: #333;
-  white-space: nowrap;
-  transition: all 0.2s;
-  border: 1px solid #e0e0e0;
-  flex-shrink: 0;
-}
-
-.recent-link:hover {
-  background: #e8e8e8;
-  transform: translateY(-2px);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-.recent-link-icon {
-  font-size: 18px;
-}
-
-.recent-link-name {
-  font-size: 13px;
-  font-weight: 500;
-}
-
-.no-history {
-  text-align: center;
-  color: #999;
-  font-size: 13px;
-  padding: 10px;
-}
-/* Statcounter positioning */
-.statcounter {
-  position: fixed !important;
-  top: 10px !important;
-  left: 10px !important;
-  z-index: 99998 !important;
-  transform: scale(1.5) !important;
-  transform-origin: top left !important;
-}
-statcounter img {
-  width: auto !important;
-  height: auto !important;
-}
-/* Visitor label */
-.statcounter > div::after {
-  content: '← Visitors';
-  position: absolute;
-  left: 100%;
-  top: 50%;
-  transform: translateY(-50%);
-  margin-left: 10px;
-  color: #333;
-  font-weight: 600;
-  font-size: 14px;
-  white-space: nowrap;
-  pointer-events: none;
-}
+    .search-shortcut {
+      position: absolute;
+      right: 60px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #f0f0f0;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      color: #666;
+      font-weight: 600;
+      pointer-events: none;
+    }
+    
+    /* Locked Category Style */
+    .locked-category {
+      padding: 40px 20px;
+      text-align: center;
+      background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+      border-radius: 8px;
+      color: #999;
+    }
+    
+    .locked-category h3 {
+      font-size: 1.5em;
+      margin-bottom: 10px;
+      color: #666;
+    }
+    
+    .locked-category p {
+      font-size: 1em;
+    }
+    
     @media (max-width: 768px) {
-      .portal-title {
+      .hub-header h1 {
         font-size: 2em;
-      }
-      
-      .portal-subtitle {
-        font-size: 1em;
-      }
-      
-      .portal-buttons {
-        flex-direction: column;
-        gap: 20px;
-      }
-      
-      .portal-btn {
-        width: 250px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="login-box" id="cloak">
-    <div class="login-card">
-      <div class="login-header">
-        <div class="login-logo">📚</div>
-        <h2>PowerSchool</h2>
-        <p class="login-subtitle">Lee's Summit R-7 School District</p>
-      </div>
-      
-      <div class="input-group">
-        <label for="username">Username</label>
-        <input type="text" id="username" placeholder="Enter your username" autocomplete="username">
-      </div>
-      
-      <div class="input-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" placeholder="Enter your password" autocomplete="current-password">
-      </div>
-      
-      <button id="loginBtn">Sign In</button>
-      <div class="loading" id="loading"></div>
-      <div class="error-msg" id="errorMsg">❌ Invalid username or password. Please try again.</div>
-      
-      <div class="forgot-password">
-        <a href="#" id="forgotLink">Forgot your password?</a>
-      </div>
-    </div>
+  <!-- DEMO BANNER -->
+  <div class="demo-banner">
+    <strong>🎮 DEMO VERSION</strong> - Limited features | Full version coming soon!
   </div>
-
-  <div class="forgot-modal" id="forgotModal">
-    <div class="forgot-content">
-      <h3>Reset Password</h3>
-      <p>Enter your email address to reset your password.</p>
-      <input type="email" id="recoveryEmail" placeholder="Enter your email address">
-      <div class="forgot-buttons">
-        <button class="forgot-cancel" id="cancelForgot">Cancel</button>
-        <button class="forgot-submit" id="submitForgot">Submit</button>
-      </div>
-    </div>
+  
+  <!-- DEMO WATERMARK -->
+  <div class="demo-watermark">
+    🎮 DEMO VERSION
   </div>
-
-  <div class="snake-window" id="snakeWindow">
-    <div class="snake-header">
-      <h4>🐍 Snake Game</h4>
-      <button class="snake-close" id="snakeClose">×</button>
-    </div>
-    <div class="snake-game">
-      <canvas id="snakeCanvas" width="280" height="280"></canvas>
-      <div class="snake-score">Score: <span id="snakeScore">0</span></div>
-      <div class="snake-controls">Use Arrow Keys</div>
-    </div>
-  </div>
-  <div class="snake-window" id="pongWindow" style="width: 520px;">
-  <div class="snake-header">
-    <h4>🏓 Pong - 2 Player</h4>
-    <button class="snake-close" id="pongClose">×</button>
-  </div>
-  <div class="snake-game">
-    <canvas id="pongCanvas" width="480" height="320"></canvas>
-    <div class="snake-score">
-      Player 1 (WASD): <span id="pongScore1">0</span> | 
-      Player 2 (Arrows): <span id="pongScore2">0</span>
-    </div>
-    <div class="snake-controls">W/S or ↑/↓ to move | First to 5 wins!</div>
-  </div>
-</div>
-<div class="snake-window" id="breakoutWindow">
-  <div class="snake-header">
-    <h4>🧱 Breakout</h4>
-    <button class="snake-close" id="breakoutClose">×</button>
-  </div>
-  <div class="snake-game">
-    <canvas id="breakoutCanvas" width="400" height="500"></canvas>
-    <div class="snake-score">Score: <span id="breakoutScore">0</span></div>
-    <div class="snake-score">Lives: <span id="breakoutLives">3</span></div>
-    <div class="snake-controls">Arrow Keys to move | Space to start</div>
-  </div>
-</div>
-<div class="snake-window" id="flappyWindow">
-  <div class="snake-header">
-    <h4>🐦 Flappy Bird</h4>
-    <button class="snake-close" id="flappyClose">×</button>
-  </div>
-  <div class="snake-game">
-    <canvas id="flappyCanvas" width="320" height="480"></canvas>
-    <div class="snake-score">Score: <span id="flappyScore">0</span></div>
-    <div class="snake-controls">Space or Click to Flap</div>
-  </div>
-</div>
-  <div class="snake-window" id="tetrisWindow">
-  <div class="snake-header">
-    <h4>🎮 Tetris</h4>
-    <button class="snake-close" id="tetrisClose">×</button>
-  </div>
-  <div class="snake-game">
-    <canvas id="tetrisCanvas" width="240" height="400"></canvas>
-    <div class="snake-score">Score: <span id="tetrisScore">0</span></div>
-    <div class="snake-score">Lines: <span id="tetrisLines">0</span></div>
-    <div class="snake-controls">Arrow Keys: Move | Space: Rotate</div>
-  </div>
-</div>
 
   <div class="hub-content" id="hub">
     <div class="container">
       <div class="hub-header">
         <h1>🌐 Link Hub</h1>
-        <p>Quick access to your favorite sites</p>
+        <p>Quick access to your favorite sites - DEMO VERSION</p>
         
         <!-- Search Bar -->
         <div class="search-container">
@@ -1151,29 +464,14 @@ statcounter img {
           >
           <span class="search-icon">🔍</span>
           <span class="search-shortcut">Ctrl+K</span>
-         <div class="search-results" id="searchResults"></div>
+          <div class="search-results" id="searchResults"></div>
         </div>
-        <!-- Panic Button -->
-<button class="panic-btn" id="panicBtn">🚨 PANIC</button>
-        
-   <!-- Recently Clicked -->
-        <div class="recent-section" id="recentSection" style="display: none;">
-          <div class="recent-header">
-            <div class="recent-title">
-              <span>🕒</span>
-              <span>Recently Clicked</span>
-            </div>
-            <button class="clear-history" id="clearHistory">Clear</button>
-          </div>
-        <div class="recent-links" id="recentLinks">
-            <div class="no-history">No recent links yet</div>
-          </div>
-        </div>
-      <!-- All categories with full links -->
+      </div>
+      
       <!-- Proxies -->
       <div class="category">
         <div class="category-header" onclick="toggleCategory('proxies')">
-          <div class="category-title"><span>🌐</span><span>Proxies (34)</span></div>
+          <div class="category-title"><span>🌐</span><span>Proxies (10)</span></div>
           <span class="arrow" id="arrow-proxies">▼</span>
         </div>
         <div class="category-content" id="content-proxies">
@@ -1188,30 +486,6 @@ statcounter img {
             <a href="https://noctura.app" target="_blank" class="link-box"><div class="link-icon">🌙</div><div class="link-name">Noctura</div></a>
             <a href="https://elixirproxy.com" target="_blank" class="link-box"><div class="link-icon">⚗️</div><div class="link-name">Elixir</div></a>
             <a href="https://tsunamiproxy.com" target="_blank" class="link-box"><div class="link-icon">🌊</div><div class="link-name">Tsunami</div></a>
-            <a href="https://www.blockaway.net" target="_blank" class="link-box"><div class="link-icon">🌐</div><div class="link-name">BlockAway</div></a>
-            <a href="https://www.croxyproxy.com" target="_blank" class="link-box"><div class="link-icon">🔓</div><div class="link-name">CroxyProxy</div></a>
-            <a href="https://www.proxysite.com" target="_blank" class="link-box"><div class="link-icon">🌍</div><div class="link-name">ProxySite</div></a>
-            <a href="https://hide.me/en/proxy" target="_blank" class="link-box"><div class="link-icon">🔒</div><div class="link-name">Hide.me</div></a>
-            <a href="https://www.hidemyass.com/en-us/proxy" target="_blank" class="link-box"><div class="link-icon">🎭</div><div class="link-name">HideMyAss</div></a>
-            <a href="https://plainproxies.com" target="_blank" class="link-box"><div class="link-icon">⚡</div><div class="link-name">PlainProxies</div></a>
-<a href="https://proxyium.com" target="_blank" class="link-box"><div class="link-icon">⚙️</div><div class="link-name">Proxyium</div></a>
-<a href="https://kproxy.com" target="_blank" class="link-box"><div class="link-icon">🔐</div><div class="link-name">KProxy</div></a>
-<a href="https://webshare.io" target="_blank" class="link-box"><div class="link-icon">🌐</div><div class="link-name">Webshare</div></a>
-<a href="https://vpnbook.com/webproxy" target="_blank" class="link-box"><div class="link-icon">📖</div><div class="link-name">VPNBook</div></a>
-<a href="https://filterbypass.me" target="_blank" class="link-box"><div class="link-icon">🚫</div><div class="link-name">FilterBypass</div></a>
-<a href="https://4everproxy.com" target="_blank" class="link-box"><div class="link-icon">♾️</div><div class="link-name">4everproxy</div></a>
-<a href="https://whoer.net" target="_blank" class="link-box"><div class="link-icon">🕵️</div><div class="link-name">Whoer</div></a>
-<a href="https://proxfree.com" target="_blank" class="link-box"><div class="link-icon">🆓</div><div class="link-name">ProxFree</div></a>
-<a href="https://anonymouse.org" target="_blank" class="link-box"><div class="link-icon">🐭</div><div class="link-name">Anonymouse</div></a>
-<a href="https://newipnow.com" target="_blank" class="link-box"><div class="link-icon">🆕</div><div class="link-name">NewIPNow</div></a>
-<a href="https://zend2.com" target="_blank" class="link-box"><div class="link-icon">💎</div><div class="link-name">Zend2</div></a>
-<a href="https://whoishostingthis.com/tools/proxy" target="_blank" class="link-box"><div class="link-icon">🔍</div><div class="link-name">WhoIsHosting</div></a>
-<a href="https://proxyshare.com" target="_blank" class="link-box"><div class="link-icon">🤝</div><div class="link-name">ProxyShare</div></a>
-<a href="https://vpntunnel.com" target="_blank" class="link-box"><div class="link-icon">🚇</div><div class="link-name">VPNTunnel</div></a>
-<a href="https://unblockvideos.com" target="_blank" class="link-box"><div class="link-icon">🎥</div><div class="link-name">UnblockVideos</div></a>
-<a href="https://turbo-hide.com" target="_blank" class="link-box"><div class="link-icon">⚡</div><div class="link-name">TurboHide</div></a>
-<a href="https://hidester.com/proxy" target="_blank" class="link-box"><div class="link-icon">👁️</div><div class="link-name">Hidester</div></a>
-<a href="https://proxybay.one" target="_blank" class="link-box"><div class="link-icon">🏴‍☠️</div><div class="link-name">ProxyBay</div></a>
           </div>
         </div>
       </div>
@@ -1233,27 +507,10 @@ statcounter img {
         </div>
       </div>
 
-      <!-- Streaming -->
-      <div class="category">
-        <div class="category-header" onclick="toggleCategory('streaming')">
-          <div class="category-title"><span>🎬</span><span>Streaming (5)</span></div>
-          <span class="arrow" id="arrow-streaming">▼</span>
-        </div>
-        <div class="category-content" id="content-streaming">
-          <div class="grid">
-            <a href="https://netflix.com" target="_blank" class="link-box"><div class="link-icon">🎬</div><div class="link-name">Netflix</div></a>
-            <a href="https://disneyplus.com" target="_blank" class="link-box"><div class="link-icon">🏰</div><div class="link-name">Disney+</div></a>
-            <a href="https://hulu.com" target="_blank" class="link-box"><div class="link-icon">📺</div><div class="link-name">Hulu</div></a>
-            <a href="https://twitch.tv" target="_blank" class="link-box"><div class="link-icon">🎮</div><div class="link-name">Twitch</div></a>
-            <a href="https://primevideo.com" target="_blank" class="link-box"><div class="link-icon">📦</div><div class="link-name">Prime Video</div></a>
-          </div>
-        </div>
-      </div>
-
       <!-- Games -->
       <div class="category">
         <div class="category-header" onclick="toggleCategory('games')">
-         <div class="category-title"><span>🎮</span><span>Games (5)</span></div>
+          <div class="category-title"><span>🎮</span><span>Games (5)</span></div>
           <span class="arrow" id="arrow-games">▼</span>
         </div>
         <div class="category-content" id="content-games">
@@ -1267,1738 +524,147 @@ statcounter img {
         </div>
       </div>
 
-      <!-- Tools -->
+      <!-- LOCKED CATEGORIES -->
       <div class="category">
-        <div class="category-header" onclick="toggleCategory('tools')">
-          <div class="category-title"><span>🔧</span><span>Tools (5)</span></div>
-          <span class="arrow" id="arrow-tools">▼</span>
-        </div>
-        <div class="category-content" id="content-tools">
-          <div class="grid">
-            <a href="https://discord.com" target="_blank" class="link-box"><div class="link-icon">💬</div><div class="link-name">Discord</div></a>
-            <a href="https://gmail.com" target="_blank" class="link-box"><div class="link-icon">📧</div><div class="link-name">Gmail</div></a>
-            <a href="https://drive.google.com" target="_blank" class="link-box"><div class="link-icon">💾</div><div class="link-name">Google Drive</div></a>
-            <a href="https://docs.google.com" target="_blank" class="link-box"><div class="link-icon">📝</div><div class="link-name">Google Docs</div></a>
-            <a href="https://github.com" target="_blank" class="link-box"><div class="link-icon">💻</div><div class="link-name">GitHub</div></a>
-          </div>
+        <div class="category-header">
+          <div class="category-title"><span>🎬</span><span>Streaming 🔒</span></div>
         </div>
       </div>
-
-      <!-- Music -->
-      <div class="category">
-        <div class="category-header" onclick="toggleCategory('music')">
-         <div class="category-title"><span>🎵</span><span>Music (4)</span></div>
-          <span class="arrow" id="arrow-music">▼</span>
-        </div>
-        <div class="category-content" id="content-music">
-          <div class="grid">
-            <a href="https://spotify.com" target="_blank" class="link-box"><div class="link-icon">🎵</div><div class="link-name">Spotify</div></a>
-            <a href="https://soundcloud.com" target="_blank" class="link-box"><div class="link-icon">☁️</div><div class="link-name">SoundCloud</div></a>
-            <a href="https://music.youtube.com" target="_blank" class="link-box"><div class="link-icon">🎶</div><div class="link-name">YouTube Music</div></a>
-            <a href="https://music.apple.com" target="_blank" class="link-box"><div class="link-icon">🍎</div><div class="link-name">Apple Music</div></a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Finance -->
-      <div class="category">
-        <div class="category-header" onclick="toggleCategory('finance')">
-          <div class="category-title"><span>💰</span><span>Finance (5)</span></div>
-          <span class="arrow" id="arrow-finance">▼</span>
-        </div>
-        <div class="category-content" id="content-finance">
-          <div class="grid">
-            <a href="https://www.marketwatch.com/market-data" target="_blank" class="link-box"><div class="link-icon">📈</div><div class="link-name">MarketWatch</div></a>
-            <a href="https://rush.gold/" target="_blank" class="link-box"><div class="link-icon">🥇</div><div class="link-name">Rush Gold</div></a>
-            <a href="https://www.investing.com" target="_blank" class="link-box"><div class="link-icon">💰</div><div class="link-name">Investing.com</div></a>
-            <a href="https://finance.yahoo.com" target="_blank" class="link-box"><div class="link-icon">💹</div><div class="link-name">Yahoo Finance</div></a>
-            <a href="https://www.tradingview.com" target="_blank" class="link-box"><div class="link-icon">📊</div><div class="link-name">TradingView</div></a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
- <!-- Invisible trigger button (top left corner) -->
-<button class="invisible-trigger" id="triggerBtn" title="Secret..." 
-  style="position: fixed !important; 
-         top: 15px !important; 
-         left: 15px !important; 
-         width: 40px !important; 
-         height: 40px !important; 
-         background: white !important; 
-         border: 2px solid #ccc !important;
-         border-radius: 50% !important;
-         opacity: 1 !important; 
-         z-index: 999999 !important; 
-         cursor: pointer !important;
-         box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
-         display: block !important;"></button>
-
-  <!-- Secret Portal Screen -->
-  <div class="portal-screen" id="portalScreen">
-    <canvas id="particles"></canvas>
-    
-    <button class="portal-close" id="closePortal">×</button>
-    
-    <div class="portal-content">
-      <h1 class="portal-title">✨ Developer Portal ✨</h1>
-      <p class="portal-subtitle">You found the secret dimension</p>
       
-      <div class="portal-buttons">
-        <a href="https://github.com/m1ltvrs/FINALLY-NO-CLOUDFARE/blob/main/index.html" target="_blank" class="portal-btn">
-          <span>💻</span>
-          <span>GitHub</span>
-        </a>
-        <a href="https://youtube.com/@themultiversee_good?si=iJY8iFngACApVwaD" target="_blank" class="portal-btn">
-          <span>📺</span>
-          <span>YouTube</span>
-        </a>
-        <a href="https://youtube.com/shorts/OkHoaqCSL9A?si=6mSkKYFKxSUTaD7b" target="_blank" class="portal-btn">
-    <span>🎵</span>
-    <span>Dev Pick</span>
-  </a>
-</div>
+      <div class="category">
+        <div class="category-header">
+          <div class="category-title"><span>🔧</span><span>Tools 🔒</span></div>
+        </div>
+      </div>
+      
+      <div class="category">
+        <div class="category-header">
+          <div class="category-title"><span>🎵</span><span>Music 🔒</span></div>
+        </div>
+      </div>
+      
+      <div class="category">
+        <div class="category-header">
+          <div class="category-title"><span>💰</span><span>Finance 🔒</span></div>
+        </div>
+      </div>
+      
+      <div class="locked-category">
+        <h3>🔒 More Categories Available in Full Version</h3>
+        <p>Streaming, Tools, Music, Finance + 30+ more proxy sites, hidden games, and secret features!</p>
       </div>
     </div>
   </div>
+
   <script>
-    // ===== SECURITY: INPUT SANITIZATION =====
-    function sanitize(input) {
-      const div = document.createElement('div');
-      div.textContent = input;
-      return div.innerHTML;
-    }
-    
-    // ===== SECURITY: AI CALL THROTTLING =====
-    let lastAICall = 0;
-    function safeAICall(callback) {
-      if (Date.now() - lastAICall < 1000) {
-        console.warn('AI call blocked: Too many requests');
-        return false;
-      }
-      lastAICall = Date.now();
-      callback();
-      return true;
-    }
-   let clickCount = 0;
-  let goldenMode = false;
-  let luckyMode = false;
-  let forkknifeMode = false;
-  let fnfMode = false;
-  const konamiCode = 'uuddlrlrabab';
-  const fnfCode = 'uullrrdd';
-  let konamiInput = '';
-  let fnfInput = '';
-    const cloak = document.getElementById('cloak');
-    const hub = document.getElementById('hub');
-    const loginBtn = document.getElementById('loginBtn');
-    const errorMsg = document.getElementById('errorMsg');
-    const loading = document.getElementById('loading');
-    const usernameInput = document.getElementById('username');
-    const passwordInput = document.getElementById('password');
-    const forgotLink = document.getElementById('forgotLink');
-    const forgotModal = document.getElementById('forgotModal');
-    const recoveryEmail = document.getElementById('recoveryEmail');
-    const submitForgot = document.getElementById('submitForgot');
-    const snakeWindow = document.getElementById('snakeWindow');
-    const snakeClose = document.getElementById('snakeClose');
-
-   function unlockHub() {
-  cloak.style.display = 'none';
-  hub.style.display = 'block';
-  if (goldenMode) { hub.classList.add('golden'); createSparkles('golden'); }
-  if (luckyMode) { hub.classList.add('lucky'); createSparkles('lucky'); }
-  if (forkknifeMode) { hub.classList.add('forkknife'); createSparkles('forkknife'); }
-  if (fnfMode) { hub.classList.add('fnf'); createSparkles('fnf'); }
-}
-
-    function createSparkles(mode) {
-  const emojis = mode === 'golden' ? ['✨','⭐','🌟','💫','⚡','💛','🔆'] :
-                 mode === 'lucky' ? ['🍀','🎰','🎲','💚','🌈','🎊','🔮','🎱'] :
-                 mode === 'fnf' ? ['🎤','🎵','🎶','💙','❤️','🔫','⬆️','⬇️','⬅️','➡️'] :
-                 ['🍴','🔪','🥄','🍽️','🔱','⚔️'];
-      setInterval(() => {
-        const s = document.createElement('div');
-        s.className = 'sparkle';
-        s.textContent = emojis[Math.floor(Math.random()*emojis.length)];
-        s.style.left = Math.random()*100 + 'vw';
-        s.style.fontSize = (Math.random()*20+15)+'px';
-        s.style.animationDuration = (Math.random()*2+2)+'s';
-        document.body.appendChild(s);
-        setTimeout(() => s.remove(), 4000);
-      }, 300);
-    }
-
     function toggleCategory(id) {
-  const content = document.getElementById('content-'+id);
-  const arrow = document.getElementById('arrow-'+id);
-  
-  if (content.classList.contains('show')) {
-    // Closing
-    content.style.maxHeight = content.scrollHeight + 'px';
-    setTimeout(() => {
-      content.classList.remove('show');
-    }, 10);
-  } else {
-    // Opening
-    content.classList.add('show');
-    content.style.maxHeight = content.scrollHeight + 'px';
-  }
-  
-  arrow.classList.toggle('open');
-}
-
-    // All unlock methods
-    loginBtn.addEventListener('click', () => {
-      clickCount++;
-      loginBtn.style.display = 'none';
-      loading.style.display = 'block';
-      errorMsg.style.display = 'none';
-      setTimeout(() => {
-        loginBtn.style.display = 'block';
-        loading.style.display = 'none';
-        if (clickCount < 3) {
-          errorMsg.style.display = 'block';
-        } else {
-          unlockHub();
-        }
-      }, 800);
-    });
-
-    usernameInput.addEventListener('input', () => {
-      if (usernameInput.value.toLowerCase() === 'bypass') unlockHub();
-    });
-
-    document.addEventListener('keydown', e => {
-      if (e.ctrlKey && e.shiftKey && e.key === 'L') { e.preventDefault(); unlockHub(); }
-    });
-
-    let logoClicks = 0;
-    document.querySelector('.login-logo').addEventListener('click', () => {
-      logoClicks++;
-      if (logoClicks === 3) unlockHub();
-      setTimeout(() => logoClicks = 0, 1000);
-    });
-
-    forgotLink.addEventListener('click', e => { e.preventDefault(); forgotModal.classList.add('show'); });
-    // Click background to close forgot modal
-forgotModal.addEventListener('click', (e) => {
-  if (e.target === forgotModal) {
-    forgotModal.classList.remove('show');
-    recoveryEmail.value = '';
-  }
-});
-
-// Cancel button functionality
-document.getElementById('cancelForgot').addEventListener('click', () => {
-  forgotModal.classList.remove('show');
-  recoveryEmail.value = '';
-});
-submitForgot.addEventListener('click', () => {
-  const val = recoveryEmail.value.toLowerCase();
-    // CHECK FOR HOLIDAY THEMES FIRST
-  const today = new Date();
-  const month = today.getMonth() + 1;
-  const day = today.getDate();
-  
-  // Christmas (December 25)
-  if (month === 12 && day === 25 && val === 'christmas') {
-    hub.style.background = 'linear-gradient(135deg, #c41e3a 0%, #165b33 100%)';
-    forgotModal.classList.remove('show');
-    unlockHub();
-    createHolidayEffect('❄️', '🎄', '🎅', '⛄', '🎁', '⭐');
-    alert('🎄 Merry Christmas! Special theme activated!');
-    return;
-  }
-  
-  // Halloween (October 31)
-  if (month === 10 && day === 31 && val === 'halloween') {
-    hub.style.background = 'linear-gradient(135deg, #ff6600 0%, #1a1a1a 100%)';
-    forgotModal.classList.remove('show');
-    unlockHub();
-    createHolidayEffect('🎃', '👻', '🦇', '🕷️', '💀', '🕸️');
-    alert('🎃 Happy Halloween! Spooky theme activated!');
-    return;
-  }
-  
-  // New Year's (January 1)
-  if (month === 1 && day === 1 && val === 'newyear') {
-    hub.style.background = 'linear-gradient(135deg, #ffd700 0%, #4169e1 100%)';
-    forgotModal.classList.remove('show');
-    unlockHub();
-    createHolidayEffect('🎉', '🎊', '✨', '🥳', '🎆', '🍾');
-    alert('🎉 Happy New Year! Party theme activated!');
-    return;
-  }
-  
-  // Valentine's Day (February 14)
-  if (month === 2 && day === 14 && val === 'valentine') {
-    hub.style.background = 'linear-gradient(135deg, #ff69b4 0%, #ff1493 100%)';
-    forgotModal.classList.remove('show');
-    unlockHub();
-    createHolidayEffect('❤️', '💕', '💖', '💝', '🌹', '💘');
-    alert('💕 Happy Valentine\'s Day! Love theme activated!');
-    return;
-  }
-  
-  // St. Patrick's Day (March 17)
-  if (month === 3 && day === 17 && val === 'stpatricks') {
-    hub.style.background = 'linear-gradient(135deg, #00ff00 0%, #006400 100%)';
-    forgotModal.classList.remove('show');
-    unlockHub();
-    createHolidayEffect('☘️', '🍀', '🌈', '🎩', '🍺', '💚');
-    alert('☘️ Happy St. Patrick\'s Day! Lucky theme activated!');
-    return;
-  }
-  
-  // July 4th
-  if (month === 7 && day === 4 && val === 'july4th') {
-    hub.style.background = 'linear-gradient(135deg, #b22234 0%, #3c3b6e 100%)';
-    forgotModal.classList.remove('show');
-    unlockHub();
-    createHolidayEffect('🇺🇸', '🎆', '🎇', '🗽', '🦅', '⭐');
-    alert('🇺🇸 Happy 4th of July! Patriotic theme activated!');
-    return;
-  }
-  
-  // Halloween (October 31)
-  if (month === 10 && day === 31 && val === 'thanksgiving') {
-    hub.style.background = 'linear-gradient(135deg, #ff8c00 0%, #8b4513 100%)';
-    forgotModal.classList.remove('show');
-    unlockHub();
-    createHolidayEffect('🦃', '🍂', '🥧', '🌽', '🍁', '🎃');
-    alert('🦃 Happy Thanksgiving! Harvest theme activated!');
-    return;
-  }
-  
-  // If holiday code on wrong day
-  if (['christmas', 'halloween', 'newyear', 'valentine', 'stpatricks', 'july4th', 'thanksgiving'].includes(val)) {
-    alert('❌ This holiday theme only works on the actual holiday!');
-    return;
-  }
-  
-  // Original secrets
-  if (val === 'm1ltvrs') { 
-    goldenMode = true; 
-    forgotModal.classList.remove('show'); 
-    unlockHub(); 
-  }
-  else if (val === 'lucky') { 
-    luckyMode = true; 
-    forgotModal.classList.remove('show'); 
-    unlockHub(); 
-  }
-  else if (val === 'forkknife') { 
-    forkknifeMode = true; 
-    forgotModal.classList.remove('show'); 
-    unlockHub(); 
-  }
-  else if (val === 'crewmate') {
-  hub.style.background = '#000';
-  hub.style.backgroundImage = 'url(https://i.ibb.co/bgsy0Wt7/image.png)';
-  hub.style.backgroundSize = 'cover';
-  hub.style.backgroundPosition = 'center';
-  hub.style.backgroundRepeat = 'no-repeat';
-  alert('🚀 There is 1 Impostor among us...');
-  forgotModal.classList.remove('show');
-  unlockHub();
-}
-else if (val === '404' || val === 'notfound') {
-  forgotModal.classList.remove('show');
-  show404();
-}
-else if (val === 'tetris') {
-  forgotModal.classList.remove('show');
-  tetrisWindow.classList.add('show');
-  initTetrisGame();
-}
-else if (val === 'pong') {
-  forgotModal.classList.remove('show');
-  pongWindow.classList.add('show');
-  initPongGame();
-}
-else if (val === 'breakout') {
-  forgotModal.classList.remove('show');
-  breakoutWindow.classList.add('show');
-  initBreakoutGame();
-}
-else if (val === 'flappy' || val === 'flappybird') {
-  forgotModal.classList.remove('show');
-  flappyWindow.classList.add('show');
-  initFlappyGame();
-}
-else if (val === 'pacman' || val === 'wakawaka') {
-  forgotModal.classList.remove('show');
-  alert('wakawakawaka ᗧ···ᗣ···ᗣ··');
-  window.open('https://freepacman.org/', '_blank');
-}
-   // NEW SECRETS
-  else if (val === 'switch2') {
-    alert('🎮 Nintendo Switch 2: $500 for slightly better graphics? What a deal! 💸 FALSE!');
-    forgotModal.classList.remove('show');
-    unlockHub();
-  }
-  else if (val === 'itsafreddyfazbear') {
-    alert('🐻 Five Nights at Freddy\'s: Where animatronics go to therapy!');
-    forgotModal.classList.remove('show');
-    unlockHub();
-  }
-  else if (val === 'dogshit') {
-    alert('😂 Spotify: Pay $12/month to still hear ads and get random songs! 🎵');
-    window.open('https://spotify.com', '_blank');
-    forgotModal.classList.remove('show');
-    unlockHub();
-  }
-  else if (val === '747413') {
-    hub.style.background = 'linear-gradient(135deg, #001100 0%, #003300 100%)';
-    hub.style.color = '#00ff00';
-    alert('💚 DEV MODE ACTIVATED - Welcome to the Matrix');
-    forgotModal.classList.remove('show');
-    unlockHub();
-  }
-  else if (val === 'sourwatermeloncandy') {
-    hub.style.background = 'linear-gradient(135deg, #ff6b9d 0%, #c06c84 100%)';
-    alert('🍉 Melon Mode Activated!');
-    window.open('https://melonplayground.io/', '_blank');
-    forgotModal.classList.remove('show');
-    unlockHub();
-  }
-  else if (val === 'ihatehumans') {
-    alert('💀 People Playground: Because virtual violence is *totally* healthy!');
-    forgotModal.classList.remove('show');
-    unlockHub();
-  }
-  else if (val === 'leftrightupdownleftupdownrightdowndownupdowndownrightdownuprightupright') {
-    alert('🎤 BEEP BOOP BAP! Friday Night Funkin\' mode activated!');
-    forgotModal.classList.remove('show');
-    unlockHub();
-  }
-});
-
-   recoveryEmail.addEventListener('input', () => {
-  konamiInput = recoveryEmail.value.toLowerCase().replace(/\s/g, '');
-  fnfInput = recoveryEmail.value.toLowerCase().replace(/\s/g, '');
-  
-  if (konamiInput === konamiCode) {
-    recoveryEmail.value = '';
-    forgotModal.classList.remove('show');
-    snakeWindow.classList.add('show');
-    initSnakeGame();
-  }
-  
-  if (fnfInput === fnfCode) {
-    fnfMode = true;
-    recoveryEmail.value = '';
-    forgotModal.classList.remove('show');
-    alert('🎤 BEEP BOOP BAP! Friday Night Funkin\' Week 3 mode activated!');
-    unlockHub();
-  }
-});
-    snakeClose.addEventListener('click', () => { snakeWindow.classList.remove('show'); stopSnakeGame(); });
-
-    // Snake game full code
-    let snake, food, dx = 0, dy = 0, score = 0, gameLoop;
-    const ctx = document.getElementById('snakeCanvas').getContext('2d');
-    const gridSize = 14, tileCount = 20;
-
-    function initSnakeGame() {
-  snake = [{x:10,y:10}];
-  food = {x:15,y:15};
-  dx = 0; dy = 0; score = 0;
-  document.getElementById('snakeScore').textContent = score;
-  if (gameLoop) clearInterval(gameLoop);
-  
-  // Remove old listener first to prevent duplicates
-  document.removeEventListener('keydown', handleSnakeInput);
-  document.addEventListener('keydown', handleSnakeInput);
-  
-  gameLoop = setInterval(updateSnake, 100);
-}
-
-   function stopSnakeGame() {
-  if (gameLoop) clearInterval(gameLoop);
-  document.removeEventListener('keydown', handleSnakeInput);
-  dx = 0;
-  dy = 0;
-}
-
-   function handleSnakeInput(e) {
-  if (!snakeWindow.classList.contains('show')) return;
-  
-  // Only handle arrow keys
-  if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
-    e.preventDefault();
-    e.stopPropagation();
-    
-    switch(e.key) {
-      case 'ArrowUp': if (dy===0) {dx=0;dy=-1;} break;
-      case 'ArrowDown': if (dy===0) {dx=0;dy=1;} break;
-      case 'ArrowLeft': if (dx===0) {dx=-1;dy=0;} break;
-      case 'ArrowRight': if (dx===0) {dx=1;dy=0;} break;
-    }
-  }
-}
-
-    function updateSnake() {
-  // Don't update if snake hasn't started moving yet
-  if (dx === 0 && dy === 0) {
-    drawSnake();
-    return;
-  }
-
-  const head = {x: snake[0].x + dx, y: snake[0].y + dy};
-  
-  // Check wall collision
-  if (head.x < 0 || head.x >= tileCount || head.y < 0 || head.y >= tileCount) {
-    alert('Game Over! Score: ' + score);
-    stopSnakeGame();
-    snakeWindow.classList.remove('show');
-    return;
-  }
-  
-  // Check self collision
-  for (let s of snake) {
-    if (head.x === s.x && head.y === s.y) {
-      alert('Game Over! Score: ' + score);
-      stopSnakeGame();
-      snakeWindow.classList.remove('show');
-      return;
-    }
-  }
-  
-  snake.unshift(head);
-  
-  if (head.x === food.x && head.y === food.y) {
-    score++;
-    document.getElementById('snakeScore').textContent = score;
-    placeFood();
-  } else {
-    snake.pop();
-  }
-  
-  drawSnake();
-}
-
-    function placeFood() { food = {x: Math.floor(Math.random()*tileCount), y: Math.floor(Math.random()*tileCount)}; }
-
-    function drawSnake() {
-      ctx.fillStyle = '#000'; ctx.fillRect(0,0,280,280);
-      ctx.fillStyle = '#0f0'; snake.forEach(s => ctx.fillRect(s.x*gridSize, s.y*gridSize, gridSize-2, gridSize-2));
-      ctx.fillStyle = '#f00'; ctx.fillRect(food.x*gridSize, food.y*gridSize, gridSize-2, gridSize-2);
-    }
-    // TETRIS GAME
-const tetrisWindow = document.getElementById('tetrisWindow');
-const tetrisClose = document.getElementById('tetrisClose');
-const tetrisCanvas = document.getElementById('tetrisCanvas');
-const tetrisCtx = tetrisCanvas.getContext('2d');
-
-let tetrisGame = null;
-let tetrisPiece = null;
-let tetrisBoard = [];
-let tetrisScore = 0;
-let tetrisLines = 0;
-let tetrisInterval = null;
-
-const TETRIS_COLS = 12;
-const TETRIS_ROWS = 20;
-const TETRIS_BLOCK_SIZE = 20;
-
-const TETRIS_PIECES = [
-  [[1,1,1,1]], // I
-  [[1,1],[1,1]], // O
-  [[0,1,0],[1,1,1]], // T
-  [[1,0,0],[1,1,1]], // L
-  [[0,0,1],[1,1,1]], // J
-  [[0,1,1],[1,1,0]], // S
-  [[1,1,0],[0,1,1]]  // Z
-];
-
-const TETRIS_COLORS = ['#00f', '#ff0', '#f0f', '#f80', '#00f', '#0f0', '#f00'];
-
-function initTetrisGame() {
-  tetrisBoard = Array(TETRIS_ROWS).fill().map(() => Array(TETRIS_COLS).fill(0));
-  tetrisScore = 0;
-  tetrisLines = 0;
-  document.getElementById('tetrisScore').textContent = tetrisScore;
-  document.getElementById('tetrisLines').textContent = tetrisLines;
-  
-  spawnTetrisPiece();
-  
-  if (tetrisInterval) clearInterval(tetrisInterval);
-  tetrisInterval = setInterval(tetrisGameLoop, 500);
-  
-  document.removeEventListener('keydown', handleTetrisInput);
-  document.addEventListener('keydown', handleTetrisInput);
-}
-
-function spawnTetrisPiece() {
-  const pieceIndex = Math.floor(Math.random() * TETRIS_PIECES.length);
-  tetrisPiece = {
-    shape: TETRIS_PIECES[pieceIndex],
-    color: TETRIS_COLORS[pieceIndex],
-    x: Math.floor(TETRIS_COLS / 2) - 1,
-    y: 0
-  };
-  
-  if (checkTetrisCollision()) {
-    clearInterval(tetrisInterval);
-    alert('Game Over! Score: ' + tetrisScore);
-    tetrisWindow.classList.remove('show');
-  }
-}
-
-function checkTetrisCollision(offsetX = 0, offsetY = 0, shape = tetrisPiece.shape) {
-  for (let y = 0; y < shape.length; y++) {
-    for (let x = 0; x < shape[y].length; x++) {
-      if (shape[y][x]) {
-        const newX = tetrisPiece.x + x + offsetX;
-        const newY = tetrisPiece.y + y + offsetY;
-        
-        if (newX < 0 || newX >= TETRIS_COLS || newY >= TETRIS_ROWS) {
-          return true;
-        }
-        if (newY >= 0 && tetrisBoard[newY][newX]) {
-          return true;
-        }
-      }
-    }
-  }
-  return false;
-}
-
-function rotateTetrisPiece() {
-  const rotated = tetrisPiece.shape[0].map((_, i) =>
-    tetrisPiece.shape.map(row => row[i]).reverse()
-  );
-  
-  if (!checkTetrisCollision(0, 0, rotated)) {
-    tetrisPiece.shape = rotated;
-  }
-}
-
-function mergeTetrisPiece() {
-  tetrisPiece.shape.forEach((row, y) => {
-    row.forEach((value, x) => {
-      if (value) {
-        tetrisBoard[tetrisPiece.y + y][tetrisPiece.x + x] = tetrisPiece.color;
-      }
-    });
-  });
-  
-  // Check for complete lines
-  let linesCleared = 0;
-  for (let y = TETRIS_ROWS - 1; y >= 0; y--) {
-    if (tetrisBoard[y].every(cell => cell !== 0)) {
-      tetrisBoard.splice(y, 1);
-      tetrisBoard.unshift(Array(TETRIS_COLS).fill(0));
-      linesCleared++;
-      y++;
-    }
-  }
-  
-  if (linesCleared > 0) {
-    tetrisLines += linesCleared;
-    tetrisScore += linesCleared * 100;
-    document.getElementById('tetrisScore').textContent = tetrisScore;
-    document.getElementById('tetrisLines').textContent = tetrisLines;
-  }
-}
-
-function tetrisGameLoop() {
-  if (!checkTetrisCollision(0, 1)) {
-    tetrisPiece.y++;
-  } else {
-    mergeTetrisPiece();
-    spawnTetrisPiece();
-  }
-  drawTetris();
-}
-
-function handleTetrisInput(e) {
-  if (!tetrisWindow.classList.contains('show')) return;
-  
-  if (['ArrowLeft', 'ArrowRight', 'ArrowDown', ' '].includes(e.key)) {
-    e.preventDefault();
-    e.stopPropagation();
-    
-    switch(e.key) {
-      case 'ArrowLeft':
-        if (!checkTetrisCollision(-1, 0)) tetrisPiece.x--;
-        break;
-      case 'ArrowRight':
-        if (!checkTetrisCollision(1, 0)) tetrisPiece.x++;
-        break;
-      case 'ArrowDown':
-        if (!checkTetrisCollision(0, 1)) {
-          tetrisPiece.y++;
-          tetrisScore += 1;
-          document.getElementById('tetrisScore').textContent = tetrisScore;
-        }
-        break;
-      case ' ':
-        rotateTetrisPiece();
-        break;
-    }
-    drawTetris();
-  }
-}
-
-function drawTetris() {
-  tetrisCtx.fillStyle = '#000';
-  tetrisCtx.fillRect(0, 0, tetrisCanvas.width, tetrisCanvas.height);
-  
-  // Draw board
-  tetrisBoard.forEach((row, y) => {
-    row.forEach((cell, x) => {
-      if (cell) {
-        tetrisCtx.fillStyle = cell;
-        tetrisCtx.fillRect(x * TETRIS_BLOCK_SIZE, y * TETRIS_BLOCK_SIZE, 
-                          TETRIS_BLOCK_SIZE - 1, TETRIS_BLOCK_SIZE - 1);
-      }
-    });
-  });
-  
-  // Draw current piece
-  tetrisPiece.shape.forEach((row, y) => {
-    row.forEach((value, x) => {
-      if (value) {
-        tetrisCtx.fillStyle = tetrisPiece.color;
-        tetrisCtx.fillRect((tetrisPiece.x + x) * TETRIS_BLOCK_SIZE,
-                          (tetrisPiece.y + y) * TETRIS_BLOCK_SIZE,
-                          TETRIS_BLOCK_SIZE - 1, TETRIS_BLOCK_SIZE - 1);
-      }
-    });
-  });
-}
-
-tetrisClose.addEventListener('click', () => {
-  tetrisWindow.classList.remove('show');
-  if (tetrisInterval) clearInterval(tetrisInterval);
-  document.removeEventListener('keydown', handleTetrisInput);
-});
-// PONG GAME (2 PLAYER)
-const pongWindow = document.getElementById('pongWindow');
-const pongClose = document.getElementById('pongClose');
-const pongCanvas = document.getElementById('pongCanvas');
-const pongCtx = pongCanvas.getContext('2d');
-
-let pongGame = null;
-let pongBall = { x: 240, y: 160, dx: 4, dy: 4, size: 8 };
-let pongPaddle1 = { x: 10, y: 140, width: 10, height: 60, dy: 0 };
-let pongPaddle2 = { x: 460, y: 140, width: 10, height: 60, dy: 0 };
-let pongScore1 = 0;
-let pongScore2 = 0;
-let pongKeys = {};
-
-function initPongGame() {
-  pongScore1 = 0;
-  pongScore2 = 0;
-  document.getElementById('pongScore1').textContent = pongScore1;
-  document.getElementById('pongScore2').textContent = pongScore2;
-  
-  resetPongBall();
-  
-  if (pongGame) cancelAnimationFrame(pongGame);
-  
-  document.removeEventListener('keydown', handlePongKeyDown);
-  document.removeEventListener('keyup', handlePongKeyUp);
-  document.addEventListener('keydown', handlePongKeyDown);
-  document.addEventListener('keyup', handlePongKeyUp);
-  
-  pongGameLoop();
-}
-
-function resetPongBall() {
-  pongBall.x = 240;
-  pongBall.y = 160;
-  pongBall.dx = (Math.random() > 0.5 ? 4 : -4);
-  pongBall.dy = (Math.random() * 4 - 2);
-}
-
-function handlePongKeyDown(e) {
-  if (!pongWindow.classList.contains('show')) return;
-  
-  if (['w', 's', 'ArrowUp', 'ArrowDown'].includes(e.key)) {
-    e.preventDefault();
-    pongKeys[e.key] = true;
-  }
-}
-
-function handlePongKeyUp(e) {
-  if (!pongWindow.classList.contains('show')) return;
-  pongKeys[e.key] = false;
-}
-
-function pongGameLoop() {
-  // Move paddles
-  if (pongKeys['w'] && pongPaddle1.y > 0) pongPaddle1.y -= 6;
-  if (pongKeys['s'] && pongPaddle1.y < 260) pongPaddle1.y += 6;
-  if (pongKeys['ArrowUp'] && pongPaddle2.y > 0) pongPaddle2.y -= 6;
-  if (pongKeys['ArrowDown'] && pongPaddle2.y < 260) pongPaddle2.y += 6;
-  
-  // Move ball
-  pongBall.x += pongBall.dx;
-  pongBall.y += pongBall.dy;
-  
-  // Ball collision with top/bottom
-  if (pongBall.y <= 0 || pongBall.y >= 320) {
-    pongBall.dy = -pongBall.dy;
-  }
-  
-  // Ball collision with paddles
-  if (pongBall.x <= 20 && pongBall.y >= pongPaddle1.y && pongBall.y <= pongPaddle1.y + 60) {
-    pongBall.dx = Math.abs(pongBall.dx);
-    pongBall.dy = (pongBall.y - (pongPaddle1.y + 30)) / 5;
-  }
-  
-  if (pongBall.x >= 460 && pongBall.y >= pongPaddle2.y && pongBall.y <= pongPaddle2.y + 60) {
-    pongBall.dx = -Math.abs(pongBall.dx);
-    pongBall.dy = (pongBall.y - (pongPaddle2.y + 30)) / 5;
-  }
-  
-  // Score points
-  if (pongBall.x < 0) {
-    pongScore2++;
-    document.getElementById('pongScore2').textContent = pongScore2;
-    if (pongScore2 >= 5) {
-      alert('Player 2 Wins! 🎉');
-      pongWindow.classList.remove('show');
-      return;
-    }
-    resetPongBall();
-  }
-  
-  if (pongBall.x > 480) {
-    pongScore1++;
-    document.getElementById('pongScore1').textContent = pongScore1;
-    if (pongScore1 >= 5) {
-      alert('Player 1 Wins! 🎉');
-      pongWindow.classList.remove('show');
-      return;
-    }
-    resetPongBall();
-  }
-  
-  drawPong();
-  pongGame = requestAnimationFrame(pongGameLoop);
-}
-
-function drawPong() {
-  // Background
-  pongCtx.fillStyle = '#000';
-  pongCtx.fillRect(0, 0, 480, 320);
-  
-  // Center line
-  pongCtx.strokeStyle = '#fff';
-  pongCtx.setLineDash([5, 5]);
-  pongCtx.beginPath();
-  pongCtx.moveTo(240, 0);
-  pongCtx.lineTo(240, 320);
-  pongCtx.stroke();
-  pongCtx.setLineDash([]);
-  
-  // Paddles
-  pongCtx.fillStyle = '#fff';
-  pongCtx.fillRect(pongPaddle1.x, pongPaddle1.y, pongPaddle1.width, pongPaddle1.height);
-  pongCtx.fillRect(pongPaddle2.x, pongPaddle2.y, pongPaddle2.width, pongPaddle2.height);
-  
-  // Ball
-  pongCtx.beginPath();
-  pongCtx.arc(pongBall.x, pongBall.y, pongBall.size, 0, Math.PI * 2);
-  pongCtx.fill();
-}
-
-pongClose.addEventListener('click', () => {
-  pongWindow.classList.remove('show');
-  if (pongGame) cancelAnimationFrame(pongGame);
-  document.removeEventListener('keydown', handlePongKeyDown);
-  document.removeEventListener('keyup', handlePongKeyUp);
-});
-// BREAKOUT GAME
-const breakoutWindow = document.getElementById('breakoutWindow');
-const breakoutClose = document.getElementById('breakoutClose');
-const breakoutCanvas = document.getElementById('breakoutCanvas');
-const breakoutCtx = breakoutCanvas.getContext('2d');
-
-let breakoutGame = null;
-let breakoutBall = { x: 200, y: 400, dx: 3, dy: -3, radius: 8 };
-let breakoutPaddle = { x: 160, y: 470, width: 80, height: 10, speed: 7 };
-let breakoutBricks = [];
-let breakoutScore = 0;
-let breakoutLives = 3;
-let breakoutStarted = false;
-let breakoutKeys = {};
-
-const BRICK_ROWS = 5;
-const BRICK_COLS = 8;
-const BRICK_WIDTH = 45;
-const BRICK_HEIGHT = 20;
-const BRICK_PADDING = 5;
-const BRICK_COLORS = ['#e74c3c', '#e67e22', '#f39c12', '#2ecc71', '#3498db'];
-
-function initBreakoutGame() {
-  breakoutScore = 0;
-  breakoutLives = 3;
-  breakoutStarted = false;
-  document.getElementById('breakoutScore').textContent = breakoutScore;
-  document.getElementById('breakoutLives').textContent = breakoutLives;
-  
-  breakoutBall = { x: 200, y: 400, dx: 3, dy: -3, radius: 8 };
-  breakoutPaddle = { x: 160, y: 470, width: 80, height: 10, speed: 7 };
-  
-  breakoutBricks = [];
-  for (let row = 0; row < BRICK_ROWS; row++) {
-    for (let col = 0; col < BRICK_COLS; col++) {
-      breakoutBricks.push({
-        x: col * (BRICK_WIDTH + BRICK_PADDING) + 15,
-        y: row * (BRICK_HEIGHT + BRICK_PADDING) + 30,
-        width: BRICK_WIDTH,
-        height: BRICK_HEIGHT,
-        visible: true,
-        color: BRICK_COLORS[row]
-      });
-    }
-  }
-  
-  document.removeEventListener('keydown', handleBreakoutKeyDown);
-  document.removeEventListener('keyup', handleBreakoutKeyUp);
-  document.addEventListener('keydown', handleBreakoutKeyDown);
-  document.addEventListener('keyup', handleBreakoutKeyUp);
-  
-  if (breakoutGame) cancelAnimationFrame(breakoutGame);
-  breakoutGameLoop();
-}
-
-function handleBreakoutKeyDown(e) {
-  if (!breakoutWindow.classList.contains('show')) return;
-  
-  if (['ArrowLeft', 'ArrowRight', ' '].includes(e.key)) {
-    e.preventDefault();
-    breakoutKeys[e.key] = true;
-    
-    if (e.key === ' ' && !breakoutStarted) {
-      breakoutStarted = true;
-    }
-  }
-}
-
-function handleBreakoutKeyUp(e) {
-  if (!breakoutWindow.classList.contains('show')) return;
-  breakoutKeys[e.key] = false;
-}
-
-function breakoutGameLoop() {
-  if (breakoutKeys['ArrowLeft'] && breakoutPaddle.x > 0) {
-    breakoutPaddle.x -= breakoutPaddle.speed;
-  }
-  if (breakoutKeys['ArrowRight'] && breakoutPaddle.x < 400 - breakoutPaddle.width) {
-    breakoutPaddle.x += breakoutPaddle.speed;
-  }
-  
-  if (breakoutStarted) {
-    breakoutBall.x += breakoutBall.dx;
-    breakoutBall.y += breakoutBall.dy;
-    
-    if (breakoutBall.x <= breakoutBall.radius || breakoutBall.x >= 400 - breakoutBall.radius) {
-      breakoutBall.dx = -breakoutBall.dx;
-    }
-    
-    if (breakoutBall.y <= breakoutBall.radius) {
-      breakoutBall.dy = -breakoutBall.dy;
-    }
-    
-    if (breakoutBall.y + breakoutBall.radius >= breakoutPaddle.y &&
-        breakoutBall.x >= breakoutPaddle.x &&
-        breakoutBall.x <= breakoutPaddle.x + breakoutPaddle.width) {
-      breakoutBall.dy = -Math.abs(breakoutBall.dy);
-      breakoutBall.dx += (breakoutBall.x - (breakoutPaddle.x + breakoutPaddle.width / 2)) * 0.1;
-    }
-    
-    breakoutBricks.forEach(brick => {
-      if (brick.visible &&
-          breakoutBall.x >= brick.x &&
-          breakoutBall.x <= brick.x + brick.width &&
-          breakoutBall.y >= brick.y &&
-          breakoutBall.y <= brick.y + brick.height) {
-        brick.visible = false;
-        breakoutBall.dy = -breakoutBall.dy;
-        breakoutScore += 10;
-        document.getElementById('breakoutScore').textContent = breakoutScore;
-      }
-    });
-    
-    if (breakoutBricks.every(brick => !brick.visible)) {
-      alert('You Win! 🎉 Score: ' + breakoutScore);
-      breakoutWindow.classList.remove('show');
-      return;
-    }
-    
-    if (breakoutBall.y > 500) {
-      breakoutLives--;
-      document.getElementById('breakoutLives').textContent = breakoutLives;
+      const content = document.getElementById('content-'+id);
+      const arrow = document.getElementById('arrow-'+id);
       
-      if (breakoutLives <= 0) {
-        alert('Game Over! Score: ' + breakoutScore);
-        breakoutWindow.classList.remove('show');
+      if (content.classList.contains('show')) {
+        content.style.maxHeight = content.scrollHeight + 'px';
+        setTimeout(() => {
+          content.classList.remove('show');
+        }, 10);
+      } else {
+        content.classList.add('show');
+        content.style.maxHeight = content.scrollHeight + 'px';
+      }
+      
+      arrow.classList.toggle('open');
+    }
+    
+    // SEARCH FUNCTIONALITY
+    const searchBox = document.getElementById('searchBox');
+    const searchResults = document.getElementById('searchResults');
+
+    const allLinks = [
+      {name: 'Shuttle', url: 'https://shuttleproxy.com', icon: '🚀', category: 'Proxies'},
+      {name: 'Hypertabs', url: 'https://hy.hypertabs.net', icon: '⚡', category: 'Proxies'},
+      {name: 'Incognito', url: 'https://incog.dev', icon: '🕶️', category: 'Proxies'},
+      {name: 'Ludicrous', url: 'https://ludiproxy.com', icon: '🎯', category: 'Proxies'},
+      {name: 'Shadowtabz', url: 'https://shadowtabz.com', icon: '👤', category: 'Proxies'},
+      {name: 'Kazwire', url: 'https://kazwire.com', icon: '🔌', category: 'Proxies'},
+      {name: 'Degeneracy', url: 'https://degeneracy.netlify.app', icon: '🌀', category: 'Proxies'},
+      {name: 'Noctura', url: 'https://noctura.app', icon: '🌙', category: 'Proxies'},
+      {name: 'Elixir', url: 'https://elixirproxy.com', icon: '⚗️', category: 'Proxies'},
+      {name: 'Tsunami', url: 'https://tsunamiproxy.com', icon: '🌊', category: 'Proxies'},
+      {name: 'YouTube', url: 'https://youtube.com', icon: '📺', category: 'Social Media'},
+      {name: 'Instagram', url: 'https://instagram.com', icon: '📷', category: 'Social Media'},
+      {name: 'Twitter/X', url: 'https://twitter.com', icon: '🐦', category: 'Social Media'},
+      {name: 'TikTok', url: 'https://tiktok.com', icon: '🎵', category: 'Social Media'},
+      {name: 'Reddit', url: 'https://reddit.com', icon: '🤖', category: 'Social Media'},
+      {name: 'Roblox', url: 'https://roblox.com', icon: '🎮', category: 'Games'},
+      {name: 'Krunker', url: 'https://krunker.io', icon: '🔫', category: 'Games'},
+      {name: 'Skribbl', url: 'https://skribbl.io', icon: '✏️', category: 'Games'},
+      {name: 'Agar.io', url: 'https://agar.io', icon: '⚪', category: 'Games'},
+      {name: 'Slither.io', url: 'https://slither.io', icon: '🐍', category: 'Games'}
+    ];
+
+    function performSearch(query) {
+      if (!query.trim()) {
+        searchResults.classList.remove('show');
         return;
       }
       
-      breakoutBall = { x: 200, y: 400, dx: 3, dy: -3, radius: 8 };
-      breakoutStarted = false;
-    }
-  }
-  
-  drawBreakout();
-  breakoutGame = requestAnimationFrame(breakoutGameLoop);
-}
-
-function drawBreakout() {
-  breakoutCtx.fillStyle = '#000';
-  breakoutCtx.fillRect(0, 0, 400, 500);
-  
-  breakoutBricks.forEach(brick => {
-    if (brick.visible) {
-      breakoutCtx.fillStyle = brick.color;
-      breakoutCtx.fillRect(brick.x, brick.y, brick.width, brick.height);
-    }
-  });
-  
-  breakoutCtx.fillStyle = '#fff';
-  breakoutCtx.fillRect(breakoutPaddle.x, breakoutPaddle.y, breakoutPaddle.width, breakoutPaddle.height);
-  
-  breakoutCtx.beginPath();
-  breakoutCtx.arc(breakoutBall.x, breakoutBall.y, breakoutBall.radius, 0, Math.PI * 2);
-  breakoutCtx.fillStyle = '#fff';
-  breakoutCtx.fill();
-  
-  if (!breakoutStarted) {
-    breakoutCtx.fillStyle = '#fff';
-    breakoutCtx.font = '20px Arial';
-    breakoutCtx.textAlign = 'center';
-    breakoutCtx.fillText('Press SPACE to Start', 200, 250);
-  }
-}
-
-breakoutClose.addEventListener('click', () => {
-  breakoutWindow.classList.remove('show');
-  if (breakoutGame) cancelAnimationFrame(breakoutGame);
-  document.removeEventListener('keydown', handleBreakoutKeyDown);
-  document.removeEventListener('keyup', handleBreakoutKeyUp);
-});
-// FLAPPY BIRD GAME
-const flappyWindow = document.getElementById('flappyWindow');
-const flappyClose = document.getElementById('flappyClose');
-const flappyCanvas = document.getElementById('flappyCanvas');
-const flappyCtx = flappyCanvas.getContext('2d');
-
-let flappyGame = null;
-let flappyBird = { x: 50, y: 240, width: 34, height: 24, velocity: 0, gravity: 0.4, jump: -8 };
-let flappyPipes = [];
-let flappyScore = 0;
-let flappyStarted = false;
-let flappyFrame = 0;
-
-const PIPE_WIDTH = 52;
-const PIPE_GAP = 120;
-const PIPE_SPEED = 2;
-
-function initFlappyGame() {
-  flappyScore = 0;
-  flappyStarted = false;
-  flappyFrame = 0;
-  document.getElementById('flappyScore').textContent = flappyScore;
-  
-  flappyBird = { x: 50, y: 240, width: 34, height: 24, velocity: 0, gravity: 0.4, jump: -8 };
-  flappyPipes = [];
-  
-  flappyCanvas.removeEventListener('click', handleFlappyClick);
-  document.removeEventListener('keydown', handleFlappyKey);
-  
-  flappyCanvas.addEventListener('click', handleFlappyClick);
-  document.addEventListener('keydown', handleFlappyKey);
-  
-  if (flappyGame) cancelAnimationFrame(flappyGame);
-  flappyGameLoop();
-}
-
-function handleFlappyClick() {
-  if (!flappyStarted) {
-    flappyStarted = true;
-  }
-  flappyBird.velocity = flappyBird.jump;
-}
-
-function handleFlappyKey(e) {
-  if (!flappyWindow.classList.contains('show')) return;
-  
-  if (e.key === ' ') {
-    e.preventDefault();
-    if (!flappyStarted) {
-      flappyStarted = true;
-    }
-    flappyBird.velocity = flappyBird.jump;
-  }
-}
-
-function flappyGameLoop() {
-  if (flappyStarted) {
-    flappyFrame++;
-    
-    // Bird physics
-    flappyBird.velocity += flappyBird.gravity;
-    flappyBird.y += flappyBird.velocity;
-    
-    // Generate pipes
-    if (flappyFrame % 90 === 0) {
-      const gapY = Math.random() * (320 - PIPE_GAP) + 80;
-      flappyPipes.push({
-        x: 320,
-        topHeight: gapY - PIPE_GAP / 2,
-        bottomY: gapY + PIPE_GAP / 2,
-        scored: false
-      });
-    }
-    
-    // Move and check pipes
-    flappyPipes.forEach((pipe, index) => {
-      pipe.x -= PIPE_SPEED;
+      const lowerQuery = query.toLowerCase();
+      const filtered = allLinks.filter(link => 
+        link.name.toLowerCase().includes(lowerQuery) ||
+        link.category.toLowerCase().includes(lowerQuery) ||
+        link.url.toLowerCase().includes(lowerQuery)
+      );
       
-      // Score
-      if (!pipe.scored && pipe.x + PIPE_WIDTH < flappyBird.x) {
-        pipe.scored = true;
-        flappyScore++;
-        document.getElementById('flappyScore').textContent = flappyScore;
+      if (filtered.length === 0) {
+        searchResults.innerHTML = '<div class="no-results">😕 No results found for "' + query + '"</div>';
+        searchResults.classList.add('show');
+        return;
       }
       
-      // Remove off-screen pipes
-      if (pipe.x + PIPE_WIDTH < 0) {
-        flappyPipes.splice(index, 1);
-      }
+      searchResults.innerHTML = filtered.map(link => `
+        <a href="${link.url}" target="_blank" class="search-result-item">
+          <div class="search-result-icon">${link.icon}</div>
+          <div class="search-result-info">
+            <div class="search-result-name">${link.name}</div>
+            <div class="search-result-category">${link.category}</div>
+          </div>
+        </a>
+      `).join('');
       
-      // Collision detection
-      if (flappyBird.x + flappyBird.width > pipe.x && flappyBird.x < pipe.x + PIPE_WIDTH) {
-        if (flappyBird.y < pipe.topHeight || flappyBird.y + flappyBird.height > pipe.bottomY) {
-          alert('Game Over! Score: ' + flappyScore);
-          flappyWindow.classList.remove('show');
-          return;
-        }
-      }
-    });
-    
-    // Ground/ceiling collision
-    if (flappyBird.y + flappyBird.height > 480 || flappyBird.y < 0) {
-      alert('Game Over! Score: ' + flappyScore);
-      flappyWindow.classList.remove('show');
-      return;
-    }
-  }
-  
-  drawFlappy();
-  flappyGame = requestAnimationFrame(flappyGameLoop);
-}
-
-function drawFlappy() {
-  // Sky
-  flappyCtx.fillStyle = '#70c5ce';
-  flappyCtx.fillRect(0, 0, 320, 480);
-  
-  // Pipes
-  flappyPipes.forEach(pipe => {
-    flappyCtx.fillStyle = '#5cb85c';
-    // Top pipe
-    flappyCtx.fillRect(pipe.x, 0, PIPE_WIDTH, pipe.topHeight);
-    // Bottom pipe
-    flappyCtx.fillRect(pipe.x, pipe.bottomY, PIPE_WIDTH, 480 - pipe.bottomY);
-    
-    // Pipe borders
-    flappyCtx.strokeStyle = '#2d5a2d';
-    flappyCtx.lineWidth = 3;
-    flappyCtx.strokeRect(pipe.x, 0, PIPE_WIDTH, pipe.topHeight);
-    flappyCtx.strokeRect(pipe.x, pipe.bottomY, PIPE_WIDTH, 480 - pipe.bottomY);
-  });
-  
-  // Bird
-  flappyCtx.fillStyle = '#ffd700';
-  flappyCtx.fillRect(flappyBird.x, flappyBird.y, flappyBird.width, flappyBird.height);
-  
-  // Bird eye
-  flappyCtx.fillStyle = '#000';
-  flappyCtx.beginPath();
-  flappyCtx.arc(flappyBird.x + 25, flappyBird.y + 8, 3, 0, Math.PI * 2);
-  flappyCtx.fill();
-  
-  // Beak
-  flappyCtx.fillStyle = '#ff8c00';
-  flappyCtx.beginPath();
-  flappyCtx.moveTo(flappyBird.x + flappyBird.width, flappyBird.y + 12);
-  flappyCtx.lineTo(flappyBird.x + flappyBird.width + 8, flappyBird.y + 12);
-  flappyCtx.lineTo(flappyBird.x + flappyBird.width, flappyBird.y + 16);
-  flappyCtx.fill();
-  
-  // Start message
-  if (!flappyStarted) {
-    flappyCtx.fillStyle = '#000';
-    flappyCtx.font = 'bold 20px Arial';
-    flappyCtx.textAlign = 'center';
-    flappyCtx.fillText('Click or Press SPACE', 160, 240);
-    flappyCtx.fillText('to Start!', 160, 270);
-  }
-}
-
-flappyClose.addEventListener('click', () => {
-  flappyWindow.classList.remove('show');
-  if (flappyGame) cancelAnimationFrame(flappyGame);
-  flappyCanvas.removeEventListener('click', handleFlappyClick);
-  document.removeEventListener('keydown', handleFlappyKey);
-});
-    // SECRET DEVELOPER PORTAL
-    const triggerBtn = document.getElementById('triggerBtn');
-    const portalScreen = document.getElementById('portalScreen');
-    const closePortal = document.getElementById('closePortal');
-    const particlesCanvas = document.getElementById('particles');
-    const particlesCtx = particlesCanvas.getContext('2d');
-
-    let portalParticles = [];
-    let portalAnimationId;
-
-    function resizeParticlesCanvas() {
-      particlesCanvas.width = window.innerWidth;
-      particlesCanvas.height = window.innerHeight;
-    }
-    resizeParticlesCanvas();
-    window.addEventListener('resize', resizeParticlesCanvas);
-
-    class PortalParticle {
-      constructor() {
-        this.x = Math.random() * particlesCanvas.width;
-        this.y = Math.random() * particlesCanvas.height - particlesCanvas.height;
-        this.size = Math.random() * 3 + 1;
-        this.speedY = Math.random() * 2 + 0.5;
-        this.speedX = Math.random() * 0.5 - 0.25;
-        this.opacity = Math.random() * 0.5 + 0.3;
-      }
-
-      update() {
-        this.y += this.speedY;
-        this.x += this.speedX;
-
-        if (this.y > particlesCanvas.height) {
-          this.y = -10;
-          this.x = Math.random() * particlesCanvas.width;
-        }
-
-        if (this.x > particlesCanvas.width || this.x < 0) {
-          this.speedX = -this.speedX;
-        }
-      }
-
-      draw() {
-        particlesCtx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
-        particlesCtx.beginPath();
-        particlesCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        particlesCtx.fill();
-      }
+      searchResults.classList.add('show');
     }
 
-    function createPortalParticles() {
-      portalParticles = [];
-      const particleCount = 150;
-      for (let i = 0; i < particleCount; i++) {
-        portalParticles.push(new PortalParticle());
-      }
-    }
-
-    function animatePortalParticles() {
-      particlesCtx.clearRect(0, 0, particlesCanvas.width, particlesCanvas.height);
-      
-      portalParticles.forEach(particle => {
-        particle.update();
-        particle.draw();
-      });
-
-      portalAnimationId = requestAnimationFrame(animatePortalParticles);
-    }
-
-    triggerBtn.addEventListener('click', () => {
-      portalScreen.classList.add('show');
-      createPortalParticles();
-      animatePortalParticles();
+    searchBox.addEventListener('input', (e) => {
+      performSearch(e.target.value);
     });
 
-    closePortal.addEventListener('click', () => {
-      portalScreen.classList.remove('show');
-      cancelAnimationFrame(portalAnimationId);
+    document.addEventListener('click', (e) => {
+      if (!searchBox.contains(e.target) && !searchResults.contains(e.target)) {
+        searchResults.classList.remove('show');
+      }
     });
 
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && portalScreen.classList.contains('show')) {
-        portalScreen.classList.remove('show');
-        cancelAnimationFrame(portalAnimationId);
+      if (e.ctrlKey && e.key === 'k') {
+        e.preventDefault();
+        searchBox.focus();
+      }
+      
+      if (e.key === 'Escape' && document.activeElement === searchBox) {
+        searchBox.value = '';
+        searchResults.classList.remove('show');
+        searchBox.blur();
       }
     });
-   // ANIMATED PAGE TITLE
-const titles = [
-  'PowerSchool LSR7',
-  'Find the secrets...',
-  '🐍 Konami Code?',
-  '✨ Hidden portal',
-  '💬 Chat with bots',
-  'PowerSchool LSR7'
-];
 
-let titleIndex = 0;
-let charIndex = 0;
-let isDeleting = false;
-let titleTimeout;
-
-function typeTitle() {
-  const currentTitle = titles[titleIndex];
-  
-  if (isDeleting) {
-    // Remove one character
-    document.title = currentTitle.substring(0, charIndex - 1);
-    charIndex--;
-  } else {
-    // Add one character
-    document.title = currentTitle.substring(0, charIndex + 1);
-    charIndex++;
-  }
-  
-  // SLOWER typing speed
-let typeSpeed = isDeleting ? 150 : 250;
-
-// If word is complete
-if (!isDeleting && charIndex === currentTitle.length) {
-  // Pause at end of word
-  typeSpeed = 4000;
-  isDeleting = true;
-} else if (isDeleting && charIndex === 0) {
-  // Move to next title
-  isDeleting = false;
-  titleIndex = (titleIndex + 1) % titles.length;
-  typeSpeed = 1200;
-}
-  
-  titleTimeout = setTimeout(typeTitle, typeSpeed);
-}
-
-// Start the animation after page loads
-setTimeout(typeTitle, 1500);
-  // Create AudioContext ONCE (reuse it)
-let audioContext;
-function getAudioContext() {
-  if (!audioContext) {
-    audioContext = new (window.AudioContext || window.webkitAudioContext)();
-  }
-  return audioContext;
-}
-
-// HOVER + CLICK SOUNDS (EXACTLY like voucan)
-function playHover() {
-  const ctx = getAudioContext();
-  const oscillator = ctx.createOscillator();
-  const gainNode = ctx.createGain();
-  
-  oscillator.connect(gainNode);
-  gainNode.connect(ctx.destination);
-  
-  oscillator.frequency.value = 600;
-  oscillator.type = 'sine';
-  
-  gainNode.gain.setValueAtTime(0.03, ctx.currentTime);
-  gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.04);
-  
-  oscillator.start(ctx.currentTime);
-  oscillator.stop(ctx.currentTime + 0.04);
-}
-
-function playClick() {
-  const ctx = getAudioContext();
-  const oscillator = ctx.createOscillator();
-  const gainNode = ctx.createGain();
-  
-  oscillator.connect(gainNode);
-  gainNode.connect(ctx.destination);
-  
-  oscillator.frequency.value = 1000;
-  oscillator.type = 'sine';
-  
-  gainNode.gain.setValueAtTime(0.1, ctx.currentTime);
-  gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.05);
-  
-  oscillator.start(ctx.currentTime);
-  oscillator.stop(ctx.currentTime + 0.05);
-}
-
-// Add to all interactive elements
-document.querySelectorAll('button, .link-box, .category-header, a, .portal-btn, .login-logo').forEach(el => {
-  el.addEventListener('mouseenter', playHover);
-  el.addEventListener('click', playClick);
-});
-
-// Start the title animation
-setTimeout(typeTitle, 1500);
-  // Holiday effect helper function
-function createHolidayEffect(...emojis) {
-  setInterval(() => {
-    const s = document.createElement('div');
-    s.className = 'sparkle';
-    s.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-    s.style.left = Math.random() * 100 + 'vw';
-    s.style.fontSize = (Math.random() * 25 + 20) + 'px';
-    s.style.animationDuration = (Math.random() * 3 + 3) + 's';
-    document.body.appendChild(s);
-    setTimeout(() => s.remove(), 6000);
-  }, 400);
-}
-    // SEARCH FUNCTIONALITY
-const searchBox = document.getElementById('searchBox');
-const searchResults = document.getElementById('searchResults');
-
-// All links data
-const allLinks = [
-  // Proxies
-  {name: 'Shuttle', url: 'https://shuttleproxy.com', icon: '🚀', category: 'Proxies'},
-  {name: 'Hypertabs', url: 'https://hy.hypertabs.net', icon: '⚡', category: 'Proxies'},
-  {name: 'Incognito', url: 'https://incog.dev', icon: '🕶️', category: 'Proxies'},
-  {name: 'Ludicrous', url: 'https://ludiproxy.com', icon: '🎯', category: 'Proxies'},
-  {name: 'Shadowtabz', url: 'https://shadowtabz.com', icon: '👤', category: 'Proxies'},
-  {name: 'Kazwire', url: 'https://kazwire.com', icon: '🔌', category: 'Proxies'},
-  {name: 'Degeneracy', url: 'https://degeneracy.netlify.app', icon: '🌀', category: 'Proxies'},
-  {name: 'Noctura', url: 'https://noctura.app', icon: '🌙', category: 'Proxies'},
-  {name: 'Elixir', url: 'https://elixirproxy.com', icon: '⚗️', category: 'Proxies'},
-  {name: 'Tsunami', url: 'https://tsunamiproxy.com', icon: '🌊', category: 'Proxies'},
-  {name: 'BlockAway', url: 'https://www.blockaway.net', icon: '🌐', category: 'Proxies'},
-  {name: 'CroxyProxy', url: 'https://www.croxyproxy.com', icon: '🔓', category: 'Proxies'},
-  {name: 'ProxySite', url: 'https://www.proxysite.com', icon: '🌍', category: 'Proxies'},
-  {name: 'Hide.me', url: 'https://hide.me/en/proxy', icon: '🔒', category: 'Proxies'},
-  {name: 'HideMyAss', url: 'https://www.hidemyass.com/en-us/proxy', icon: '🎭', category: 'Proxies'},
-  {name: 'PlainProxies', url: 'https://plainproxies.com', icon: '⚡', category: 'Proxies'},
-  
-  // Social Media
-  {name: 'YouTube', url: 'https://youtube.com', icon: '📺', category: 'Social Media'},
-  {name: 'Instagram', url: 'https://instagram.com', icon: '📷', category: 'Social Media'},
-  {name: 'Twitter/X', url: 'https://twitter.com', icon: '🐦', category: 'Social Media'},
-  {name: 'TikTok', url: 'https://tiktok.com', icon: '🎵', category: 'Social Media'},
-  {name: 'Reddit', url: 'https://reddit.com', icon: '🤖', category: 'Social Media'},
-  
-  // Streaming
-  {name: 'Netflix', url: 'https://netflix.com', icon: '🎬', category: 'Streaming'},
-  {name: 'Disney+', url: 'https://disneyplus.com', icon: '🏰', category: 'Streaming'},
-  {name: 'Hulu', url: 'https://hulu.com', icon: '📺', category: 'Streaming'},
-  {name: 'Twitch', url: 'https://twitch.tv', icon: '🎮', category: 'Streaming'},
-  {name: 'Prime Video', url: 'https://primevideo.com', icon: '📦', category: 'Streaming'},
-  
-  // Games
-  {name: 'Roblox', url: 'https://roblox.com', icon: '🎮', category: 'Games'},
-  {name: 'Krunker', url: 'https://krunker.io', icon: '🔫', category: 'Games'},
-  {name: 'Skribbl', url: 'https://skribbl.io', icon: '✏️', category: 'Games'},
-  {name: 'Agar.io', url: 'https://agar.io', icon: '⚪', category: 'Games'},
-  {name: 'Slither.io', url: 'https://slither.io', icon: '🐍', category: 'Games'},
-  
-  // Tools
-  {name: 'Discord', url: 'https://discord.com', icon: '💬', category: 'Tools'},
-  {name: 'Gmail', url: 'https://gmail.com', icon: '📧', category: 'Tools'},
-  {name: 'Google Drive', url: 'https://drive.google.com', icon: '💾', category: 'Tools'},
-  {name: 'Google Docs', url: 'https://docs.google.com', icon: '📝', category: 'Tools'},
-  {name: 'GitHub', url: 'https://github.com', icon: '💻', category: 'Tools'},
-  
-  // Music
-  {name: 'Spotify', url: 'https://spotify.com', icon: '🎵', category: 'Music'},
-  {name: 'SoundCloud', url: 'https://soundcloud.com', icon: '☁️', category: 'Music'},
-  {name: 'YouTube Music', url: 'https://music.youtube.com', icon: '🎶', category: 'Music'},
-  {name: 'Apple Music', url: 'https://music.apple.com', icon: '🍎', category: 'Music'},
-  
-  // Finance
-  {name: 'MarketWatch', url: 'https://www.marketwatch.com/market-data', icon: '📈', category: 'Finance'},
-  {name: 'Rush Gold', url: 'https://rush.gold/', icon: '🥇', category: 'Finance'},
-  {name: 'Investing.com', url: 'https://www.investing.com', icon: '💰', category: 'Finance'},
-  {name: 'Yahoo Finance', url: 'https://finance.yahoo.com', icon: '💹', category: 'Finance'},
-  {name: 'TradingView', url: 'https://www.tradingview.com', icon: '📊', category: 'Finance'}
-];
-
-// Search function
-function performSearch(query) {
-  if (!query.trim()) {
-    searchResults.classList.remove('show');
-    return;
-  }
-  
-  const lowerQuery = query.toLowerCase();
-  const filtered = allLinks.filter(link => 
-    link.name.toLowerCase().includes(lowerQuery) ||
-    link.category.toLowerCase().includes(lowerQuery) ||
-    link.url.toLowerCase().includes(lowerQuery)
-  );
-  
-  if (filtered.length === 0) {
-    searchResults.innerHTML = '<div class="no-results">😕 No results found for "' + query + '"</div>';
-    searchResults.classList.add('show');
-    return;
-  }
-  
-  searchResults.innerHTML = filtered.map(link => `
-    <a href="${link.url}" target="_blank" class="search-result-item">
-      <div class="search-result-icon">${link.icon}</div>
-      <div class="search-result-info">
-        <div class="search-result-name">${link.name}</div>
-        <div class="search-result-category">${link.category}</div>
-      </div>
-    </a>
-  `).join('');
-  
-  searchResults.classList.add('show');
-}
-
-// Search input handler
-searchBox.addEventListener('input', (e) => {
-  performSearch(e.target.value);
-});
-
-// Click outside to close
-document.addEventListener('click', (e) => {
-  if (!searchBox.contains(e.target) && !searchResults.contains(e.target)) {
-    searchResults.classList.remove('show');
-  }
-});
-
-// Ctrl+K shortcut to focus search
-document.addEventListener('keydown', (e) => {
-  if (e.ctrlKey && e.key === 'k') {
-    e.preventDefault();
-    searchBox.focus();
-  }
-  
-  // ESC to clear search
-  if (e.key === 'Escape' && document.activeElement === searchBox) {
-    searchBox.value = '';
-    searchResults.classList.remove('show');
-    searchBox.blur();
-  }
-});
-
-// Click on search result
-searchResults.addEventListener('click', (e) => {
-  searchBox.value = '';
-  searchResults.classList.remove('show');
-});
-  // RECENTLY CLICKED LINKS
-const recentSection = document.getElementById('recentSection');
-const recentLinksContainer = document.getElementById('recentLinks');
-const clearHistoryBtn = document.getElementById('clearHistory');
-
-// Load recent links from localStorage
-function loadRecentLinks() {
-  const recent = JSON.parse(localStorage.getItem('recentLinks') || '[]');
-  
-  if (recent.length === 0) {
-    recentSection.style.display = 'none';
-    return;
-  }
-  
-  recentSection.style.display = 'block';
-  recentLinksContainer.innerHTML = recent.map(link => `
-    <a href="${link.url}" target="_blank" class="recent-link" data-url="${link.url}">
-      <span class="recent-link-icon">${link.icon}</span>
-      <span class="recent-link-name">${link.name}</span>
-    </a>
-  `).join('');
-  
-  // Add click tracking to recent links
-  document.querySelectorAll('.recent-link').forEach(link => {
-    link.addEventListener('click', (e) => {
-      const url = e.currentTarget.dataset.url;
-      trackLinkClick(allLinks.find(l => l.url === url));
+    searchResults.addEventListener('click', (e) => {
+      searchBox.value = '';
+      searchResults.classList.remove('show');
     });
-  });
-}
-
-// Track link click
-function trackLinkClick(link) {
-  if (!link) return;
-  
-  let recent = JSON.parse(localStorage.getItem('recentLinks') || '[]');
-  
-  // Remove if already exists
-  recent = recent.filter(l => l.url !== link.url);
-  
-  // Add to beginning
-  recent.unshift({
-    name: link.name,
-    url: link.url,
-    icon: link.icon,
-    category: link.category
-  });
-  
-  // Keep only last 12 (or whatever number you want)
-  recent = recent.slice(0, 12);
-  
-  localStorage.setItem('recentLinks', JSON.stringify(recent));
-  loadRecentLinks();
-}
-
-// Clear history
-clearHistoryBtn.addEventListener('click', () => {
-  if (confirm('Clear all recent links?')) {
-    localStorage.removeItem('recentLinks');
-    loadRecentLinks();
-  }
-});
-
-// Track clicks on main link boxes (using event delegation)
-document.addEventListener('click', (e) => {
-  // Check if clicked on a link box
-  const linkBox = e.target.closest('.link-box');
-  if (linkBox) {
-    const url = linkBox.href;
-    const link = allLinks.find(l => l.url === url);
-    if (link) trackLinkClick(link);
-    return;
-  }
-  
-  // Check if clicked on search result
-  const searchResult = e.target.closest('.search-result-item');
-  if (searchResult) {
-    const url = searchResult.href;
-    const link = allLinks.find(l => l.url === url);
-    if (link) trackLinkClick(link);
-    return;
-  }
-  
-  // Check if clicked on recent link
-  const recentLink = e.target.closest('.recent-link');
-  if (recentLink) {
-    const url = recentLink.dataset.url;
-    const link = allLinks.find(l => l.url === url);
-    if (link) trackLinkClick(link);
-  }
-});
-// Load on page load
-loadRecentLinks();
-document.getElementById('scrollRight').addEventListener('click', () => {
-  document.getElementById('recentLinks').scrollBy({
-    left: 200,
-    behavior: 'smooth'
-  });
-});
-// 404 Page Function
-function show404() {
-  document.getElementById('error404').classList.add('show');
-}
-
-// MAKE GAME WINDOWS DRAGGABLE AND RESIZABLE
-function makeWindowDraggable(windowElement) {
-  const header = windowElement.querySelector('.snake-header');
-  let isDragging = false;
-  let currentX;
-  let currentY;
-  let initialX;
-  let initialY;
-
-  header.addEventListener('mousedown', dragStart);
-  header.addEventListener('touchstart', dragStart);
-
-  function dragStart(e) {
-    if (e.target.tagName === 'BUTTON') return;
     
-    if (e.type === 'touchstart') {
-      initialX = e.touches[0].clientX - windowElement.offsetLeft;
-      initialY = e.touches[0].clientY - windowElement.offsetTop;
-    } else {
-      initialX = e.clientX - windowElement.offsetLeft;
-      initialY = e.clientY - windowElement.offsetTop;
-    }
-
-    isDragging = true;
-    windowElement.style.position = 'fixed';
-    
-    document.addEventListener('mousemove', drag);
-    document.addEventListener('mouseup', dragEnd);
-    document.addEventListener('touchmove', drag);
-    document.addEventListener('touchend', dragEnd);
-  }
-
-  function drag(e) {
-    if (!isDragging) return;
-    e.preventDefault();
-
-    if (e.type === 'touchmove') {
-      currentX = e.touches[0].clientX - initialX;
-      currentY = e.touches[0].clientY - initialY;
-    } else {
-      currentX = e.clientX - initialX;
-      currentY = e.clientY - initialY;
-    }
-
-    windowElement.style.left = currentX + 'px';
-    windowElement.style.top = currentY + 'px';
-    windowElement.style.bottom = 'auto';
-    windowElement.style.right = 'auto';
-  }
-
-  function dragEnd() {
-    isDragging = false;
-    document.removeEventListener('mousemove', drag);
-    document.removeEventListener('mouseup', dragEnd);
-    document.removeEventListener('touchmove', drag);
-    document.removeEventListener('touchend', dragEnd);
-  }
-}
-</script>
-
-<div class="error-404" id="error404">
-  <h1 class="glitch">404</h1>
-  <p>🚫 Oops! This page doesn't exist</p>
-  <p>Maybe it got blocked by your school? 😏</p>
-  <button onclick="document.getElementById('error404').classList.remove('show')">Go Back</button>
-</div>
-<!-- Default Statcounter code for m1ltvrs-proxy http://www.powerschool-lrs7.com
--->
-<script type="text/javascript">
-var sc_project=13194178; 
-var sc_invisible=0; 
-var sc_security="c224dfe3"; 
-var scJsHost = "https://";
-document.write("<sc"+"ript type='text/javascript' src='" + scJsHost+
-"statcounter.com/counter/counter.js'></"+"script>");
-</script>
-<noscript><div class="statcounter"><a title="Web Analytics Made Easy -
-Statcounter" href="https://statcounter.com/" target="_blank"><img
-class="statcounter" src="https://c.statcounter.com/13194178/0/c224dfe3/0/"
-alt="Web Analytics Made Easy - Statcounter"
-referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
-<!-- End of Statcounter Code -->
-<script
-  chatbot_id="6943929a190e85dc71392e73"
-  data-type="default"
-  src="https://app.thinkstack.ai/bot/thinkstackai-loader.min.js">
-</script>
-
-<script>
-document.getElementById('panicBtn').addEventListener('click', () => {
-  window.open('https://www.khanacademy.org', '_blank');
-  window.location.href = 'https://www.khanacademy.org';
-});
-
-  makeWindowDraggable(document.getElementById('snakeWindow'));
-makeWindowDraggable(document.getElementById('tetrisWindow'));
-makeWindowDraggable(document.getElementById('pongWindow'));
-makeWindowDraggable(document.getElementById('breakoutWindow'));
-makeWindowDraggable(document.getElementById('flappyWindow'));
-</script>
+    // DEMO: Show message after 2 minutes
+    setTimeout(() => {
+      alert('⏰ Thanks for trying the demo! Full version includes:\n\n✨ 34+ proxy sites\n🎮 5 hidden games (Snake, Tetris, Pong, etc.)\n🎨 Secret themes & easter eggs\n🔓 All categories unlocked\n💾 History tracking\n\n...and much more!');
+    }, 2 * 60 * 1000);
+  </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
